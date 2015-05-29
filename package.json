@@ -1,0 +1,31 @@
+{
+  "name": "Eventfull",
+  "version": "1.0.0",
+  "description": "Event staffing for caterers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Eventfull/Eventfull.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eventfull/Eventfull/issues"
+  },
+  "homepage": "https://github.com/Eventfull/Eventfull",
+  "devDependencies": {
+    "browserify": "^10.2.3",
+    "gulp": "^3.8.11",
+    "gulp-html-replace": "^1.4.5",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.2.1"
+  },
+  "dependencies": {
+    "gulp-uglify": "^1.2.0",
+    "gulp-streamify": "0.0.5"
+  }
+}
