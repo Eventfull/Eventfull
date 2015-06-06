@@ -5,7 +5,7 @@ var React = require('react');
   var Template = React.createClass({
     render: function() {
       return (
-        <div classnName = "container">
+        <div className = "container">
           <h1>Hi im the Template!</h1>
           {this.props.children}
         </div>

@@ -1,14 +1,14 @@
 /** @jsx React.DOM */
 var React = require('react');
 
-var MonthHeader = React.createClass({
+var MonthEvent = React.createClass({
   render:function() {
     return (
       <div>
-        <h3>Im the Month Header</h3>
+        <p>Im an event</p>
       </div>
     );
   }
 });
 
-module.exports = MonthHeader;
+module.exports = MonthEvent;
