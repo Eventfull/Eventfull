@@ -7,7 +7,36 @@ var MonthEventContainer = React.createClass({
     return (
         <div className="row">
           <div className="col-md-12">
-            <ul>
+            <ul className="eventList">
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+            </ul>
+            <ul className="eventList">
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+            </ul>
+            <ul className="eventList">
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+              <li><Event /></li>
+            </ul>
+            <ul className="eventList">
+              <li><Event /></li>
+              <li><Event /></li>
               <li><Event /></li>
               <li><Event /></li>
               <li><Event /></li>

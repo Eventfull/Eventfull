@@ -7,8 +7,9 @@ var MonthHeader = React.createClass({
     return (
         <div className="row">
           <div className="col-md-12">
-            <h3>June</h3>
-            <Link href='/week'>Week View</Link>
+            <h3 className="leftHeader">Event List</h3>
+            <h4 className="centerHeader">June</h4>
+            <Link className="Link" href='/week'>Week View</Link>
           </div>
         </div>
     );
