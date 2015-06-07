@@ -4,8 +4,9 @@ var React = require('react');
 var MonthEvent = React.createClass({
   render:function() {
     return (
-      <div>
-        <p>Im an event</p>
+      <div className="event">
+        <p>June 10th</p>
+        <p>3 Events</p> 
       </div>
     );
   }
