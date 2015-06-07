@@ -7,7 +7,6 @@ var Week = React.createClass({
     return (
       <div>
         <Link href='/month'>Month View</Link>
-        <h1>Im the Week View</h1>
       </div>
     );
   }
