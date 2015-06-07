@@ -4,8 +4,9 @@ var React = require('react');
 var MonthSidebar = React.createClass({
   render:function() {
     return (
-      <div>
-        <h3>Im the Month Sidebar</h3>
+      <div className="col-md-4">
+        <h3>Action Sidebar</h3>
+        <button type="button">Inspect Day</button>
       </div>
     );
   }
