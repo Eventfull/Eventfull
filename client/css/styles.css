@@ -2,6 +2,7 @@
   border: 2px solid black !important;
 }*/
 
+/*Month-Event*/
 .event {
   border: 2px solid black;
   display: inline-block;
@@ -17,6 +18,7 @@
   padding-left: 10px
 }
 
+/*Month-Header*/
 .leftHeader {
   display: inline-block;
   text-align: left;
@@ -30,4 +32,8 @@
 .link {
   display: inline-block;
   text-align: right;
+}
+
+/*Month-Sidebar*/
+.month-sidebar {
 }
