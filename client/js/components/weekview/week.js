@@ -1,6 +1,6 @@
+/** @jsx React.DOM */
 var React = require('react');
-
-Link = require('react-router-component').Link;
+var Link = require('react-router-component').Link;
 
 var Week = React.createClass({
   render: function() {

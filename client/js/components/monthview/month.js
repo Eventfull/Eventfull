@@ -1,10 +1,9 @@
 /** @jsx React.DOM */
-
 var React = require('react');
 var MonthCalendarContainer = require('./month-calendarcontainer.js');
 var MonthSidebar = require('./month-sidebar.js');
 
-Link = require('react-router-component').Link;
+var Link = require('react-router-component').Link;
 
 var Month = React.createClass({
   render: function() {
