@@ -25,6 +25,7 @@
     "watchify": "^3.2.1"
   },
   "dependencies": {
+    "flux": "^2.0.3",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.2.0",
     "react": "^0.13.3",
