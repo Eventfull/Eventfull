@@ -1,12 +1,12 @@
 /** @jsx React.DOM */
 var React = require('react');
 var WeekEvent = require('./week-event');
-var _ = require('../../utils/utils');
+var _ = require('underscore');
 
 var WeekDayCard = React.createClass({
   render: function(){
-    var weekEvents = _.map(this.props.data, function(item, key){
-      return <WeekEvent key={ key } data={ item } />;
+    var weekEvents = _.map(this.props.day, function(event, key){
+      return <WeekEvent key={ key } event={ event } />;
     });
 
     return (

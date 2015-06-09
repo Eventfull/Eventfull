@@ -2,14 +2,18 @@
 var React = require('react');
 var WeekHeader = require('./week-header');
 var WeekBoard = require('./week-board');
-var _ = require('../../utils/utils');
+var weekData = require('../../weekData');
+var _ = require('underscore');
 
 var Week = React.createClass({
+  getInitialState: function(){
+    return weekData;
+  },
   render: function() {
     return (
       <div>
         <WeekHeader />
-        <WeekBoard data={ this.state }/>
+        <WeekBoard days={ this.state }/>
       </div>
     );
   }
