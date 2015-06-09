@@ -11,6 +11,7 @@ var reactify = require('reactify');
 //Sets up all of the paths
 var path = {
   HTML: 'client/index.html',
+  CSS:'client/css/styles.css',
   MINIFIED_OUT: 'build.min.js',
   OUT: 'build.js',
   DEST: 'dist/client',
@@ -28,9 +29,15 @@ gulp.task('replaceHTMLsrc', function(){
     .pipe(gulp.dest(path.DEST));
 });
 
+//Copes CSS file and puts it in dist folder
+gulp.task('copy', function() {
+  gulp.src(path.CSS)
+      .pipe(gulp.dest('dist/client'));
+});
+
 // watches HTML and JS for changes, browserify and reactifys JS, and bundles it all.
 gulp.task('watch', function() {
-  gulp.watch(path.HTML, ['replaceHTMLsrc']);
+  gulp.watch(path.HTML, ['replaceHTMLsrc', 'copy']);
 
   var watcher  = watchify(browserify({
     entries: [path.ENTRY_POINT],
@@ -54,7 +61,7 @@ gulp.task('watch', function() {
     .pipe(gulp.dest(path.DEST_SRC));
 });
 
-gulp.task('default', ['replaceHTMLsrc', 'watch']);
+gulp.task('default', ['replaceHTMLsrc','copy', 'watch']);
 
 // Version 1.2.0 of gulp-uglify uses a breaking version of UglifyJS (2.4.19)
 // We can update this once we start needing to deal with production

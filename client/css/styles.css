@@ -1,0 +1,39 @@
+/** {
+  border: 2px solid black !important;
+}*/
+
+/*Month-Event*/
+.event {
+  border: 2px solid black;
+  display: inline-block;
+}
+
+.eventList {
+  display: inline-block;
+  list-style-type: none;
+}
+
+.eventList li {
+  display: inline;
+  padding-left: 10px
+}
+
+/*Month-Header*/
+.leftHeader {
+  display: inline-block;
+  text-align: left;
+}
+
+.centerHeader {
+  display: inline-block;
+  text-align: center;
+}
+
+.link {
+  display: inline-block;
+  text-align: right;
+}
+
+/*Month-Sidebar*/
+.month-sidebar {
+}
