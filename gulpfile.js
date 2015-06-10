@@ -4,12 +4,16 @@ var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var reactify = require('reactify');
+var runSequence = require('run-sequence');
+var plugins = require('gulp-load-plugins')();
 // for production build:
     // var streamify = require('gulp-streamify');
     // var uglify = require('gulp-uglify');
 
 //Sets up all of the paths
 var path = {
+  CLIENT_JS: 'client/js/**/*.js',
+  TEST_SRC: '__tests__/*.js',
   HTML: 'client/index.html',
   MINIFIED_OUT: 'build.min.js',
   OUT: 'build.js',
@@ -40,10 +44,11 @@ gulp.task('watch', function() {
   }));
 
   return watcher.on('update', function () {
+    var timeStamp = new Date();
     watcher.bundle()
       .pipe(source(path.OUT))
       .pipe(gulp.dest(path.DEST_SRC));
-      console.log('Updated');
+      console.log('Updated @ ' + timeStamp.toTimeString());
     })
     .bundle()
     .on('error', function(err) {
@@ -52,6 +57,15 @@ gulp.task('watch', function() {
     })
     .pipe(source(path.OUT))
     .pipe(gulp.dest(path.DEST_SRC));
+});
+
+gulp.task('jest', plugins.shell.task('npm test', {
+  ignoreErrors: true //so task doesn't error out when test fails
+}));
+
+gulp.task('test', function(){
+  runSequence('jest');
+  gulp.watch([path.CLIENT_JS, path.TEST_SRC], ['jest']);
 });
 
 gulp.task('default', ['replaceHTMLsrc', 'watch']);
