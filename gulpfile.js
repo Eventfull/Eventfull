@@ -59,11 +59,13 @@ gulp.task('watch', function() {
     .pipe(gulp.dest(path.DEST_SRC));
 });
 
+// Runs the Jest testing suite a single time
 gulp.task('jest', plugins.shell.task('npm test', {
   ignoreErrors: true //so task doesn't error out when test fails
 }));
 
-gulp.task('test', function(){
+// Runs the Jest testing suite once and then again any time changes are made to either the client's javascript files or the testing files.
+gulp.task('watchTests', function(){
   runSequence('jest');
   gulp.watch([path.CLIENT_JS, path.TEST_SRC], ['jest']);
 });
