@@ -1,5 +1,13 @@
 # Contributing
 
+## Requirements
+
+In order to effectively utilize and run Jest based testing, Node v0.10.36 is recommended. Newer versions of node currently don't operate properly with jsdom, which is a dependency of Jest (as described by this [issue](https://github.com/facebook/jest/issues/243)). You can follow these steps to install and manage node versions:
+
+1. Install nvm following the instructions @ [https://github.com/creationix/nvm](https://github.com/creationix/nvm).
+1. Run `nvm install 0.10.36` to install a recent compatible version of node.
+1. Run `nvm alias default v0.10.36` to ensure your bash enviornment always boots with the compatible version.
+
 ## General Workflow
 
 1. Fork the repo

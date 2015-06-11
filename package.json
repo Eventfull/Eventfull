@@ -1,10 +1,10 @@
 {
   "name": "Eventfull",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Event staffing for caterers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,12 @@
     "browserify": "^10.2.3",
     "gulp": "^3.8.11",
     "gulp-html-replace": "^1.4.5",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-shell": "^0.4.2",
+    "jest-cli": "^0.4.10",
+    "react-tools": "^0.13.3",
     "reactify": "^1.1.1",
+    "run-sequence": "^1.1.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.1"
   },
@@ -33,5 +38,11 @@
     "react-async": "^2.1.0",
     "react-router-component": "^0.25.1",
     "underscore": "^1.8.3"
+  },
+  "jest": {
+    "scriptPreprocessor": "./spec/support/preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "react"
+    ]
   }
 }
