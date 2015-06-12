@@ -1,6 +1,6 @@
 var Dispatcher = require('./dispatcher/dispatcher');
 var AppConstants = require('./constants/constants');
-var EventEmitter = require('event').EventEmitter;
+var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
 // Internal object containing all events for the week
