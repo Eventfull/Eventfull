@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
 var MonthCalendarContainer = require('./month-calendarcontainer.js');
-var MonthSidebar = require('./month-sidebar.js');
 var MonthStore = require('../../stores/month-store.js');
 var MonthHeader = require('./month-header.js');
 var MonthData = require('../../monthData.js');
@@ -14,6 +13,7 @@ function monthData() {
 
 var Month = React.createClass({
   getInitialState: function() {
+    console.log('monthdata', MonthData)
     return MonthData;
   },
   componentWillMount: function() {

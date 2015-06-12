@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-var MonthEvent = require('month-event.js');
+var MonthEvent = require('./month-event.js');
 var _ = require('underscore');
 
 var MonthWeek = React.createClass({
@@ -15,4 +15,6 @@ var MonthWeek = React.createClass({
       </div>
     );
   }
-})
+});
+
+module.exports = MonthWeek;
