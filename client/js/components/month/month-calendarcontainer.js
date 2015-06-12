@@ -8,7 +8,7 @@ var MonthCalendarContainer = React.createClass({
     return (
       <div>
         <h3>MonthCalendarContainer</h3>
-        <MonthEventContainer days={this.props.days}/>
+        <MonthEventContainer weeks={ this.props.weeks }/>
       </div>
     );
   }

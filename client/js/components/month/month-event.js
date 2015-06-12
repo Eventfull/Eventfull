@@ -5,8 +5,8 @@ var MonthEvent = React.createClass({
   render:function() {
     return (
       <div>
-        <p> { this.props.day.numGigs }</p>
-        <p>  { this.props.day.status }</p>
+        <h5>{ this.props.day.numEvents }</h5>
+        <p>{ this.props.day.status }</p>
       </div>
     );
   }

@@ -3,18 +3,18 @@ var React = require('react');
 var MonthCalendarContainer = require('./month-calendarcontainer.js');
 var MonthSidebar = require('./month-sidebar.js');
 var MonthStore = require('../../stores/month-store.js');
-
-var Link = require('react-router-component').Link;
+var MonthHeader = require('./month-header.js');
+var MonthData = require('../../monthData.js');
 
 function monthData() {
   return {
-    gigs: MonthStore.getGigs()
+    gigs: MonthStore.getMonthData()
   };
 }
 
 var Month = React.createClass({
   getInitialState: function() {
-    return monthData();
+    return MonthData;
   },
   componentWillMount: function() {
     MonthStore.addChangeListener(this._onChange);
@@ -29,7 +29,7 @@ var Month = React.createClass({
     return (
       <div>
         <MonthHeader />
-        <MonthCalendarContainer days={this.state}/>
+        <MonthCalendarContainer weeks={ this.state }/>
       </div>
     );
   }

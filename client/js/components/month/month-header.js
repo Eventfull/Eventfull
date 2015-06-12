@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-
+var Link = require('react-router-component').Link;
 var MonthHeader = React.createClass({
   render:function() {
     return (
