@@ -29,7 +29,7 @@ var Month = React.createClass({
     return (
       <div>
         <MonthHeader />
-        <MonthCalendarContainer weeks={this.state}/>
+        <MonthCalendarContainer days={this.state}/>
       </div>
     );
   }
