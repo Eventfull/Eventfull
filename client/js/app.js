@@ -3,7 +3,7 @@
 var React = require('react');
 var Router = require('react-router-component');
 var Template = require('./components/app-template.js');
-var Month = require('./components/monthview/month.js');
+var Month = require('./components/month/month.js');
 var Week = require('./components/week/week.js');
 var Sidebar = require('./components/sidebar/sidebar.js');
 
