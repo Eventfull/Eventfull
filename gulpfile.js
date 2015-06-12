@@ -27,7 +27,7 @@ var path = {
 };
 
 // Copies HTML file, replaces script source with the bundled source.
-gulp.task('replaceHTMLsrc', function(){
+gulp.task('replaceHTMLsrc', function () {
   console.log('transfering HTML file and swapping source with bundle.js');
   gulp.src(path.HTML)
     .pipe(htmlreplace({
@@ -37,22 +37,24 @@ gulp.task('replaceHTMLsrc', function(){
 });
 
 // Transfers CSS and Image folders over to distribution.
-// This will temporarily happen without any without any processing.
-gulp.task('transferStyles', function(){
+// This will temporarily happen any without any processing.
+gulp.task('transferStyles', function () {
   console.log('transfering styles to distribution folder');
   gulp.src([path.CSS, path.IMAGE])
     .pipe(gulp.dest(path.DEST_STYLE));
 });
 
 // watches HTML and JS for changes, browserify and reactifys JS, and bundles it all.
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch(path.HTML, ['replaceHTMLsrc']);
 
   var watcher  = watchify(browserify({
     entries: [path.ENTRY_POINT],
     transform: [reactify],
     debug: true,
-    cache: {}, packageCache: {}, fullPaths: true
+    cache: {},
+    packageCache: {},
+    fullPaths: true
   }));
 
   return watcher.on('update', function () {
@@ -60,10 +62,10 @@ gulp.task('watch', function() {
     watcher.bundle()
       .pipe(source(path.OUT))
       .pipe(gulp.dest(path.DEST_SRC));
-      console.log('Updated @ ' + timeStamp.toTimeString());
-    })
+    console.log('Updated @ ' + timeStamp.toTimeString());
+  })
     .bundle()
-    .on('error', function(err) {
+    .on('error', function (err) {
       console.log(err.message);
       this.end();
     })
@@ -77,7 +79,7 @@ gulp.task('jest', plugins.shell.task('npm test', {
 }));
 
 // Runs the Jest testing suite once and then again any time changes are made to either the client's javascript files or the testing files.
-gulp.task('watchTests', function(){
+gulp.task('watchTests', function () {
   runSequence('jest');
   gulp.watch([path.CLIENT_JS, path.TEST_SRC], ['jest']);
 });
