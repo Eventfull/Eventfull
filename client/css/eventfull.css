@@ -1,0 +1,159 @@
+/*
+ * Base structure
+ */
+
+body {
+  font-family: 'Alegreya Sans', sans-serif;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 800;
+  font-style: italic;
+  text-align: center;
+  color: #DADADA;
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  color: #7198C5;
+}
+
+h5{
+  font-size: 14px;
+  font-weight: 800;
+  font-style: italic;
+  text-align: center;
+  color: rgba(113,152,197,0.41);
+}
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #F26350;
+    border-right: 1px solid #eee;
+  }
+  .sidebar .logo-offset img{
+    display: block;
+    margin: 20px auto 50px -100px;
+  }
+  .logo-offset{
+    width: 1px;
+    margin: auto;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 60px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+}
+.nav-sidebar > li > a:focus,
+.nav-sidebar > li > a:hover {
+  color: #F26350;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #7198C5;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 0;
+}
+@media (min-width: 768px) {
+  .main {
+
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Calendar navigation styles
+ */
+
+.date-bar{
+  background: #F1F3F9;
+  border-bottom: 1px solid #DADADA;
+  text-align: center;
+} 
+.arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.arrow-left {
+  margin-right: 30px;
+  border-right: 10px solid rgba(113,152,197,0.30);
+}
+
+.arrow-right {
+  margin-left: 30px;
+  border-left: 10px solid rgba(113,152,197,0.30);
+}
+
+/*
+ * Employee card styles
+ */
+
+ .employee{
+    background: #FFFFFF;
+    border: 1px solid #DADADA;
+    border-radius: 3px;
+    margin: 5px auto;
+ }
