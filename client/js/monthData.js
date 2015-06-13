@@ -109,7 +109,7 @@ module.exports = {
       date: '05212015',
       numEvents: 3,
       status: 'bad'
-    },
+    }
   ],
   'week4': [
     {
@@ -146,6 +146,6 @@ module.exports = {
       date: '05282015',
       numEvents: 10,
       status:'good'
-    },
+    }
   ]
 };
