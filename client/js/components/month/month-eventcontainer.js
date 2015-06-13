@@ -1,18 +1,18 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Event = require('./month-event.js');
+var MonthWeek = require('./month-week-board.js');
+var _  = require('underscore');
 
 var MonthEventContainer = React.createClass({
   render:function() {
+    var monthWeeks = _.map(this.props.monthEvents, function(week, key) {
+      return <MonthWeek key={ key } week={ week } />;
+    });
+
     return (
       <div>
         <h4>Month EventContainer</h4>
-        <ul>
-          <li><Event /></li>
-          <li><Event /></li>
-          <li><Event /></li>
-          <li><Event /></li>
-        </ul>
+        { monthWeeks }
       </div>
     );
   }
