@@ -151,9 +151,9 @@ h5{
  * Employee card styles
  */
 
- .employee{
-    background: #FFFFFF;
-    border: 1px solid #DADADA;
-    border-radius: 3px;
-    margin: 5px auto;
- }
+.employee{
+  background: #FFFFFF;
+  border: 1px solid #DADADA;
+  border-radius: 3px;
+  margin: 5px auto;
+}
