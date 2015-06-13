@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react');
 
-var MonthEvent = React.createClass({
-  render:function() {
+var MonthDayCard = React.createClass({
+  render:function () {
     return (
       <div>
         <p>Date: { this.props.day.date }</p>
@@ -13,4 +13,4 @@ var MonthEvent = React.createClass({
   }
 });
 
-module.exports = MonthEvent;
+module.exports = MonthDayCard;
