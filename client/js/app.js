@@ -12,11 +12,11 @@ var Location = Router.Location;
 var NotFound = Router.NotFound;
 
 var App = React.createClass({
-  render: function(){
+  render: function () {
     return (
       <Template>
         <Sidebar />
-        <Locations>
+        <Locations className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <Location path='/'      handler={Week}  />
           <Location path='/week'  handler={Week}  />
           <Location path='/month' handler={Month} />
