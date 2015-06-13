@@ -1,12 +1,12 @@
 /** @jsx React.DOM */
 var React = require('react');
-var MonthEvent = require('./month-event.js');
+var MonthDayCard = require('./month-day-card.js');
 var _ = require('underscore');
 
-var MonthWeek = React.createClass({
-  render: function() {
-    var weekEvents = _.map(this.props.week, function(day, key) {
-      return <MonthEvent key = { key } day = { day } />
+var MonthWeekBoard = React.createClass({
+  render: function () {
+    var weekEvents = _.map(this.props.weekEvents, function(day, key) {
+      return <MonthDayCard key = { key } day = { day } />
     });
     return (
       <div>
@@ -17,4 +17,4 @@ var MonthWeek = React.createClass({
   }
 });
 
-module.exports = MonthWeek;
+module.exports = MonthWeekBoard;

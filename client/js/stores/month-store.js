@@ -1,4 +1,5 @@
-var Dispatcher = require('../dispatcher/dispatcher');
+/*Note month store isn't yet hooked up to dispather*/
+// var Dispatcher = require('../dispatcher/dispatcher');
 var AppConstants = require('../constants/constants');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
@@ -7,24 +8,24 @@ var assign = require('object-assign');
 var _monthData = {};
 
 //setter method for the _monthData internal storage
-var _setMonthData = function(data) {
+var _setMonthData = function (data) {
   _monthData = data;
 };
 
 var MonthStore = assign({}, EventEmitter.prototype, {
-  getMonthData: function() {
+  getMonthData: function () {
     return _monthData;
   },
 
-  emitChange: function() {
+  emitChange: function () {
     this.emit('change');
   },
 
-  addChangeListener: function(callback) {
+  addChangeListener: function (callback) {
     this.on('change', callback);
   },
 
-  removeChangeListener: function(callback) {
+  removeChangeListener: function (callback) {
     this.removeListener('change', callback);
   }
 });

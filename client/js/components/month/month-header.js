@@ -2,7 +2,7 @@
 var React = require('react');
 var Link = require('react-router-component').Link;
 var MonthHeader = React.createClass({
-  render:function() {
+  render:function () {
     return (
       <div>
         <Link href='/week'>Week View</Link>
