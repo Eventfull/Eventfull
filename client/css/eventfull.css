@@ -30,6 +30,57 @@ h5{
 }
 
 /*
+ * Form styles
+ */
+
+
+input{
+  background: #FFFFFF;
+  border: 1px solid #D9DDE7;
+  border-radius: 4px;
+  font-size: 18px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+}
+
+input[type=submit]{
+  background: #7198C5;
+  border: 1px solid #D9DDE7;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: italic;
+  color: #FFFFFF;
+}
+
+::-webkit-input-placeholder {
+  color: #DADADA;
+  font-weight: 800;
+  font-style: italic;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: #DADADA;
+  font-weight: 800;
+  font-style: italic; 
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: #DADADA;
+  font-weight: 800;
+  font-style: italic;  
+}
+
+:-ms-input-placeholder {  
+  color: #DADADA;
+  font-weight: 800;
+  font-style: italic;  
+}
+
+
+/*
  * Global add-ons
  */
 

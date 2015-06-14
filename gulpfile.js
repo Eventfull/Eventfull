@@ -46,7 +46,7 @@ gulp.task('transferStyles', function () {
 
 // watches HTML and JS for changes, browserify and reactifys JS, and bundles it all.
 gulp.task('watch', function () {
-  gulp.watch(path.HTML, ['replaceHTMLsrc']);
+  gulp.watch([path.HTML, path.CSS], ['replaceHTMLsrc', 'transferStyles']);
 
   var watcher  = watchify(browserify({
     entries: [path.ENTRY_POINT],
