@@ -1,9 +1,15 @@
-var Dispatcher = require('./dispatcher/dispatcher');
+var AppDispatcher = require('../dispatcher/dispatcher');
 var ServerActionCreator = require('./server-action-creator');
-var AppConstants = require('./constants/constants');
+var ApiUtils = require('../utils/api-utils');
+var AppConstants = require('../constants/constants');
 
 var ViewActionCreator = {
-
+  addEvent: function (event) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.ViewActionTypes.ADD_EVENT
+    });
+    ApiUtils.addEvent(event, ServerActionCreator.eventAdded);
+  }
 };
 
 module.exports = ViewActionCreator;
