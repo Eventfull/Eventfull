@@ -9,6 +9,7 @@ var MonthWeekBoard = React.createClass({
     var weekEvents = _.map(this.props.weekEvents, function(day, key) {
       return <MonthDayCard key = { key } day = { day } />
     });
+    /*Temporary hardedcoded value to show what route will be*/
     var weekNumber = 1;
     var weekPath = '/week/' + weekNumber;
     return (
