@@ -8,6 +8,7 @@ var weekData = require('../../weekData');
 var _ = require('underscore');
 
 var Week = React.createClass({
+  // weekData is a temporary mock in place prior to server and db setup
   getInitialState: function () {
     return weekData;
   },

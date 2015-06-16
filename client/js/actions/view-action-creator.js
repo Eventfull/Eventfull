@@ -8,7 +8,7 @@ var ViewActionCreator = {
     AppDispatcher.dispatch({
       actionType: AppConstants.ViewActionTypes.ADD_EVENT
     });
-    ApiUtils.addEvent(event);
+    ApiUtils.addEvent(event, ServerActionCreator.eventAdded);
   }
 };
 
