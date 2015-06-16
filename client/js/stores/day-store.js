@@ -1,11 +1,10 @@
-var Dispatcher = require('./dispatcher/dispatcher');
-var AppConstants = require('./constants/constants');
-var EventEmitter = require('event').EventEmitter;
+var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
+var Dispatcher = require('../dispatcher/dispatcher');
+var AppConstants = require('../constants/constants');
 var CHANGE_EVENT = 'change';
 
-var dataCreator = require('../dayData/day-data-creator');
-var _dayData = dataCreator.create();
+var _dayData = {};
 
 var DayStore = assign({}, EventEmitter.prototype, {
 
@@ -23,13 +22,16 @@ var DayStore = assign({}, EventEmitter.prototype, {
 
   removeChangeListener: function(callback){
     this.removeListener(CHANGE_EVENT, callback);
-  }
+  },
 
 });
 
 Dispatcher.register(function(payload){
   switch (payload.actionType){
-    // WILL DO SOMETHING HERE WHEN CONNECTING WITH VIEWS
+    case AppConstants.ServerActionTypes.DAY_DATA_RECIEVED:
+      _dayData = payload.dayData;
+      DayStore.emitChange();
+      break;
   }
 });
 

@@ -7,6 +7,13 @@ var ServerActionCreator = {
       actionType: AppConstants.ServerActionTypes.EVENT_ADDED,
       weekData: weekData
     });
+  },
+
+  recieveDayData: function(dayData){
+    AppDispatcher.dispatch({
+      actionType: AppConstants.ServerActionTypes.DAY_DATA_RECIEVED,
+      dayData: dayData
+    });
   }
 };
 
