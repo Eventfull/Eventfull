@@ -19,6 +19,7 @@ var AddEvent = React.createClass({
   render: function () {
     return (
       <div>
+        <h2>Add Event</h2>
         <form onSubmit={this.addEvent}>
           <div className="form-group">
             <div className="col-xs-12">
@@ -49,13 +50,13 @@ var AddEvent = React.createClass({
             </div>
           </div>
           <div className="form-group">
-            <div className="col-xs-4">
+            <div className="col-xs-6">
               <input type="text" placeholder="city" ref="city"></input>
             </div>
-            <div className="col-xs-4">
+            <div className="col-xs-3">
               <input type="text" placeholder="state" ref="state"></input>
             </div>
-            <div className="col-xs-4">
+            <div className="col-xs-3">
               <input type="text" placeholder="zip" ref="zip"></input>
             </div>
           </div>
