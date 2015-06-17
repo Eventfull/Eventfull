@@ -21,7 +21,6 @@ var Week = React.createClass({
   render: function () {
     return (
       <div>
-        <AddEvent />
         <WeekHeader />
         <WeekBoard days={ this.state }/>
       </div>

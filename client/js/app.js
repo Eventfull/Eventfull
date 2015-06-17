@@ -5,6 +5,7 @@ var Router = require('react-router-component');
 var Template = require('./components/app-template.js');
 var Month = require('./components/month/month.js');
 var Week = require('./components/week/week.js');
+var Actionbar = require('./components/actionbar/action-bar.js');
 var Sidebar = require('./components/sidebar/sidebar.js');
 
 var Locations = Router.Locations;
@@ -16,7 +17,8 @@ var App = React.createClass({
     return (
       <Template>
         <Sidebar />
-        <Locations className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <Actionbar />
+        <Locations className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 schedule-default main" id="schedule">
           <Location path='/'      handler={Week}  />
           <Location path='/week'  handler={Week}  />
           <Location path='/month' handler={Month} />

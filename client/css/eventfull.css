@@ -6,6 +6,14 @@ body {
   font-family: 'Alegreya Sans', sans-serif;
 }
 
+h2 {
+  font-size: 22px;
+  font-weight: 800;
+  font-style: italic;
+  text-align: center;
+  color: #7198C5;
+}
+
 h3 {
   font-size: 18px;
   font-weight: 800;
@@ -32,7 +40,9 @@ h5{
 /*
  * Form styles
  */
-
+form{
+  margin-top: 40px;
+}
 
 input{
   background: #FFFFFF;
@@ -42,7 +52,8 @@ input{
   text-align: center;
   display: block;
   width: 100%;
-  margin: 5px 0;
+  margin: 7px 0;
+  line-height: 35px;
 }
 
 input[type=submit]{
@@ -207,4 +218,47 @@ input[type=submit]{
   border: 1px solid #DADADA;
   border-radius: 3px;
   margin: 5px auto;
+}
+
+/*
+ * Action-bar and schedule view push styling
+ */
+
+.action-bar-default {
+  border-right: 1px solid #DADADA;
+  background: #F1F3F9;
+  position: fixed;
+  width: 16.666666667%;
+  width: calc(100% / 6);
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.action-bar-default.action-bar-open {
+  left: 16.666666667%;
+  left: calc(100% / 6);
+}
+
+/* Push classes applied to the schedule */
+
+.schedule-default {
+  overflow-x: hidden;
+  position: relative;
+  z-index: 998;
+}
+
+.schedule-default.schedule-push-right {
+  left: 16.666666667%;
+  left: calc(100% / 6);
+}
+
+/* Transitions */
+
+.action-bar-default,
+.schedule-default {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
