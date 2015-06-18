@@ -10,13 +10,18 @@ var ViewActionCreator = {
     });
     ApiUtils.addEvent(event, ServerActionCreator.eventAdded);
   },
-
   getDayData: function(date){
     AppDispatcher.dispatch({
       actionType: AppConstants.ViewActionTypes.GET_DAY_DATA
     });
 
     ApiUtils.getDayData(date, ServerActionCreator.recieveDayData);
+  },
+  getMonthEvents: function (date) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.ViewActionTypes.GET_MONTH_EVENTS
+    });
+    ApiUtils.getMonthEvents(date, ServerActionCreator.fetchedMonthEvents);
   }
 };
 

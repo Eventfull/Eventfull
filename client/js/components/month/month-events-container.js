@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-var MonthWeekBoard = require('./month-week-board.js');
+var MonthWeekBoard = require('./month-week-board');
 var _  = require('underscore');
 
 var MonthEventsContainer = React.createClass({

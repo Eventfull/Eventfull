@@ -8,11 +8,16 @@ var ServerActionCreator = {
       weekData: weekData
     });
   },
-
   recieveDayData: function(dayData){
     AppDispatcher.dispatch({
       actionType: AppConstants.ServerActionTypes.DAY_DATA_RECIEVED,
       dayData: dayData
+    });
+  },
+  fetchedMonthEvents: function (monthData) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.ServerActionTypes.FETCHED_MONTH_EVENTS,
+      monthData: monthData
     });
   }
 };
