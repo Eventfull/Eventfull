@@ -11,7 +11,7 @@ var AppConstants = {
     EVENT_ADDED: null,
     DAY_DATA_RECIEVED: null,
     FETCHED_MONTH_DATA: null
-  }),
+  })
 };
 
 module.exports = AppConstants;

@@ -7,7 +7,9 @@
 // to the app.
 
 var organizationRouter = require('./organizations/organization-router');
+var calendarRouter = require('../calendar/calendar-router');
 
 module.exports = function(app){
   app.use('/api/organizations', organizationRouter);
+  app.use('/calendar', calendarRouter);
 };

@@ -13,5 +13,3 @@ app.get('models').sequelize.sync().then(function () {
     console.log('App now listening on port: ' + server.address().port);
   });
 });
-
-
