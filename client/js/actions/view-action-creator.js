@@ -9,6 +9,14 @@ var ViewActionCreator = {
       actionType: AppConstants.ViewActionTypes.ADD_EVENT
     });
     ApiUtils.addEvent(event, ServerActionCreator.eventAdded);
+  },
+
+  getDayData: function(){
+    AppDispatcher.dispatch({
+      actionType: AppConstants.ViewActionTypes.GET_DAY_DATA
+    });
+
+    ApiUtils.getDayData(ServerActionCreator.recieveDayData);
   }
 };
 

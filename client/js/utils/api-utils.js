@@ -1,5 +1,7 @@
 var ServerActionCreator = require('../actions/server-action-creator');
 var weekData = require('../weekData');
+var dayDataCreator = require('../dayData/day-data-creator');
+
 var _ = require('underscore');
 
 var ApiUtils = {
@@ -12,6 +14,11 @@ var ApiUtils = {
       weekData[event.date] = [event];
     }
     callback(weekData);
+  },
+
+  getDayData: function(callback){
+    var data = dayDataCreator.create()
+    callback(data);
   }
 };
 
