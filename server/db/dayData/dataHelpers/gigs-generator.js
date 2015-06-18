@@ -4,7 +4,7 @@ var infoCreator = require('./info-creator');
 // creates random number of gigs!
 function generateGigs(numberOfGigs){
   var gigs = [];
-  numberOfGigs = numberOfGigs || (Math.floor(Math.random()*8));
+  numberOfGigs = numberOfGigs || (Math.max(3, Math.ceil(Math.random()*8)));
 
   for (var i = 0; i < numberOfGigs; i++){
     gigs.push(createRandomGig());

@@ -18,8 +18,9 @@ var Day = React.createClass({
 
   componentWillMount: function(){
     DayStore.addChangeListener(this._handleUpdate);
-     // trigger API call to get initial data
-    ViewActionCreator.getDayData();
+     // trigger API call to get initial data. Date.now will
+     // change once we get routing sorted
+    ViewActionCreator.getDayData(Date.now());
   },
 
   componentWillUnmount: function(){

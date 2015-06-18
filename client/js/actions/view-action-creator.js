@@ -11,12 +11,12 @@ var ViewActionCreator = {
     ApiUtils.addEvent(event, ServerActionCreator.eventAdded);
   },
 
-  getDayData: function(){
+  getDayData: function(date){
     AppDispatcher.dispatch({
       actionType: AppConstants.ViewActionTypes.GET_DAY_DATA
     });
 
-    ApiUtils.getDayData(ServerActionCreator.recieveDayData);
+    ApiUtils.getDayData(date, ServerActionCreator.recieveDayData);
   }
 };
 
