@@ -1,13 +1,13 @@
 /** @jsx React.DOM */
 var React = require('react');
 var MonthEventsContainer = require('./month-events-container.js');
-var MonthStore = require('../../stores/month-store.js');
-var MonthHeader = require('./month-header.js');
-var MonthData = require('../../monthData.js');
+var MonthStore = require('../../stores/month-store');
+var MonthHeader = require('./month-header');
+var MonthData = require('../../monthData');
 
 function monthData () {
   return {
-    gigs: MonthStore.getMonthData()
+    events: MonthStore.getMonthData()
   };
 }
 
@@ -22,6 +22,9 @@ var Month = React.createClass({
     MonthStore.removeChangeListener(this._onChange);
   },
   _onChange: function () {
+    //Temporary console.log to make sure flux is working
+    //Once have actual data to pull from server will remove
+    console.log('Month onChange');
     this.setState(monthData());
   },
   render: function () {

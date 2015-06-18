@@ -1,7 +1,7 @@
 var ServerActionCreator = require('../actions/server-action-creator');
 var weekData = require('../weekData');
 var dayDataCreator = require('../dayData/day-data-creator');
-
+var monthData = require('../monthData');
 var _ = require('underscore');
 
 var ApiUtils = {
@@ -15,10 +15,14 @@ var ApiUtils = {
     }
     callback(weekData);
   },
-
   getDayData: function(callback){
     var data = dayDataCreator.create()
     callback(data);
+  },
+  getMonthEvents: function ( date, callback ) {
+   //this is currently mocking fetching server side data
+   //NOT the final implementation
+   callback(monthData); //monthData would be the fetched monthData from server
   }
 };
 
