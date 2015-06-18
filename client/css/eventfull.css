@@ -4,12 +4,15 @@
 
 body {
   font-family: 'Alegreya Sans', sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 h2 {
   font-size: 22px;
-  font-style: italic;
   font-weight: 800;
+  font-style: italic;
   text-align: center;
   color: #7198C5;
 }
