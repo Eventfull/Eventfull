@@ -10,6 +10,7 @@ var ViewActionCreator = {
     });
     ApiUtils.addEvent(event, ServerActionCreator.eventAdded);
   },
+<<<<<<< HEAD
 
   getDayData: function(){
     AppDispatcher.dispatch({
@@ -17,6 +18,13 @@ var ViewActionCreator = {
     });
 
     ApiUtils.getDayData(ServerActionCreator.recieveDayData);
+=======
+  getMonthEvents: function (date) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.ViewActionTypes.GET_MONTH_EVENTS
+    });
+    ApiUtils.getMonthEvents(date, ServerActionCreator.fetchedMonthEvents);
+>>>>>>> (refactor)Add flux functioanlity to see previous and next months data
   }
 };
 
