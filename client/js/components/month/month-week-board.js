@@ -6,8 +6,8 @@ var Link = require('react-router-component').Link
 
 var MonthWeekBoard = React.createClass({
   render: function () {
-    var weekEvents = _.map(this.props.weekEvents, function(day, key) {
-      return <MonthDayCard key = { key } day = { day } />
+    var weekEvents = _.map(this.props.weekData, function(dayData, key) {
+      return <MonthDayCard key = { key } dayData = { dayData } />
     });
     /*Temporary hardedcoded value to show what route will be*/
     var weekNumber = 1;

@@ -5,8 +5,8 @@ var _  = require('underscore');
 
 var MonthEventsContainer = React.createClass({
   render:function () {
-    var monthWeeks = _.map(this.props.monthWeeks, function(weekEvents, key) {
-      return <MonthWeekBoard key={ key } weekEvents={ weekEvents } />;
+    var monthWeeks = _.map(this.props.monthWeeks, function(weekData, key) {
+      return <MonthWeekBoard key={ key } weekData={ weekData } />;
     });
 
     return (
