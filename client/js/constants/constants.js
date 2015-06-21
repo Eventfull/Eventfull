@@ -7,8 +7,10 @@ var AppConstants = {
   }),
   ServerActionTypes: keyMirror({
     EVENT_ADDED: null,
-    DAY_DATA_RECIEVED: null
-  })
+    DAY_DATA_RECIEVED: null,
+    GET_MONTH_EVENTS: null,
+    FETCHED_MONTH_EVENTS: null
+  }),
 };
 
 module.exports = AppConstants;
