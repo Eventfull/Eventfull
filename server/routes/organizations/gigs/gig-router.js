@@ -2,10 +2,8 @@ var express = require('express');
 var gigRouter = express.Router();
 var gigController = require('./gig-controller');
 
-gigRouter.get('/', function(req, res){
-  // get all gigs for org depending on params (month, day, week)
-  res.send("getting all gigs for org " + req.organization_id);
-});
+// get all gigs for org depending on params (month, day, week)
+gigRouter.get('/', gigController.getGigs);
 
 gigRouter.post('/', function(req, res){
   // create new gig for organization
@@ -32,10 +30,8 @@ gigRouter.get('/:gig_id/staff', function(req, res){
   res.send('getting staff info for ' + req.params.gig_id + " for org " + req.organization_id);
 });
 
-gigRouter.post('/:gig_id/staff', function(req, res){
-  // update staff for gig
-  res.send('updating staff info for ' + req.params.gig_id + " for org " + req.organization_id);
-});
+// add staff to gig
+gigRouter.post('/:gig_id/staff', gigController.addEmployeeToGig);
 
 gigRouter.get('/:gig_id/staff/:employee_id', function(req, res){
   // get gig status for employee
@@ -47,9 +43,7 @@ gigRouter.post('/:gig_id/staff/:employee_id', function(req, res){
   res.send('updating gig status for ' + req.params.gig_id + ' gig for employee ' + req.params.employee_id + " for org " + req.organization_id);
 });
 
-gigRouter.delete('/:gig_id/staff/:employee_id', function(req, res){
-  // remove employee from gig
-   res.send('removing employee from gig ' + req.params.gig_id + " for org " + req.organization_id);
-});
+// remove employee from gig
+gigRouter.delete('/:gig_id/staff/:employee_id', gigController.removeEmployeeFromGig);
 
 module.exports = gigRouter;

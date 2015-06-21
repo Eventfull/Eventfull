@@ -1,5 +1,5 @@
 var React = require('react');
-var Staff = require('./staff-card');
+var StaffCard = require('./staff-card');
 
 var Gig = React.createClass({
 
@@ -16,8 +16,10 @@ var Gig = React.createClass({
   render: function(){
     return (
       <div>
+        <br />
         <GigInformation info={this.props.information} />
-        <Staff staff={this.props.staff} />
+        <StaffCard staff={this.props.staff} gigID={this.props.information.gigID}/>
+        <br />
       </div>
     );
   }

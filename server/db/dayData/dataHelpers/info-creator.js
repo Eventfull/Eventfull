@@ -1,12 +1,14 @@
 var randomItemFromArray = require('./helper.js').randomItemFromArray;
 
+var id = 0;
 // creates random info for a given event
 function createInfo(){
   return {
     type: randomGigType(),
     time: randomTime(),
     attire: randomAttire(),
-    location: randomLocation()
+    location: randomLocation(),
+    gigID: id++
   };
 }
 

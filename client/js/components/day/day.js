@@ -18,9 +18,8 @@ var Day = React.createClass({
 
   componentWillMount: function(){
     DayStore.addChangeListener(this._handleUpdate);
-     // trigger API call to get initial data. Date.now will
-     // change once we get routing sorted
-    ViewActionCreator.getDayData(Date.now());
+     // trigger API call to get initial data.
+    ViewActionCreator.getDayData();
   },
 
   componentWillUnmount: function(){
@@ -34,11 +33,13 @@ var Day = React.createClass({
   render: function(){
     var gigs = this.state.gigs.map(function(gig, idx){
       return (
-              <Gig
-                information={gig.information}
-                staff={gig.staff}
-                key={idx} />
-              );
+        <div className={'card'}>
+          <Gig
+            information={gig.information}
+            staff={gig.staff}
+            key={idx} />
+        </div>
+      );
     });
 
     return (

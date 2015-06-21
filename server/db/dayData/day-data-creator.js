@@ -34,7 +34,8 @@ day = {
         approved: {
           'kitchen-staff': [{
             name: 'kyle',
-            rating: 5
+            rating: 5,
+            employeeID
           }],
           'server': [... more employee objects],
           'bartender': [... more employee objects],
