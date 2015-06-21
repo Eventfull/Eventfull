@@ -1,8 +1,6 @@
-var ServerActionCreator = require('../actions/server-action-creator');
+var axios = require('axios');
 var weekData = require('../weekData');
-var dayDataCreator = require('../dayData/day-data-creator');
-
-var _ = require('underscore');
+var server = 'http://localhost:8000';
 
 var ApiUtils = {
   addEvent: function (event, callback) {
@@ -16,9 +14,11 @@ var ApiUtils = {
     callback(weekData);
   },
 
-  getDayData: function(callback){
-    var data = dayDataCreator.create()
-    callback(data);
+  getDayData: function(date, callback){
+    // get day data and pass it to callback
+    axios.get(server + '/api/day/' + date).then(function(res){
+      return res.data;
+    }).then(callback);
   }
 };
 
