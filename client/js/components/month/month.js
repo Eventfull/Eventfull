@@ -3,14 +3,21 @@ var React = require('react');
 var MonthEventsContainer = require('./month-events-container.js');
 var MonthStore = require('../../stores/month-store');
 var MonthHeader = require('./month-header');
-var MonthData = require('../../monthData');
+var ViewActionCreator = require('../../actions/view-action-creator');
 
 var Month = React.createClass({
   getInitialState: function () {
-    return MonthData;
+    return {
+      'week1': [{date: '', numEvents: 0, status: ''}],
+      'week2': [{date: '', numEvents: 0, status: ''}],
+      'week3': [{date: '', numEvents: 0, status: ''}],
+      'week4': [{date: '', numEvents: 0, status: ''}]
+    };
   },
   componentWillMount: function () {
     MonthStore.addChangeListener(this._onChange);
+    //trigger API call to get initial data
+    ViewActionCreator.getMonthData();
   },
   componentWillUnmount: function () {
     MonthStore.removeChangeListener(this._onChange);

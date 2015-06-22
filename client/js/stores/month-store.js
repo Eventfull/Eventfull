@@ -35,7 +35,7 @@ var MonthStore = assign({}, EventEmitter.prototype, {
 Dispatcher.register(function (payload) {
   switch ( payload.actionType ) {
 
-    case AppConstants.ServerActionTypes.FETCHED_MONTH_EVENTS:
+    case AppConstants.ServerActionTypes.FETCHED_MONTH_DATA:
       _setMonthData(payload.monthData);
       MonthStore.emitChange();
       break;

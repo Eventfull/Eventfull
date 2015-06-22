@@ -20,7 +20,7 @@ var ApiUtils = {
       return res.data;
     }).then(callback);
   },
-  getMonthEvents: function ( date, callback ) {
+  getMonthData: function ( date, callback ) {
    //this is currently mocking fetching server side data
    //NOT the final implementation
    callback(monthData); //monthData would be the fetched monthData from server

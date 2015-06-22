@@ -5,7 +5,7 @@ var AppViewActions = require('../../actions/view-action-creator');
 var MonthPrevButton = React.createClass({
   handleClick: function () {
     //TEMP The 'prev' argument passed in will be changed in the real impelementation
-    AppViewActions.getMonthEvents('prev');
+    AppViewActions.getMonthData('prev');
   },
   render: function () {
     return (
