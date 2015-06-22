@@ -14,9 +14,9 @@ var ServerActionCreator = {
       dayData: dayData
     });
   },
-  fetchedMonthEvents: function (monthData) {
+  fetchedMonthData: function (monthData) {
     AppDispatcher.dispatch({
-      actionType: AppConstants.ServerActionTypes.FETCHED_MONTH_EVENTS,
+      actionType: AppConstants.ServerActionTypes.FETCHED_MONTH_DATA,
       monthData: monthData
     });
   }

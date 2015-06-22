@@ -5,7 +5,7 @@ var AppViewActions = require('../../actions/view-action-creator');
 var MonthNextButton = React.createClass({
   handleClick: function () {
     //TEMP The argument passed in will be a date in the real implementation
-    AppViewActions.getMonthEvents('next');
+    AppViewActions.getMonthData('next');
   },
   render: function () {
     return  (

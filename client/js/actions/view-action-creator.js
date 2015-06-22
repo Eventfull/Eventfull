@@ -17,11 +17,11 @@ var ViewActionCreator = {
 
     ApiUtils.getDayData(date, ServerActionCreator.recieveDayData);
   },
-  getMonthEvents: function (date) {
+  getMonthData: function (date) {
     AppDispatcher.dispatch({
-      actionType: AppConstants.ViewActionTypes.GET_MONTH_EVENTS
+      actionType: AppConstants.ViewActionTypes.GET_MONTH_DATA
     });
-    ApiUtils.getMonthEvents(date, ServerActionCreator.fetchedMonthEvents);
+    ApiUtils.getMonthData(date, ServerActionCreator.fetchedMonthData);
   }
 };
 
