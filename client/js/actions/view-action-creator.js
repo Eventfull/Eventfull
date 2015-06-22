@@ -19,7 +19,7 @@ var ViewActionCreator = {
   },
   getMonthData: function (date) {
     AppDispatcher.dispatch({
-      actionType: AppConstants.ViewActionTypes.GET_MONTH_Data
+      actionType: AppConstants.ViewActionTypes.GET_MONTH_DATA
     });
     ApiUtils.getMonthData(date, ServerActionCreator.fetchedMonthData);
   }
