@@ -3,7 +3,7 @@ var app = express();
 var port = 8000;
 
 require('./middlewares/middleware')(app);
-require('./controllers/controllers')(app);
+require('./routes/routes')(app);
 
 app.use(express.static(__dirname + '/../dist/client'));
 

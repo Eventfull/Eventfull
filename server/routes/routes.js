@@ -6,8 +6,8 @@
 // This file will be used to attach all of the controllers
 // to the app.
 
-var dayController = require('./day-controller');
+var organizationRouter = require('./organizations/organization-router');
 
 module.exports = function(app){
-  app.use('/api/day', dayController);
+  app.use('/api/organizations', organizationRouter);
 };
