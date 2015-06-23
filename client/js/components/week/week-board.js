@@ -10,8 +10,7 @@ var WeekBoard = React.createClass({
     });
 
     return (
-      <div>
-        <h5>Week Board</h5>
+      <div className="canvas">
         { weekDayCards }
       </div>
     );

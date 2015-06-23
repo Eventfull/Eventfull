@@ -4,6 +4,9 @@
 
 body {
   font-family: 'Alegreya Sans', sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 h2 {
@@ -191,6 +194,11 @@ input[type=submit]{
   border-bottom: 1px solid #DADADA;
   text-align: center;
 } 
+
+.date-bar h2{
+  display: inline-block;
+}
+
 .arrow {
   display: inline-block;
   width: 0;
@@ -209,6 +217,40 @@ input[type=submit]{
   border-left: 10px solid rgba(113,152,197,0.30);
 }
 
+
+/*
+ * Canvas styles
+ */
+
+.canvas {
+  display: flex;
+  overflow-x: auto;
+  display: -webkit-flex;
+  webkit-flex-direction: row;
+  flex-direction: row;
+  padding: 15px;
+}
+
+
+/*
+ * Card styles
+ */
+
+.card{
+  background: #F1F3F9;
+  border: 1px solid #DADADA;
+  border-radius: 5px;
+  padding: 10px 10px;
+  max-width: 240px;
+  min-width: 240px;
+  max-height: 860px;
+  overflow-y: auto;
+  display: block;
+  clear: none;
+  float: left;
+  margin: 40px 15px;
+}
+
 /*
  * Employee card styles
  */
@@ -216,7 +258,7 @@ input[type=submit]{
 .employee{
   background: #FFFFFF;
   border: 1px solid #DADADA;
-  border-radius: 3px;
+  border-radius: 5px;
   margin: 5px auto;
 }
 
@@ -261,4 +303,28 @@ input[type=submit]{
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   transition: all 0.5s ease;
+}
+
+/*
+ * Event card styles for week view
+ */
+
+.event-card {
+  background: #FFFFFF;
+  border: 1px solid #DADADA;
+  border-radius: 5px;
+  margin: 10px 0;
+  cursor:pointer;
+}
+
+.health {
+  width: 100%;
+  padding: 2px;
+  height: 25px;
+  color: #FFF;
+  font-weight: 800;
+  text-align: center;
+  vertical-align: center;
+  background-color: #A8E5A7;
+  margin-bottom: 15px;
 }

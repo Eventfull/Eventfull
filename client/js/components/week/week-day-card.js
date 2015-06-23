@@ -10,8 +10,7 @@ var WeekDayCard = React.createClass({
     });
 
     return (
-      <div>
-        <h5>Week Day Card</h5>
+      <div className="card">
         { weekEvents }
       </div>
     );

@@ -3,19 +3,28 @@ var React = require('react');
 var _ = require('underscore');
 
 var WeekEvent = React.createClass({
+  getInitialState: function () {
+    return { showCardDetails: false };
+  },
+  toggleDetails: function () {
+    this.setState({ showCardDetails: !this.state.showCardDetails });
+  },
   render: function () {
+    var cardDetailsDisplay = { display: this.state.showCardDetails ? 'block' : 'none' };
     return (
-      <div>
-        <h5>{ this.props.event.title }</h5>
-        <p>{ this.props.event.startTime }</p>
-        <p>{ this.props.event.endTime }</p>
-        <p>{ this.props.event.date  }</p>
-        <p>{ this.props.event.health }</p>
-        <p>{ this.props.event.addressOne }</p>
-        <p>{ this.props.event.addressTwo }</p>
-        <p>{ this.props.event.city }</p>
-        <p>{ this.props.event.state }</p>
-        <p>{ this.props.event.zip }</p>
+      <div className="event-card" onClick={ this.toggleDetails }>
+        <h2>{ this.props.event.title }</h2>
+        <h5>{ this.props.event.startTime }</h5>
+        <h5>to</h5>
+        <h5>{ this.props.event.endTime }</h5>
+        <div className="health">healthy :)</div>
+        <div className="event-card-details" style={ cardDetailsDisplay }>
+          <h5>{ this.props.event.addressOne }</h5>
+          <h5>{ this.props.event.addressTwo }</h5>
+          <h5>{ this.props.event.city }</h5>
+          <h5>{ this.props.event.state }</h5>
+          <h5>{ this.props.event.zip }</h5>
+        </div>
       </div>
     );
   }
