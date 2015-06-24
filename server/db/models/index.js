@@ -3,7 +3,7 @@ var configuration = require('../configuration').database;
 
 var sequelize = new Sequelize(
   configuration.db_name,
-  configuration.user,
+  configuration.username,
   configuration.password
 );
 
