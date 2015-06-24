@@ -1,17 +1,17 @@
 var Sequelize = require('sequelize');
-var config = require('../config').database;
+var configuration = require('../configuration').database;
 
 var sequelize = new Sequelize(
-  config.db_name,
-  config.user,
-  config.password
+  configuration.db_name,
+  configuration.user,
+  configuration.password
 );
 
 var models = [
   'Organization',
   'User',
   'Role',
-  'Availability_Schedule',
+  'Availability',
   'Position',
   'Gig',
   'Location',
@@ -39,7 +39,7 @@ models.forEach(function (model) {
 
   // Specific roles could belong to many different users, but each availability schedule belongs to a single user
   m.Role.hasMany(m.User);
-  m.Availability_Schedule.belongsTo(m.User);
+  m.Availability.belongsTo(m.User);
 
   // Gigs have many users and users have many gigs, with each instance having a unique position.
   m.User.belongsToMany(m.Gig, { through: m.UserGigs });
@@ -55,3 +55,4 @@ models.forEach(function (model) {
   m.Position.belongsToMany(m.User, { through: m.UserPositions });
 }(module.exports));
 
+module.exports.sequelize = sequelize;
