@@ -10,8 +10,7 @@ var AppConstants = {
   ServerActionTypes: keyMirror({
     EVENT_ADDED: null,
     DAY_DATA_RECIEVED: null,
-    FETCHED_MONTH_DATA: null,
-    STAFF_MOVED: null
+    FETCHED_MONTH_DATA: null
   }),
 };
 

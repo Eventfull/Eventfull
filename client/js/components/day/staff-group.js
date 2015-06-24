@@ -21,13 +21,13 @@ var StaffGroup = React.createClass({
     var props = this.props;
     var health = props.approved.length / props.needed;
 
-    var approved = _.map(props.approved, function(human, idx){
+    var approved = _.map(props.approved, function(employee, idx){
       return <Employee
-              rating={human.rating}
-              name={human.name}
+              rating={employee.rating}
+              name={employee.name}
               key={idx}
               gigID={props.gigID}
-              employeeID={human.employeeID}
+              employeeID={employee.employeeID}
               group={props.name} />
     });
 

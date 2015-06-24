@@ -15,6 +15,7 @@ var Employee = React.createClass({
     };
   },
 
+  // connectDragSource added to props by DragSource
   render: function(){
     return this.props.connectDragSource(
       <div>
@@ -56,15 +57,14 @@ var spec = {
         employeeID: props.employeeID
       });
     }
+  },
+
+  canDrag: function (props) {
+    // You can disallow drag based on props
+    // for now we will just return true.
+    return true;
   }
 
-  // can implement this once we have approval flow. will allow us
-  // to prevent dragging of approved contractors
-
-    // canDrag: function (props) {
-    //   // You can disallow drag based on props
-    //   return props.isReady;
-    // },
 };
 
 var collect = function(connect, monitor){

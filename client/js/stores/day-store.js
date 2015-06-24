@@ -10,7 +10,9 @@ var _moveStaff = function(info){
   // Object {fromGig: 0, toGig: 1, fromGroup: "kitchen-staff", toGroup: "server", employeeID: 1}
   var fromGroup = _dayData.gigs[info.fromGig].staff.approved[info.fromGroup];
   var toGroup = _dayData.gigs[info.toGig].staff.approved[info.toGroup];
-  if (!toGroup) toGroup = _dayData.gigs[info.toGig].staff.approved[info.toGroup] = [];
+  if (!toGroup) {
+    toGroup = _dayData.gigs[info.toGig].staff.approved[info.toGroup] = [];
+  }
 
   var employee;
   fromGroup.forEach(function(emp, idx){

@@ -17,6 +17,7 @@ var ViewActionCreator = {
       actionType: AppConstants.ViewActionTypes.GET_DAY_DATA
     });
 
+    // hardcoded for now, will change.
     ApiUtils.getDayData(new Date('Jun 21 2015'), ServerActionCreator.recieveDayData);
   },
 
