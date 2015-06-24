@@ -2,7 +2,7 @@ var React = require('react');
 var _ = require('underscore');
 var StaffGroup = require('./staff-group');
 
-var Staff = React.createClass({
+var StaffCard = React.createClass({
 
   // staff: object with needed and approved
   // needed: object where keys are jobs and
@@ -15,7 +15,8 @@ var Staff = React.createClass({
       staff: {
         needed: {},
         approved: {}
-      }
+      },
+      gigID: Infinity
     };
   },
 
@@ -27,7 +28,8 @@ var Staff = React.createClass({
         <StaffGroup
           name={groupName}
           approved={approvedList}
-          needed={amountNeeded} />
+          needed={amountNeeded}
+          gigID={props.gigID} />
       );
     });
 
@@ -40,4 +42,4 @@ var Staff = React.createClass({
 
 });
 
-module.exports = Staff;
+module.exports = StaffCard;

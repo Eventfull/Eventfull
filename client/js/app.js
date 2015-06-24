@@ -2,6 +2,8 @@
 
 var React = require('react');
 var Router = require('react-router-component');
+var DragDropContext = require('react-dnd').DragDropContext;
+var HTML5Backend = require('react-dnd/modules/backends/HTML5');
 var Template = require('./components/app-template.js');
 var Month = require('./components/month/month.js');
 var Day = require('./components/day/day.js');
@@ -30,6 +32,7 @@ var App = React.createClass({
       </Template>
     );
   }
-})
+});
 
+App = DragDropContext(HTML5Backend)(App);
 React.render(<App/>, document.getElementById('content'));

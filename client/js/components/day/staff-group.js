@@ -1,5 +1,6 @@
 var React = require('react');
 var _ = require('underscore');
+var DropTarget = require('react-dnd').DropTarget;
 var Employee = require('./employee');
 
 var StaffGroup = React.createClass({
@@ -10,29 +11,57 @@ var StaffGroup = React.createClass({
   getDefaultProps: function(){
     return {
       approved: [],
-      needed: '',
-      name: ''
+      needed: Infinity,
+      name: '',
+      gigID: Infinity
     };
   },
 
   render: function(){
-    var approved = _.map(this.props.approved, function(human, idx){
-      return <Employee rating={human.rating} name={human.name} key={idx} />
+    var props = this.props;
+    var health = props.approved.length / props.needed;
+
+    var approved = _.map(props.approved, function(employee, idx){
+      return <Employee
+              rating={employee.rating}
+              name={employee.name}
+              key={idx}
+              gigID={props.gigID}
+              employeeID={employee.employeeID}
+              group={props.name} />
     });
 
-    var numApproved = this.props.approved.length;
-    var needed = this.props.needed;
-    var name = this.props.name;
+    approved = props.connectDropTarget(
+      <div style={{backgroundColor:'aquamarine'}}>
+        {approved}
+        <div>
+          'placeholder for empty groups'
+        </div>
+      </div>
+    );
 
     return (
       <div>
-        Group Name: {name}<br />
-        Health: {(numApproved / needed) || 0}
+        Group Name: {props.name}<br />
+        Health: {health || 0}
         {approved}
       </div>
-      );
+    );
   }
 
 });
 
-module.exports = StaffGroup;
+// see documentation: http://gaearon.github.io/react-dnd/docs-drop-target.html
+var type = 'employee';
+
+var spec = {
+  drop: function(props, monitor, component){
+    return {group: props.name, gigID: props.gigID};
+  }
+};
+
+var collect = function(connect, monitor){
+  return { connectDropTarget: connect.dropTarget() }
+}
+
+module.exports = DropTarget(type, spec, collect)(StaffGroup);
