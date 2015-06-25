@@ -1,7 +1,7 @@
 var React = require('react');
 var StaffCard = require('./staff-card');
 
-var Gig = React.createClass({
+var GigBin = React.createClass({
 
   // information: object full of gig info (like location)
   // staff: object with information about the staffing needs
@@ -49,4 +49,4 @@ var GigInformation = React.createClass({
 
 });
 
-module.exports = Gig;
+module.exports = GigBin;
