@@ -1,6 +1,7 @@
 var React = require('react');
 var DayStore = require('../../stores/day-store');
 var ViewActionCreator = require('../../actions/view-action-creator');
+var DayHeader = require('./day-header');
 var GigBin = require('./gig-bin');
 
 var Day = React.createClass({
@@ -33,7 +34,7 @@ var Day = React.createClass({
   render: function(){
     var gigs = this.state.gigs.map(function(gig, idx){
       return (
-        <div className='bin'>
+        <div className='bin day-bin'>
           <GigBin
             information={gig.information}
             staff={gig.staff}
@@ -44,8 +45,10 @@ var Day = React.createClass({
 
     return (
       <div>
-        Day: {this.state.date} <br />
-        {gigs}
+        <DayHeader day={ this.state.date } />
+        <div className="canvas">
+          {gigs}
+        </div>
       </div>
     );
   }

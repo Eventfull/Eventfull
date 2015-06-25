@@ -32,18 +32,17 @@ var StaffGroup = React.createClass({
     });
 
     approved = props.connectDropTarget(
-      <div style={{backgroundColor:'aquamarine'}}>
+      <div>
         {approved}
-        <div>
-          'placeholder for empty groups'
+        <div className="employee-drop-zone">
+          <h6>open spot</h6>
         </div>
       </div>
     );
 
     return (
       <div>
-        Group Name: {props.name}<br />
-        Health: {health || 0}
+        <h6>~~ {props.name} ({props.approved.length} of {props.needed})~~</h6>
         {approved}
       </div>
     );

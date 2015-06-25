@@ -40,6 +40,14 @@ h5{
   color: rgba(113,152,197,0.41);
 }
 
+h6 {
+  font-size: 16px;
+  font-weight: 800;
+  font-style: italic;
+  text-align: center;
+  color: rgba(113,152,197,0.41);
+}
+
 /*
  * Form styles
  */
@@ -193,6 +201,7 @@ input[type=submit]{
   background: #F1F3F9;
   border-bottom: 1px solid #DADADA;
   text-align: center;
+  min-height: 55px;
 } 
 
 .date-bar h2{
@@ -244,11 +253,17 @@ input[type=submit]{
   max-width: 270px;
   min-width: 270px;
   max-height: 860px;
+  height: auto;
   overflow-y: auto;
   display: block;
   clear: none;
   float: left;
   margin: 40px 15px;
+}
+
+.day-bin {
+  max-width: 200px;
+  min-width: 200px;
 }
 
 /*
@@ -260,6 +275,11 @@ input[type=submit]{
   border: 1px solid #DADADA;
   border-radius: 5px;
   margin: 5px auto;
+}
+
+.employee-drop-zone {
+  border: 1px dashed #7198C5;
+  border-radius: 3px;
 }
 
 /*

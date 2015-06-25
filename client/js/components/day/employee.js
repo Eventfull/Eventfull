@@ -18,9 +18,8 @@ var Employee = React.createClass({
   // connectDragSource added to props by DragSource
   render: function(){
     return this.props.connectDragSource(
-      <div>
-        Name: {this.props.name},
-        Rating: {this.props.rating},
+      <div className="employee">
+        <h4>{this.props.name}</h4>
       </div>
     );
   }
