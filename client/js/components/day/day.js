@@ -1,7 +1,7 @@
 var React = require('react');
 var DayStore = require('../../stores/day-store');
 var ViewActionCreator = require('../../actions/view-action-creator');
-var Gig = require('./gig');
+var GigBin = require('./gig-bin');
 
 var Day = React.createClass({
 
@@ -33,8 +33,8 @@ var Day = React.createClass({
   render: function(){
     var gigs = this.state.gigs.map(function(gig, idx){
       return (
-        <div className={'card'}>
-          <Gig
+        <div className='bin'>
+          <GigBin
             information={gig.information}
             staff={gig.staff}
             key={idx} />

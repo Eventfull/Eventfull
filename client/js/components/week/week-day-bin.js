@@ -3,18 +3,18 @@ var React = require('react');
 var WeekEvent = require('./week-event');
 var _ = require('underscore');
 
-var WeekDayCard = React.createClass({
-  render: function(){
-    var weekEvents = _.map(this.props.day, function(event, key){
+var WeekDayBin = React.createClass({
+  render: function () {
+    var weekEvents = _.map(this.props.day, function (event, key) {
       return <WeekEvent key={ key } event={ event } />;
     });
 
     return (
-      <div className="card">
+      <div className="bin">
         { weekEvents }
       </div>
     );
   }
 });
 
-module.exports = WeekDayCard;
+module.exports = WeekDayBin;

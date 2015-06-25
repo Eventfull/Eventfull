@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-var MonthEventsContainer = require('./month-events-container.js');
+var MonthBoard = require('./month-board.js');
 var MonthStore = require('../../stores/month-store');
 var MonthHeader = require('./month-header');
 var ViewActionCreator = require('../../actions/view-action-creator');
@@ -32,7 +32,7 @@ var Month = React.createClass({
     return (
       <div>
         <MonthHeader />
-        <MonthEventsContainer monthWeeks= { this.state } />
+        <MonthBoard monthWeeks= { this.state } />
       </div>
     );
   }
