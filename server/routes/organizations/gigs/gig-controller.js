@@ -36,14 +36,27 @@ var gigController = {
     res.json(_dayData);
   },
 
-  removeEmployeeFromGig: function(req, res){
-    var gig_id = req.params.gig_id;
-    var employee_id = req.params.employee_id;
-    _removeEmployeeFromGig(gig_id, employee_id);
-    res.sendStatus(200);
+  createGig: function(req, res){
+    res.send("creating new gigs for org " + req.organization_id);
   },
 
-  addEmployeeToGig: function(req, res){
+  getGigInfo: function(req, res){
+    res.send('getting gig info for ' + req.params.gig_id + " for org " + req.organization_id);
+  },
+
+  updateGigInfo: function(req, res){
+    res.send('updating gig info for ' + req.params.gig_id + " for org " + req.organization_id);
+  },
+
+  deleteGig: function(req, res){
+    res.send('deleting gig ' + req.params.gig_id + " for org " + req.organization_id);
+  },
+
+  getGigStaff: function(req, res){
+    res.send('getting staff for ' + req.params.gig_id + " for org " + req.organization_id);
+  },
+
+  addEmployeeToGigStaff: function(req, res){
     var gig_id = req.params.gig_id;
     var employeeID = parseInt(req.body.employeeID, 10);
     var group = req.body.group;
@@ -52,6 +65,21 @@ var gigController = {
     if (lastRemoved && lastRemoved.employeeID === employeeID){
       _addEmployeeToGig(gig_id, lastRemoved, group);
     }
+    res.sendStatus(200);
+  },
+
+  getEmployeeStatus: function(req, res){
+    res.send('getting employee status for gig ' + req.params.gig_id + ' for employee ' + req.params.employee_id + " for org " + req.organization_id);
+  },
+
+  updateEmployeeStatus: function(req, res){
+    res.send('updating employee status for gig ' + req.params.gig_id + ' for employee ' + req.params.employee_id + " for org " + req.organization_id);
+  },
+
+  removeEmployeeFromGig: function(req, res){
+    var gig_id = req.params.gig_id;
+    var employee_id = req.params.employee_id;
+    _removeEmployeeFromGig(gig_id, employee_id);
     res.sendStatus(200);
   }
 
