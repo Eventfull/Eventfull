@@ -1,2 +1,5 @@
 node_modules
 dist
+
+server/db/configuration.js
+eventfull_db1_create.sql
