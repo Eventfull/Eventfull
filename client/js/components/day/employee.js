@@ -17,9 +17,16 @@ var Employee = React.createClass({
 
   // connectDragSource added to props by DragSource
   render: function(){
+    var ratings = ["#F26350", "#F26350", "#6BCFFF", "#6BCFFF", "#6BCFFF", "#A8E5A7"];
+    var ratingColor = ratings[this.props.rating] || ratings[0];
+    var styles = {
+      backgroundColor: ratingColor,
+      borderColor: ratingColor,
+    };
     return this.props.connectDragSource(
       <div className="employee">
         <h4>{this.props.name}</h4>
+        <div className="employee-rating" style={styles}></div>
       </div>
     );
   }

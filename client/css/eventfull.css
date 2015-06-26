@@ -237,7 +237,8 @@ input[type=submit]{
   display: -webkit-flex;
   webkit-flex-direction: row;
   flex-direction: row;
-  padding: 15px;
+  padding: 15px 15px 5px 15px;
+  height: calc(100vh - 56px);
 }
 
 
@@ -252,13 +253,11 @@ input[type=submit]{
   padding: 10px 10px;
   max-width: 270px;
   min-width: 270px;
-  max-height: 860px;
-  height: auto;
   overflow-y: auto;
   display: block;
   clear: none;
   float: left;
-  margin: 40px 15px;
+  margin: 40px 15px 15px 15px;
 }
 
 .day-bin {
@@ -275,11 +274,29 @@ input[type=submit]{
   border: 1px solid #DADADA;
   border-radius: 5px;
   margin: 5px auto;
+  cursor: pointer;
 }
 
-.employee-drop-zone {
+.employee h4 {
+  margin-bottom: 5px;
+}
+
+.employee-rating {
+  height: 2px;
+  width: 100%;
+  background-color: #DADADA;
+  border: 2px solid #DADADA;
+  margin-bottom: 5px;
+}
+
+.employee-group > h6 {
+  margin-top: 25px;
+}
+
+.employee-open-zone {
   border: 1px dashed #7198C5;
   border-radius: 3px;
+  margin-bottom: 5px;
 }
 
 /*

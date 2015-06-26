@@ -34,15 +34,15 @@ var StaffGroup = React.createClass({
     approved = props.connectDropTarget(
       <div>
         {approved}
-        <div className="employee-drop-zone">
-          <h6>open spot</h6>
+        <div className="employee-open-zone">
+          <h6>open spots ({props.needed})</h6>
         </div>
       </div>
     );
 
     return (
-      <div>
-        <h6>~~ {props.name} ({props.approved.length} of {props.needed})~~</h6>
+      <div className="employee-group">
+        <h6>~~ {props.name} ~~</h6>
         {approved}
       </div>
     );
