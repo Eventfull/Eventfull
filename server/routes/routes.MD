@@ -10,6 +10,8 @@
 
   `post:` update org
 
+  'delete:' delete organization
+
 **_api/organizations/:organization_id/employees_**
 
   `get:` get all employees (can provide availability filters in params)

@@ -2,6 +2,7 @@ var express = require('express');
 var gigRouter = express.Router();
 var gigController = require('./gig-controller');
 
+////////////// ROUTES ////////////////
 gigRouter.get('/', gigController.getGigs);
 gigRouter.post('/', gigController.createGig);
 
