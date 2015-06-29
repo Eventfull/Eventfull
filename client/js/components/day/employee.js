@@ -17,10 +17,18 @@ var Employee = React.createClass({
 
   // connectDragSource added to props by DragSource
   render: function(){
+    // ratings are from 0 - 5 based on example data structure and correlate directly with ratings array indices.
+    // a rating of 0 represents no ratings or the lowest rating. a rating of 5 represents the highest rating.
+    var ratings = ["#F26350", "#F26350", "#6BCFFF", "#6BCFFF", "#6BCFFF", "#A8E5A7"];
+    var ratingColor = ratings[this.props.rating] || ratings[0];
+    var styles = {
+      backgroundColor: ratingColor,
+      borderColor: ratingColor,
+    };
     return this.props.connectDragSource(
-      <div>
-        Name: {this.props.name},
-        Rating: {this.props.rating},
+      <div className="employee">
+        <h4>{this.props.name}</h4>
+        <div className="employee-rating" style={styles}></div>
       </div>
     );
   }

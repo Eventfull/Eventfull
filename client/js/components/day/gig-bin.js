@@ -16,10 +16,7 @@ var GigBin = React.createClass({
   render: function(){
     return (
       <div>
-        <br />
-        <GigInformation info={this.props.information} />
         <StaffCard staff={this.props.staff} gigID={this.props.information.gigID}/>
-        <br />
       </div>
     );
   }
