@@ -2,4 +2,5 @@ node_modules
 dist
 
 server/db/configuration.js
+server/calendar/configuration.js
 eventfull_db1_create.sql
