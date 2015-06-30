@@ -32,6 +32,7 @@
   "dependencies": {
     "axios": "^0.5.4",
     "body-parser": "^1.13.1",
+    "classnames": "^2.1.2",
     "express": "^4.12.4",
     "flux": "^2.0.3",
     "gulp-streamify": "0.0.5",

@@ -30,17 +30,13 @@ var App = React.createClass({
 
   handleHashChange: function () {
     var newHash = window.location.hash;
-    var actionbarHashActivated = /#actionbar?.+/.test(newHash);
+    var actionbarHashActivated = /#actionbar.*/.test(newHash);
     var actionbarOpen = this.state.actionbarOpen;
 
-    if (!actionbarOpen && !actionbarHashActivated) {
-      return;
-    } else if (actionbarOpen && !actionbarHashActivated) {
+    if (!actionbarHashActivated) {
       this.setState({ actionbarOpen: false });
-    } else if (!actionbarOpen && actionbarHashActivated) {
+    } else {
       this.setState({ actionbarOpen: true, hashRoute: newHash });
-    } else{
-      this.setState({ hashRoute: newHash });
     }
 
   },
