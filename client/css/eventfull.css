@@ -300,7 +300,7 @@ input[type=submit]{
 }
 
 /*
- * Action-bar and schedule view push styling
+ * Actionbar and schedule view push styling
  */
 
 .action-bar-default {
@@ -320,12 +320,27 @@ input[type=submit]{
   left: calc(100% / 6);
 }
 
+.x-close {
+  color: rgba(113,152,197,0.41);
+  font-weight: 800;
+  font-size: 20px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.x-close:hover {
+  text-decoration: none;
+  color: #7198C5;
+}
+
 /* Push classes applied to the schedule */
 
 .schedule-default {
   overflow-x: hidden;
   position: relative;
   z-index: 998;
+  left: 0;
 }
 
 .schedule-default.schedule-push-right {
