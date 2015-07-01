@@ -4,41 +4,45 @@ var User = models.User;
 var employeeController = {
 
   getEmployees: function (req, res){
-    // returns organizations employees
     // accepts params (on req.params) to filter on availability.
-    var organizationId = Number(req.organization_id);
+    var organizationId = req.organization_id;
 
-    User.getEmployees(organizationId, function (employees) {
+    User.getEmployees(organizationId).then(function (employees) {
       res.send(employees);
+    }).catch(function (err) {
+      console.log(err);
     });
-    console.log('returning employees of organization' + req.organization_id);
+    console.log('returning employees of organization id: ' + req.organization_id);
   },
 
   addEmployee: function (req, res){
-    // add employee to organization
-    var organizationId = Number(req.organization_id);
-    var email = req.body.email;
-    var password = req.body.password;
-    var roleId = req.body.roleId;
+    var userParams = {
+      OrganizationId: req.organization_id,
+      email: req.body.email,
+      password: req.body.password,
+      roleId: req.body.roleId,
+    };
 
-    User.addEmployee(organiationId, email, password, roleId, function (employee) {
+    User.addEmployee(userParams).then(function (employee) {
       res.send(employee);
+    }).catch(function (err) {
+      console.log(err);
     });
-    console.log('adding employee for the organization id ' + req.organization_id);
+    console.log('adding employee for the organization id: ' + req.organization_id);
   },
 
   getEmployeeInfo: function (req, res){
-    // get employee info
     var employeeId = req.params.employee_id;
 
-    User.getEmployeeInfo(employeeId, function (employee) {
+    User.getEmployeeInfo(employeeId).then(function (employee) {
       res.send(employee);
+    }).catch(function (err) {
+      console.log(err);
     });
-    console.log("getting " + req.params.employee_id +"'s info for the organization " + req.organization_id);
+    console.log("getting employee id: " + req.params.employee_id +" information for the organization id: " + req.organization_id);
   },
 
   updateEmployeeInfo: function (req, res){
-    // update employee info. will be available on data
     var employeeId = req.params.employee_id;
     var employeeData = {
       email: req.body.email,
@@ -48,26 +52,23 @@ var employeeController = {
       organizationId: req.body.organizationId
     };
 
-    //Sequelize will NOT update undefined fields
-    User.updateEmployeeInfo(employeeId, employeeData, function (employee) {
+    User.updateEmployeeInfo(employeeId, employeeData).then(function (employee) {
       res.send(employee);
+    }).catch(function (err) {
+      console.log(err);
     });
-    console.log("updating " + req.params.employee_id +"'s info for the organization " + req.organization_id);
+    console.log("updating employee id: " + req.params.employee_id +" information for the organization id: " + req.organization_id);
   },
 
   removeEmployeeFromOrganization: function (req, res){
-    // remove employee from organization
     var employeeId = req.params.employee_id;
 
-    User.removeEmployeeFromOrganization(employeeId, function (result) {
-      //Temporary true/false. Will replace with robust error checking
-      if ( result === true ) {
-        res.sendStatus(200);
-      } else {
-        res.sendStatus(204);
-      }
+    User.removeEmployeeFromOrganization(employeeId).then(function (result) {
+     res.sendStatus(204);
+    }).catch(function (err) {
+      console.log(err);
     });
-    console.log("deleting " + req.params.employee_id +"'s info for the organization " + req.organization_id);
+    console.log("deleting employee id: " + req.params.employee_id +" information for the organization id: " + req.organization_id);
   }
 
 };

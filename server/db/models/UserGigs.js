@@ -6,59 +6,43 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
 
-      getUserGigs: function (gigId, callback) {
-        UserGigs.findAll({
+      getUserGigs: function (gigId) {
+        return UserGigs.findAll({
           where: {
             GigId: gigId
           }
-        }).then(function (userGigs) {
-          callback(userGigs);
-        });
+        });             
       },
 
-      addEmployeeToGigStaff: function (userGigParams, callback) {
-        UserGigs.create(userGigParams).then( function (userGig) {
-          callback(userGig);
-        });
+      addEmployeeToGigStaff: function (userGigParams) {
+        return UserGigs.create(userGigParams);
       },
 
-      getEmployeeStatus: function (userId, callback) {
-        UserGigs.find({
+      getEmployeeStatus: function (userId) {
+        return UserGigs.find({
           where: {
             UserId: userId
           }
-        }).then(function(userGig){
-          callback(userGig);
         });
       },
 
-      updateEmployeeStatus: function (userId, gigId, adminStatus, workerStatus, callback) {
-        UserGigs.update({
-          admin_accepted: adminStatus,
-          worker_accepted: workerStatus
+      updateEmployeeStatus: function (identifiers, params) {
+        return UserGigs.update({
+          admin_accepted: params.admin_accepted,
+          worker_accepted: params.worker_accepted
           }, {
           where: {
-            UserId: userId,
-            GigId: gigId
+            UserId: identifiers.userId,
+            GigId: identifiers.gigId
           }
-        }).then(function(userGig){
-          callback(userGig);
         });
       },
 
-      removeEmployeeFromGig: function (gigId, userId, callback) {
-        UserGigs.find({
+      removeEmployeeFromGig: function (gigId, userId) {
+        return UserGigs.destroy({
           where: {
             UserId: userId,
             GigId: gigId
-          }
-        }).then(function(user) {
-          if ( !user ) {
-            callback(false);
-          } else {
-            user.destroy().then(function() {
-              callback(true);
-            });
           }
         });
       }

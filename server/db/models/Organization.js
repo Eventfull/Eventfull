@@ -5,50 +5,36 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
 
-      createOrganization: function (name, subscription, callback) {
+      createOrganization: function (organizationParams) {
         return Organization.create({
-          name: name,
-          subscription: subscription
-        }).then(function(organization) {
-          callback(organization);
+          name: organizationParams.name,
+          subscription: organizationParams.subscription
         });
       },
 
-      getOrganizationInfo: function (id, callback) {
-        Organization.find({
+      getOrganizationInfo: function (id) {
+        return Organization.find({
           where: {
             id: id
           }
-        }).then(function(organization) {
-          callback(organization);
         });
       },
 
-      updateOrganizationInfo: function (id, name, subscription, callback) {
-        Organization.update({
-          name: name,
-          subscription: subscription
+      updateOrganizationInfo: function (id, organizationParams) {
+        return Organization.update({
+          name: organizationParams.name,
+          subscription: organizationParams.subscription
         }, {
           where: {
             id: id
           }
-        }).then(function(organization) {
-          callback(organization);
         });
       },
 
-      removeOrganization: function (id, callback) {
-        Organization.find({
+      removeOrganization: function (id) {
+        return Organization.destroy({
           where: {
-            id : id
-          }
-        }).then(function(organization) {
-          if ( organization === null ) {
-            callback(false);
-          } else {
-            organization.destroy().then(function() {
-              callback(true);
-            });
+            id: id
           }
         });
       }
