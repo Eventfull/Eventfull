@@ -6,16 +6,18 @@ var Link = require('react-router-component').Link;
 
 var MonthWeekBin = React.createClass({
   render: function () {
+    var weekNum = this.props.weekNumber;
     var weekEvents = _.map(this.props.weekData, function (dayData, key) {
+      dayData.dayNumber = parseInt(key) + 1;
+      dayData.weekNumber = weekNum;
       return <MonthDayCard key = { key } dayData = { dayData } />
     });
     /*Temporary hardedcoded value to show what route will be*/
     var weekNumber = 1;
     var weekPath = '/week/' + weekNumber;
     return (
-      <div>
+      <div className="month-bin">
         <Link href = {weekPath} >Week View</Link>
-        <h5>Week Board</h5>
         { weekEvents }
       </div>
     );

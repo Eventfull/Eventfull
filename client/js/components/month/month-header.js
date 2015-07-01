@@ -5,13 +5,12 @@ var NextMonth = require('./month-next-button');
 var PrevMonth = require('./month-prev-button');
 
 var MonthHeader = React.createClass({
-  render:function () {
+  render: function () {
     return (
-      <div>
-        <Link href='/week'>Week View</Link>
-        <h3>Im the Month Header</h3>
-        <PrevMonth />
-        <NextMonth />
+      <div className="date-bar">
+        <div className="arrow arrow-left"></div>
+        <h2>May 2015</h2>
+        <div className="arrow arrow-right"></div>
       </div>
     );
   }
