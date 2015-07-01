@@ -10,6 +10,41 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
 
+      getGigs: function (organizationId) {
+        return Gig.findAll({
+          where: {
+            organizationId: organizationId
+          }
+        });
+      },
+
+      createGig: function (gigParams) {
+        return Gig.create(gigParams);
+      },
+
+      getGigInfo: function (id) {
+        return Gig.find({
+          where: {
+            id: id
+          }
+        });
+      },
+
+      updateGigInfo: function (id, params) {
+        return Gig.update(params, {
+          where: {
+            id: id
+          }
+        });
+      },
+
+      deleteGig: function (id) {
+        return Gig.destroy({
+          where: {
+            id: id
+          }
+        });
+      }
     }
   });
   return Gig;

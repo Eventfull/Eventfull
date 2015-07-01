@@ -1,0 +1,68 @@
+User
+-----
+INSERT INTO USERS (email, password, OrganizationId, google_id, RoleId) VALUES ('a@email.com', 'password1', 1, google1, 1);
+INSERT INTO USERS (email, password, OrganizationId, google_id, RoleId) VALUES ('b@email.com', 'password2', 1, google2, 2);
+INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('c@email.com', 'password3', 1, google3);
+INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('d@email.com', 'password4', 2, google4);
+INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('e@email.com', 'password5', 2, google5);
+INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('f@email.com', 'password6', 2, google6);
+
+Gig
+----
+INSERT INTO Gigs (title, type, complexity, health, OrganizationId, LocationId, AttireId) VALUES ('Gig1', 'wedding', 2, 2, 1, 1, 1);
+INSERT INTO Gigs (title, type, complexity, health, OrganizationId, LocationId, AttireId) VALUES ('Gig1', 'wedding', 2, 2, 1, 1, 1);
+INSERT INTO Gigs (title, type, complexity, health, OrganizationId, LocationId, AttireId) VALUES ('Gig1', 'wedding', 2, 2, 2, 2, 1);
+INSERT INTO Gigs (title, type, complexity, health, OrganizationId, LocationId, AttireId) VALUES ('Gig1', 'wedding', 2, 2, 2, 2, 1);
+INSERT INTO Gigs (title, type, complexity, health, OrganizationId, LocationId, AttireId) VALUES ('Gig1', 'wedding', 2, 2, 3, 3, 1);
+INSERT INTO Gigs (title, type, complexity, health, OrganizationId, LocationId, AttireId) VALUES ('Gig1', 'wedding', 2, 2, 3, 3, 1);
+
+Organization
+------------
+INSERT INTO Organizations (name, subscription) VALUES ('Org1', 'free');
+INSERT INTO Organizations (name, subscription) VALUES ('Org2', 'free');
+INSERT INTO Organizations (name, subscription) VALUES ('Org3', 'paid');
+INSERT INTO Organizations (name, subscription) VALUES ('Org4', 'paid');
+INSERT INTO Organizations (name, subscription) VALUES ('Org5', 'free');
+INSERT INTO Organizations (name, subscription) VALUES ('Org6', 'free');
+
+Role
+----
+INSERT INTO Roles (staff, admin) VALUE (true, false)
+INSERT INTO Roles (staff, admin) VALUE (true, false)
+INSERT INTO Roles (staff, admin) VALUE (true, true)
+INSERT INTO Roles (staff, admin) VALUE (true, false)
+
+
+Availability Schedule
+---------------------
+
+Location
+--------
+INSERT INTO Locations (name, city, state, zip_code) VALUES ('Josh House', 'New Canaan', 'CT', '06840')
+INSERT INTO Locations (name, city, state, zip_code) VALUES ('Hack Reactor', 'San Francisco', 'CA', '921440')
+INSERT INTO Locations (name, city, state, zip_code) VALUES ('White House', 'D.C', 'D.C.', '1')
+INSERT INTO Locations (name, city, state, zip_code) VALUES ('Amazon Web Services', 'San Francisco', 'CA', '944120')
+
+Attire
+------
+INSERT INTO Attires (level, color) VALUES ('casual', 'blue')
+INSERT INTO Attires (level, color) VALUES ('formal', 'black')
+INSERT INTO Attires (level, color) VALUES ('casual', 'black')
+
+Gig Position
+------------
+INSERT INTO GigPositions (GigId, PositionId, Required, Filled) VALUES (1, 1, 10, 10)
+INSERT INTO GigPositions (GigId, PositionId, Required, Filled) VALUES (1, 2, 2, 1)
+
+Position
+--------
+INSERT INTO Positions (OrganizationId, title) VALUES ()
+
+User Position
+-------------
+INSERT INTO UserPositions (PositionId, UserId, Score) VALUES ()
+
+UserGigs
+---------
+INSERT INTO UserGigs (GigId, UserId, admin_accepted,worker_accepted) VALUES (1, 2, true, true);
+

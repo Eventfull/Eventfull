@@ -1,87 +1,167 @@
-var dayDataCreator = require('../../../db/dayData/day-data-creator');
-var _dayData = dayDataCreator.create(new Date('Jun 21 2015'));
-
-////////////
-// the lastRemoved variable and methods below are just a super hacky way
-// of persisting the employee we are removing, since I did't
-// create persitent employee data (they are linked with the
-// gig). This hack will be removed once the db is up, since
-// we have an employees table.
-
-var lastRemoved;
-
-var _removeEmployeeFromGig = function(gig_id, employee_id){
-  var staff = _dayData.gigs[gig_id].staff.approved;
-  employee_id = parseInt(employee_id, 10);
-  for (var type in staff){
-    staff[type].forEach(function(employee, idx, employees){
-      if (employee.employeeID === employee_id){
-        lastRemoved = employee;
-        employees.splice(idx, 1);
-      }
-    });
-  }
-};
-
-var _addEmployeeToGig = function(gig_id, employee, group){
-  _dayData.gigs[gig_id].staff.approved[group] = _dayData.gigs[gig_id].staff.approved[group] || [];
-  _dayData.gigs[gig_id].staff.approved[group].push(employee);
-};
-
-////////////////////////////////
+var models = require('../../../db/models');
+var Gig = models.Gig;
+var UserGigs = models.UserGigs;
+var User = models.User;
 
 var gigController = {
 
-  getGigs: function(req, res){
-    res.json(_dayData);
+  getGigs: function (req, res){
+    var organizationId = req.organization_id;
+
+    Gig.getGigs(organizationId).then(function (gigs) {
+      res.send(gigs);
+    }).catch(function (err) {
+      console.log(err);
+    });
+
+    console.log('Retrieving gigs for organization id: ', organizationId);
   },
 
-  createGig: function(req, res){
-    res.send("creating new gigs for org " + req.organization_id);
+  createGig: function (req, res){
+    var gigParams = {
+      title: req.body.title,
+      type: req.body.type,
+      date: req.body.date,
+      start_time: req.body.startTime,
+      end_time: req.body.endTime,
+      complexity: req.body.complexity,
+      health: req.body.health,
+      OrganizationId: req.organization_id,
+      LocationId: req.body.location,
+      AttireId: req.body.attire
+    };
+
+    Gig.createGig(gigParams).then(function (gig) {
+      res.send(gig);
+    }).catch(function (err) {
+      console.log(err);
+    });
+
+   console.log("creating new gigs for organization id: " + req.params.organization_id);
   },
 
-  getGigInfo: function(req, res){
-    res.send('getting gig info for ' + req.params.gig_id + " for org " + req.organization_id);
+  getGigInfo: function (req, res){
+    var gigId = req.params.gig_id;
+
+    Gig.getGigInfo(gigId).then(function (gig) {
+      res.send(gig);
+    }).catch(function (err) {
+      console.log(err);
+    });
+    console.log('getting gig info for gig id: ' + req.params.gig_id + " for organization id:  " + req.organization_id);
   },
 
-  updateGigInfo: function(req, res){
-    res.send('updating gig info for ' + req.params.gig_id + " for org " + req.organization_id);
+  updateGigInfo: function (req, res){
+   var gigId = req.params.gig_id;
+   var gigParams = {
+      title: req.body.title,
+      type: req.body.type,
+      date: req.body.date,
+      start_time: req.body.startTime,
+      end_time: req.body.endTime,
+      complexity: req.body.complexity,
+      health: req.body.health,
+      OrganizationId: req.params.organization_id,
+      LocationId: req.body.location,
+      AttireId: req.body.attire
+    };
+
+    Gig.updateGigInfo(gigId, gigParams).then(function (gig) {
+      res.send(gig);
+    }).catch(function (err) {
+      console.log(err);
+    });
+    console.log('updating gig information for gig id: ' + req.params.gig_id + " for organizaiton id: " + req.organization_id);
   },
 
-  deleteGig: function(req, res){
-    res.send('deleting gig ' + req.params.gig_id + " for org " + req.organization_id);
+  deleteGig: function (req, res){
+    var gigId = req.params.gig_id;
+
+    Gig.deleteGig(gigId).then(function (result) {
+      res.sendStatus(204);
+    }).catch(function (err) {
+      console.log(err);
+    });
+    console.log('deleting gig id:' + req.params.gig_id + " for organization id: " + req.organization_id);
   },
 
-  getGigStaff: function(req, res){
-    res.send('getting staff for ' + req.params.gig_id + " for org " + req.organization_id);
+  getGigStaff: function (req, res){
+    var employees = []; //holds staff for a specific gig
+    var gigId = req.params.gig_id;
+
+    UserGigs.getUserGigs(gigId, function (userGigs) {
+      return Sequelize.Promise.map(userGigs, function (userGig) {
+        return User.getEmployeeInfo(userGig.UserId);
+      });
+    }).then(function (employees) {
+      res.send(employees);
+    }).catch(function (err) {
+      console.log(err);
+    });
+    console.log('getting staff for gig id: ' + req.params.gig_id + " for organization id: " + req.organization_id);
   },
 
-  addEmployeeToGigStaff: function(req, res){
-    var gig_id = req.params.gig_id;
-    var employeeID = parseInt(req.body.employeeID, 10);
-    var group = req.body.group;
+  addEmployeeToGigStaff: function (req, res){
+    var userGigParams = {
+      date: req.body.date,
+      UserId: parseInt(req.body.employeeId, 10),
+      GigId: parseInt(req.params.gig_id, 10),
+      PositionId: req.body.positionId,
+      admin_accepted: req.body.admin_accepted,
+      worker_accepted: req.body.admin_accepted,
+      group: req.body.group
+    };
 
-    // we'll need to add a way to grab employee and add it. this is a hack
-    if (lastRemoved && lastRemoved.employeeID === employeeID){
-      _addEmployeeToGig(gig_id, lastRemoved, group);
-    }
-    res.sendStatus(200);
+    //Careful with admin/woker accepted...
+    UserGigs.addEmployeeToGigStaff(userGigParams).then(function (userGig) {
+      res.send(userGig);
+    }).catch(function (err) {
+      console.log(err);
+    });
+    console.log('Adding employee id: ', req.params.employeeId, ' to gig id: ', req.params.gig_id);
   },
 
-  getEmployeeStatus: function(req, res){
-    res.send('getting employee status for gig ' + req.params.gig_id + ' for employee ' + req.params.employee_id + " for org " + req.organization_id);
+  getEmployeeStatus: function (req, res){
+    var userId = req.params.employee_id;
+
+    UserGigs.getEmployeeStatus(userId).then(function (userGig) {
+      res.send(userGig);
+    }).catch(function (err) {
+      console.log(err);
+    });
+    console.log('getting employee status for gig id: ' + req.params.gig_id + ' for employee id: ' + req.params.employee_id + " for organization id: " + req.organization_id);
   },
 
-  updateEmployeeStatus: function(req, res){
-    res.send('updating employee status for gig ' + req.params.gig_id + ' for employee ' + req.params.employee_id + " for org " + req.organization_id);
+  updateEmployeeStatus: function (req, res){
+    var userGigParams = {
+      admin_accepted: req.body.admin_accepted,
+      worker_accepted: req.body.worker_accepted
+    };
+
+    var identifiers = {
+      gigId: req.params.gig_id,
+      userId: req.params.employee_id
+    };
+
+    UserGigs.updateEmployeeStatus(identifiers, userGigParams).then(function (userGig) {
+     res.send(userGig);
+    }).catch(function (err) {
+      console.log(err);
+    });
+    console.log('updating employee status for gig id: ' + req.params.gig_id + ' for employee id: ' + req.params.employee_id + " for org id: " + req.organization_id);
   },
 
-  removeEmployeeFromGig: function(req, res){
-    var gig_id = req.params.gig_id;
-    var employee_id = req.params.employee_id;
-    _removeEmployeeFromGig(gig_id, employee_id);
-    res.sendStatus(200);
-  }
+  removeEmployeeFromGig: function (req, res){
+    var gigId = req.params.gig_id;
+    var userId = req.params.employee_id;
+
+   UserGigs.removeEmployeeFromGig(gigId, userId).then(function (result) {
+    res.sendStatus(204);
+  }).catch(function (err) {
+    console.log(err);
+  });
+   console.log('removing employee id: ', userId, ' from gig id: ', gigId);
+  },
 
 };
 

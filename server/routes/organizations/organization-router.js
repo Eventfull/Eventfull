@@ -11,6 +11,7 @@ organizationRouter.param('organization_id', organizationController.attachOrganiz
 organizationRouter.post('/', organizationController.createOrganization);
 organizationRouter.get('/:organization_id', organizationController.getOrganizationInfo);
 organizationRouter.post('/:organization_id', organizationController.updateOrganizationInfo);
+organizationRouter.delete('/:organization_id', organizationController.removeOrganization);
 
 ////////////// SUB-ROUTES ////////////
 organizationRouter.use('/:organization_id/gigs', gigRouter);
