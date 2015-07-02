@@ -12,7 +12,7 @@ module.exports.logout = function (req, res) {
 };
 
 module.exports.isAuthenticated = function (req, res) {
-  res.send(req.isAuthenticated() ? true : false); 
+  res.send(req.isAuthenticated() ? true : false);
 };
 
 module.exports.AddCalendarEvent = function (callback) {

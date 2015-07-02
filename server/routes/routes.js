@@ -6,10 +6,10 @@
 // This file will be used to attach all of the controllers
 // to the app.
 
-var organizationRouter = require('./organizations/organization-router');
-var calendarRouter = require('../calendar/calendar-router');
-
 module.exports = function(app){
+  var organizationRouter = require('./organizations/organization-router')(app);
+  var calendarRouter = require('../calendar/calendar-router');
+
   app.use('/api/organizations', organizationRouter);
   app.use('/calendar', calendarRouter);
 };

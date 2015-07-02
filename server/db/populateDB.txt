@@ -1,11 +1,11 @@
 User
 -----
-INSERT INTO USERS (email, password, OrganizationId, google_id, RoleId) VALUES ('a@email.com', 'password1', 1, google1, 1);
-INSERT INTO USERS (email, password, OrganizationId, google_id, RoleId) VALUES ('b@email.com', 'password2', 1, google2, 2);
-INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('c@email.com', 'password3', 1, google3);
-INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('d@email.com', 'password4', 2, google4);
-INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('e@email.com', 'password5', 2, google5);
-INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('f@email.com', 'password6', 2, google6);
+INSERT INTO USERS (email, password, OrganizationId, google_id, RoleId) VALUES ('a@email.com', 'password1', 1, 'google1', 1);
+INSERT INTO USERS (email, password, OrganizationId, google_id, RoleId) VALUES ('b@email.com', 'password2', 1, 'google2', 2);
+INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('c@email.com', 'password3', 1, 'google3');
+INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('d@email.com', 'password4', 2, 'google4');
+INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('e@email.com', 'password5', 2, 'google5');
+INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('f@email.com', 'password6', 2, 'google6');
 
 Gig
 ----

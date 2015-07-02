@@ -1,13 +1,16 @@
 var express = require('express');
-var employeeRouter = express.Router();
-var employeeController = require('./employee-controller');
 
-////////////// ROUTES ////////////////
-employeeRouter.get('/', employeeController.getEmployees);
-employeeRouter.post('/', employeeController.addEmployee);
+module.exports = function(app){
+  var employeeRouter = express.Router();
+  var employeeController = require('./employee-controller')(app);
 
-employeeRouter.get('/:employee_id', employeeController.getEmployeeInfo);
-employeeRouter.post('/:employee_id', employeeController.updateEmployeeInfo);
-employeeRouter.delete('/:employee_id', employeeController.removeEmployeeFromOrganization);
+  ////////////// ROUTES ////////////////
+  employeeRouter.get('/', employeeController.getEmployees);
+  employeeRouter.post('/', employeeController.addEmployee);
 
-module.exports = employeeRouter;
+  employeeRouter.get('/:employee_id', employeeController.getEmployeeInfo);
+  employeeRouter.post('/:employee_id', employeeController.updateEmployeeInfo);
+  employeeRouter.delete('/:employee_id', employeeController.removeEmployeeFromOrganization);
+
+  return employeeRouter;
+};

@@ -44,7 +44,7 @@ calendarRouter.get('/:calendarId', function (req, res) {
 });
 
 //Temporary route to add calendar event
-calendarRouter.get('/:calendarId/add', function(req, res){  
+calendarRouter.get('/:calendarId/add', function(req, res){
   var text = req.query.text || 'Hello World';
   calendarController.AddCalendarEvent(text, function (responseData) {
     if ( responseData.error ) {
@@ -55,11 +55,11 @@ calendarRouter.get('/:calendarId/add', function(req, res){
       res.send(200, responseData.data);
     }
   });
-  
+
 });
 
 //Temporary route to remove calendar event
-calendarRouter.get('/:calendarId/:eventId/remove', function(req, res){    
+calendarRouter.get('/:calendarId/:eventId/remove', function(req, res){
   var eventId = req.params.eventId;
   calendarController.removeCalendarEvent(eventId, function (responseData) {
     if ( responseData.error ) {
