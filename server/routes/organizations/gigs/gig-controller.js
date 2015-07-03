@@ -8,7 +8,6 @@ module.exports = function(app){
 
     getGigs: function (req, res){
       var organizationId = req.organization_id;
-
       Gig.getGigs(organizationId).then(function (gigs) {
         res.send(gigs);
       }).catch(function (err) {
