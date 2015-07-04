@@ -1,66 +1,70 @@
-var models = require('../../db/models');
-var Organization = models.Organization;
+module.exports = function(app){
 
-var organizationController = {
+  var models = app.get('models');
+  var Organization = models.Organization;
 
-  createOrganization: function (req, res){
-    var organizationParams = {
-      name: req.body.name,
-      subscription: req.body.subscription
-    };
+  var organizationController = {
 
-    Organization.createOrganization(organizationParams).then(function (organization){
-      res.send(organization);
-    }).catch(function (err) {
-      console.log(err);
-    });
-    console.log('creating organization name: ', name);
-  },
+    createOrganization: function (req, res){
+      var organizationParams = {
+        name: req.body.name,
+        subscription: req.body.subscription
+      };
 
-  getOrganizationInfo: function (req, res){
-    var organizationId = req.params.organization_id;
+      Organization.createOrganization(organizationParams).then(function (organization){
+        res.send(organization);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      console.log('creating organization name: ', name);
+    },
 
-    Organization.getOrganizationInfo(organizationId).then(function (organization) {
-      res.send(organization);
-    }).catch(function (err) {
-      console.log(err);
-    });
-    console.log('getting information for organization id: ' + req.params.organization_id);
-  },
+    getOrganizationInfo: function (req, res){
+      var organizationId = req.params.organization_id;
 
-  updateOrganizationInfo: function (req, res){
-    var id = req.params.organization_id;
-    var organizationParams = {
-      name: req.body.name,
-      subscription: req.body.subscription
-    };
+      Organization.getOrganizationInfo(organizationId).then(function (organization) {
+        res.send(organization);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      console.log('getting information for organization id: ' + req.params.organization_id);
+    },
 
-    // Sequelize will NOT update undefiend fields 
-    Organization.updateOrganizationInfo(id, organizationParams).then(function (organization) {
-      res.send(organization);
-    }).catch(function (err) {
-      console.log(err);
-    });
-    console.log('updating information for organization id: ' + req.params.organization_id);
-  },
+    updateOrganizationInfo: function (req, res){
+      var id = req.params.organization_id;
+      var organizationParams = {
+        name: req.body.name,
+        subscription: req.body.subscription
+      };
 
-  removeOrganization: function (req, res) {
-    var organizationId = req.organization_id;
+      // Sequelize will NOT update undefiend fields
+      Organization.updateOrganizationInfo(id, organizationParams).then(function (organization) {
+        res.send(organization);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      console.log('updating information for organization id: ' + req.params.organization_id);
+    },
 
-    Organization.removeOrganization(organizationId).then(function (result) {
-      res.sendStatus(204);
-    }).catch(function (err) {
-      console.log(err);
-    });
-    console.log('deleting organization id: ' + req.params.organization_id);
-  },
+    removeOrganization: function (req, res) {
+      var organizationId = req.organization_id;
 
-  attachOrganizationIDtoRequest: function (req, res, next, organization_id){
-    // need to check db that organization exists
-    req.organization_id = organization_id;
-    next();
-  }
+      Organization.removeOrganization(organizationId).then(function (result) {
+        res.sendStatus(204);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      console.log('deleting organization id: ' + req.params.organization_id);
+    },
 
-};
+    attachOrganizationIDtoRequest: function (req, res, next, organization_id){
+      // need to check db that organization exists
+      req.organization_id = organization_id;
+      next();
+    }
 
-module.exports = organizationController;
+  };
+
+  return organizationController;
+
+}

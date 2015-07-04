@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
   var Gig = sequelize.define('Gig', {
     title: DataTypes.STRING,
-    type: DataTypes.ENUM('wedding', 'birthday', 'business'),
+    type: DataTypes.STRING,
     date: DataTypes.DATE,
     start_time: DataTypes.TIME,
     end_time: DataTypes.TIME,

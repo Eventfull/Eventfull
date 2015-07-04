@@ -1,20 +1,25 @@
 var express = require('express');
-var organizationRouter = express.Router();
-var organizationController = require('./organization-controller');
-var gigRouter = require('./gigs/gig-router');
-var employeeRouter = require('./employees/employee-router');
 
-// attaches organization_id to request
-organizationRouter.param('organization_id', organizationController.attachOrganizationIDtoRequest);
+module.exports = function(app){
 
-////////////// ROUTES ///////////////
-organizationRouter.post('/', organizationController.createOrganization);
-organizationRouter.get('/:organization_id', organizationController.getOrganizationInfo);
-organizationRouter.post('/:organization_id', organizationController.updateOrganizationInfo);
-organizationRouter.delete('/:organization_id', organizationController.removeOrganization);
+  var organizationRouter = express.Router();
+  var organizationController = require('./organization-controller')(app);
+  var gigRouter = require('./gigs/gig-router')(app);
+  var employeeRouter = require('./employees/employee-router')(app);
 
-////////////// SUB-ROUTES ////////////
-organizationRouter.use('/:organization_id/gigs', gigRouter);
-organizationRouter.use('/:organization_id/employees', employeeRouter);
+  // attaches organization_id to request
+  organizationRouter.param('organization_id', organizationController.attachOrganizationIDtoRequest);
 
-module.exports = organizationRouter;
+  ////////////// ROUTES ///////////////
+  organizationRouter.post('/', organizationController.createOrganization);
+  organizationRouter.get('/:organization_id', organizationController.getOrganizationInfo);
+  organizationRouter.post('/:organization_id', organizationController.updateOrganizationInfo);
+  organizationRouter.delete('/:organization_id', organizationController.removeOrganization);
+
+  ////////////// SUB-ROUTES ////////////
+  organizationRouter.use('/:organization_id/gigs', gigRouter);
+  organizationRouter.use('/:organization_id/employees', employeeRouter);
+
+  return organizationRouter;
+
+};

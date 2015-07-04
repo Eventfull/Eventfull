@@ -44,7 +44,7 @@ models.forEach(function (model) {
   // Gigs have many users and users have many gigs, with each instance having a unique position.
   m.User.belongsToMany(m.Gig, { through: m.UserGigs });
   m.Gig.belongsToMany(m.User, { through: m.UserGigs });
-  m.UserGigs.hasOne(m.Position);
+  m.Position.hasOne(m.UserGigs);
 
   // Gigs have many position requirements and positions belong to many gigs
   m.Gig.belongsToMany(m.Position, { through: m.GigPositions });
