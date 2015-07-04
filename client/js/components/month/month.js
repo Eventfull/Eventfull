@@ -4,6 +4,7 @@ var MonthBoard = require('./month-board.js');
 var MonthStore = require('../../stores/month-store');
 var MonthHeader = require('./month-header');
 var ViewActionCreator = require('../../actions/view-action-creator');
+var MonthDayPreview = require('./month-day-preview');
 
 var Month = React.createClass({
   getInitialState: function () {
@@ -30,12 +31,13 @@ var Month = React.createClass({
   },
   render: function () {
     return (
-      <div>
+      <div className="row">
         <MonthHeader />
         <MonthBoard monthWeeks= { this.state } />
+        <MonthDayPreview />
       </div>
     );
   }
-});  
+});
 
-module.exports = Month; 
+module.exports = Month;
