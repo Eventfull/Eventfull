@@ -1,151 +1,48 @@
 /*Temporary Mock Month Data */
 module.exports = {
-  '1': [
-    {
-      date: '05012015',
-      numEvents: 3,
-      status: 'good'
+  startDate: '2015-05-10',
+  endDate: '2015-05-31',
+  data: {
+    '1': {
+     '20150501': [{},{},{}],
+     '20150502': [{},{},{}],
+     '20150503': [],
+     '20150504': [{},{},{}],
+     '20150505': [{},{},{}],
+     '20150506': [],
+     '20150507': [{},{},{}],
     },
-    {
-      date: '05022015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date: '05032015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date: '05042015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date: '05052015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date: '05062015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date:'05072015',
-      numEvents: 3,
-      status: 'good'
-    }
-  ],
-  '2': [
-    {
-      date: '05082015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date: '05092015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date: '05102015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date: '05112015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date: '05122015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date: '05132015',
-      numEvents: 3,
-      status: 'good'
-    },
-    {
-      date: '05142015',
-      numEvents: 3,
-      status: 'good'
-    }
-  ],
-  '3': [
-    {
-      date: '05152015',
-      numEvents: 3,
-      status: 'bad'
-    },
-    {
-      date: '05162015',
-      numEvents: 3,
-      status: 'bad'
-    },
-    {
-      date: '05172015',
-      numEvents: 3,
-      status: 'bad'
-    },
-    {
-      date: '05182015',
-      numEvents: 3,
-      status: 'bad'
-    },
-    {
-      date: '05192015',
-      numEvents: 3,
-      status: 'bad'
-    },
-    {
-      date: '05202015',
-      numEvents: 3,
-      status: 'bad'
-    },
-    {
-      date: '05212015',
-      numEvents: 3,
-      status: 'bad'
-    }
-  ],
-  '4': [
-    {
-      date: '05222015',
-      numEvents: 10,
-      status:'good'
-    },
-    {
-      date: '05232015',
-      numEvents: 10,
-      status:'good'
-    },
-    {
-      date: '05242015',
-      numEvents: 10,
-      status:'good'
-    },
-    {
-      date: '05252015',
-      numEvents: 10,
-      status:'good'
-    },
-    {
-      date: '05262015',
-      numEvents: 10,
-      status:'good'
-    },
-    {
-      date: '05272015',
-      numEvents: 10,
-      status:'good'
-    },
-    {
-      date: '05282015',
-      numEvents: 10,
-      status:'good'
-    }
-  ]
+    '2': {
+      '20150508': [{},{},{}],
+      '20150509': [],
+      '20150510': [{},{},{}],
+      '20150511': [],
+      '20150512': [],
+      '20150513': [{},{}],
+      '20150514': [],
+     },
+     '3': {
+       '20150515': [{},{}],
+       '20150516': [{},{}],
+       '20150517': [{},{}],
+       '20150518': [],
+       '20150519': [],
+       '20150520': [],
+       '20150521': [{},{}],
+      },
+      '4': {
+        '20150522': [{}],
+        '20150523': [],
+        '20150524': [],
+        '20150525': [{}],
+        '20150526': [],
+        '20150527': [{}],
+        '20150528': [],
+       },
+      '5': {
+        '20150529': [{}],
+        '20150530': [],
+        '20150531': [{}],
+      }
+  }
 };

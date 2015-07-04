@@ -8,9 +8,9 @@ var MonthHeader = React.createClass({
   render: function () {
     return (
       <div className="date-bar">
-        <div className="arrow arrow-left"></div>
-        <h2>May 2015</h2>
-        <div className="arrow arrow-right"></div>
+        <PrevMonth className="arrow arrow-left" month={this.props.month} year={this.props.year} />
+        <h2>{this.props.month} {this.props.year}</h2>
+        <NextMonth className="arrow arrow-right" month={this.props.month} year={this.props.year} />
       </div>
     );
   }

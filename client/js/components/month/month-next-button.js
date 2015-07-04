@@ -1,17 +1,17 @@
 /** @jsx React.DOM */
 var React = require('react');
 var AppViewActions = require('../../actions/view-action-creator');
+var moment = require('moment');
 
 var MonthNextButton = React.createClass({
   handleClick: function () {
-    //TEMP The argument passed in will be a date in the real implementation
-    AppViewActions.getMonthData('next');
+    var date = moment(this.props.year + this.props.month, 'YYYYMMM');
+    date = date.add(1, 'month');
+    AppViewActions.getMonthData(date);
   },
   render: function () {
-    return  (
-      <div>
-        <button className ="month-next" onClick = {this.handleClick} > Next Month</button>
-      </div>
+    return (
+      <div className="arrow arrow-right" onClick={this.handleClick}></div>
     );
   }
 });

@@ -1,41 +1,43 @@
 /** @jsx React.DOM */
 var React = require('react');
-var MonthBoard = require('./month-board.js');
+var MonthBoard = require('./month-board');
 var MonthStore = require('../../stores/month-store');
 var MonthHeader = require('./month-header');
 var ViewActionCreator = require('../../actions/view-action-creator');
+var Day = require('../day/day');
+var MonthDayPreview = require('./month-day-preview');
+var moment = require('moment');
 
 var Month = React.createClass({
   getInitialState: function () {
     return {
-      'week1': [{date: '', numEvents: 0, status: ''}],
-      'week2': [{date: '', numEvents: 0, status: ''}],
-      'week3': [{date: '', numEvents: 0, status: ''}],
-      'week4': [{date: '', numEvents: 0, status: ''}]
+      startDate : '2015-05-10',
+      date: null
     };
   },
   componentWillMount: function () {
+    var today = moment().startOf('month');
     MonthStore.addChangeListener(this._onChange);
-    //trigger API call to get initial data
-    ViewActionCreator.getMonthData();
+    ViewActionCreator.getMonthData(today);
   },
   componentWillUnmount: function () {
     MonthStore.removeChangeListener(this._onChange);
   },
   _onChange: function () {
-    //Temporary console.log to make sure flux is working
-    //Once have actual data to pull from server will remove
-    console.log('Month onChange');
-    this.replaceState(MonthStore.getMonthData());
+    this.setState(MonthStore.getMonthData());
   },
   render: function () {
+    var date = moment(this.state.startDate,'YYYY-MM-DD');
+    var month = date.format('MMMM');
+    var year= date.format('YYYY');
     return (
-      <div>
-        <MonthHeader />
-        <MonthBoard monthWeeks= { this.state } />
+      <div className="row">
+        <MonthHeader month={ month } year={ year } />
+        <MonthBoard monthWeeks= { this.state.data } />
+        <MonthDayPreview />
       </div>
     );
   }
-});  
+});
 
-module.exports = Month; 
+module.exports = Month;

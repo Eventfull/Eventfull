@@ -27,6 +27,7 @@ var _moveStaff = function(info){
   toGig.Users.push(employeeToMove);
 }
 
+
 var DayStore = assign({}, EventEmitter.prototype, {
 
   getData: function(){
@@ -53,13 +54,12 @@ var DayStore = assign({}, EventEmitter.prototype, {
 
 Dispatcher.register(function(payload){
   switch (payload.actionType){
-    case AppConstants.ServerActionTypes.DAY_DATA_RECIEVED:
+    case AppConstants.ServerActionTypes.DAY_DATA_RECEIVED:
       _dayData.gigs = _.indexBy(payload.gigs, function(gig){
         return gig.id;
       });
       _dayData.date = payload.date;
       DayStore.emitChange();
-      break;
     case AppConstants.ViewActionTypes.STAFF_MOVED:
       _moveStaff(payload.info);
       DayStore.emitChange();

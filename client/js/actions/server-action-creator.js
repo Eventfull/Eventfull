@@ -10,7 +10,7 @@ var ServerActionCreator = {
   },
   receiveDayData: function(dayData){
     AppDispatcher.dispatch({
-      actionType: AppConstants.ServerActionTypes.DAY_DATA_RECIEVED,
+      actionType: AppConstants.ServerActionTypes.DAY_DATA_RECEIVED,
       gigs: dayData.gigs,
       date: dayData.date
     });
@@ -21,9 +21,9 @@ var ServerActionCreator = {
       weekData: weekData
     });
   },
-  fetchedMonthData: function (monthData) {
+  receiveMonthData: function (monthData) {
     AppDispatcher.dispatch({
-      actionType: AppConstants.ServerActionTypes.FETCHED_MONTH_DATA,
+      actionType: AppConstants.ServerActionTypes.MONTH_DATA_RECEIVED,
       monthData: monthData
     });
   },

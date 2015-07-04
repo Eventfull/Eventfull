@@ -8,7 +8,7 @@ var MonthWeekBin = React.createClass({
   render: function () {
     var weekNum = this.props.weekNumber;
     var weekEvents = _.map(this.props.weekData, function (dayData, key) {
-      dayData.dayNumber = parseInt(key) + 1;
+      dayData.dayNumber = key;
       dayData.weekNumber = weekNum;
       return <MonthDayCard key = { key } dayData = { dayData } />
     });
@@ -17,7 +17,6 @@ var MonthWeekBin = React.createClass({
     var weekPath = '/week/' + weekNumber;
     return (
       <div className="month-bin">
-        <Link href = {weekPath} >Week View</Link>
         { weekEvents }
       </div>
     );
