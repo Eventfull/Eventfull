@@ -1,6 +1,6 @@
 /*Temporary Mock Month Data */
 module.exports = {
-  'week1': [
+  '1': [
     {
       date: '05012015',
       numEvents: 3,
@@ -37,7 +37,7 @@ module.exports = {
       status: 'good'
     }
   ],
-  'week2': [
+  '2': [
     {
       date: '05082015',
       numEvents: 3,
@@ -74,7 +74,7 @@ module.exports = {
       status: 'good'
     }
   ],
-  'week3': [
+  '3': [
     {
       date: '05152015',
       numEvents: 3,
@@ -111,7 +111,7 @@ module.exports = {
       status: 'bad'
     }
   ],
-  'week4': [
+  '4': [
     {
       date: '05222015',
       numEvents: 10,

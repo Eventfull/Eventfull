@@ -26,7 +26,7 @@ var Month = React.createClass({
     //Temporary console.log to make sure flux is working
     //Once have actual data to pull from server will remove
     console.log('Month onChange');
-    this.setState(MonthStore.getMonthData());
+    this.replaceState(MonthStore.getMonthData());
   },
   render: function () {
     return (
