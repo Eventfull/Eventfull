@@ -1,12 +1,11 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var User = require('./User');
 var configuration = require('./configuration');
 
 /* Passport session setup.
 *   To support persistent login sessions, Passport needs to be able to
 *   serialize users into and deserialize users out of the session. Here
-*   we store the user's google id when serializing, and find the user by 
+*   we store the user's google id when serializing, and find the user by
 *   google id when deserializing.
 */
 passport.serializeUser(function(user, done) {
@@ -31,19 +30,9 @@ passport.use(new GoogleStrategy({
     scope: process.env.google_scope || configuration.google_scope
   },
   function(accessToken, refreshToken, profile, done) {
-    if ( !User ) {
-      //Create User
-      console.log('Creating User');
-      return done(null, profile);
-    } else {
       console.log('Found User', profile);
-      User.name = profile.name;
-      User.googleId = profile.id;
-      User.refreshToken = refreshToken;
-      User.accessToken = accessToken;
-      return done(null, profile);
+      return done(profile, accessToken, refreshToken);
     }
-  }
 ));
 
 module.exports = passport;
