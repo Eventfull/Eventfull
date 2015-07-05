@@ -1,13 +1,24 @@
 'use strict';
 module.exports = {
   up: function(migration, DataTypes, done) {
-    migration.addColumn('User', 'google_access_token', DataTypes.STRING).then(function () {
+    migration.addColumn(
+      'Users',
+      'access-token',
+      DataTypes.STRING
+    ).then(function () {
       done();
-    })
+    }).error(function (err) {
+      console.log(err);
+    });
   },
   down: function(migration, DataTypes, done) {
-    migration.removeColumn('User', 'google_access_token').then(function() {
+    migration.removeColumn(
+      'Users',
+      'access-token'
+    ).then(function () {
       done();
-    });
+    }).error(function(err) {
+      console.log(err);
+    })
   }
 };
