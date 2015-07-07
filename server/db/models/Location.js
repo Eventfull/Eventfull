@@ -8,7 +8,21 @@ module.exports = function (sequelize, DataTypes) {
     zip_code: DataTypes.STRING
   }, {
     classMethods: {
-
+      getLocationInfo: function(id){
+        return Location.findAll({
+          where: {
+            id: id
+          },
+          attributes: [
+            "name",
+            "address_one",
+            "address_two",
+            "city",
+            "state",
+            "zip_code",
+          ]
+        });
+      }
     }
   });
   return Location;

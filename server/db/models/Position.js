@@ -4,6 +4,13 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
 
+      getPosition: function(id){
+        return Position.find({
+          where: {
+            id: id
+          }
+        })
+      }
     }
   });
   return Position;

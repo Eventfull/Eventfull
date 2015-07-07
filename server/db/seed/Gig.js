@@ -57,9 +57,10 @@ var types = [
 
 var today = moment();
 
+// NOTE: moments are mutable by their add/subtract methods
 var dates = [
   today.subtract(1, 'days').format('YYYY-MM-DD'),
-  today.format('YYYY-MM-DD'),
+  today.add(1, 'days').format('YYYY-MM-DD'),
   today.add(1, 'days').format('YYYY-MM-DD')
 ];
 
