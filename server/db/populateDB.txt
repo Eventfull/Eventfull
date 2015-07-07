@@ -1,11 +1,11 @@
 User
 -----
-INSERT INTO USERS (email, password, OrganizationId, google_id, RoleId) VALUES ('a@email.com', 'password1', 1, 'google1', 1);
-INSERT INTO USERS (email, password, OrganizationId, google_id, RoleId) VALUES ('b@email.com', 'password2', 1, 'google2', 2);
-INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('c@email.com', 'password3', 1, 'google3');
-INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('d@email.com', 'password4', 2, 'google4');
-INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('e@email.com', 'password5', 2, 'google5');
-INSERT INTO USERS (email, password, OrganizationId, google_id) VALUES ('f@email.com', 'password6', 2, 'google6');
+INSERT INTO USERS (email, password, OrganizationId, googleId, RoleId) VALUES ('a@email.com', 'password1', 1, 'google1', 1);
+INSERT INTO USERS (email, password, OrganizationId, googleId, RoleId) VALUES ('b@email.com', 'password2', 1, 'google2', 2);
+INSERT INTO USERS (email, password, OrganizationId, googleId) VALUES ('c@email.com', 'password3', 1, 'google3');
+INSERT INTO USERS (email, password, OrganizationId, googleId) VALUES ('d@email.com', 'password4', 2, 'google4');
+INSERT INTO USERS (email, password, OrganizationId, googleId) VALUES ('e@email.com', 'password5', 2, 'google5');
+INSERT INTO USERS (email, password, OrganizationId, googleId) VALUES ('f@email.com', 'password6', 2, 'google6');
 
 Gig
 ----
@@ -38,10 +38,10 @@ Availability Schedule
 
 Location
 --------
-INSERT INTO Locations (name, city, state, zip_code) VALUES ('Josh House', 'New Canaan', 'CT', '06840')
-INSERT INTO Locations (name, city, state, zip_code) VALUES ('Hack Reactor', 'San Francisco', 'CA', '921440')
-INSERT INTO Locations (name, city, state, zip_code) VALUES ('White House', 'D.C', 'D.C.', '1')
-INSERT INTO Locations (name, city, state, zip_code) VALUES ('Amazon Web Services', 'San Francisco', 'CA', '944120')
+INSERT INTO Locations (name, city, state, zipCode) VALUES ('Josh House', 'New Canaan', 'CT', '06840')
+INSERT INTO Locations (name, city, state, zipCode) VALUES ('Hack Reactor', 'San Francisco', 'CA', '921440')
+INSERT INTO Locations (name, city, state, zipCode) VALUES ('White House', 'D.C', 'D.C.', '1')
+INSERT INTO Locations (name, city, state, zipCode) VALUES ('Amazon Web Services', 'San Francisco', 'CA', '944120')
 
 Attire
 ------
@@ -64,5 +64,5 @@ INSERT INTO UserPositions (PositionId, UserId, Score) VALUES ()
 
 UserGigs
 ---------
-INSERT INTO UserGigs (GigId, UserId, admin_accepted,worker_accepted) VALUES (1, 2, true, true);
+INSERT INTO UserGigs (GigId, UserId, adminAccepted, workerAccepted) VALUES (1, 2, true, true);
 

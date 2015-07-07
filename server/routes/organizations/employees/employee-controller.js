@@ -7,19 +7,19 @@ module.exports = function(app){
 
     getEmployees: function (req, res){
       // accepts params (on req.params) to filter on availability.
-      var organizationId = req.organization_id;
+      var organizationId = req.organizationId;
 
       User.getEmployees(organizationId).then(function (employees) {
         res.send(employees);
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('returning employees of organization id: ' + req.organization_id);
+      console.log('returning employees of organization id: ' + req.organizationId);
     },
 
     addEmployee: function (req, res){
       var userParams = {
-        OrganizationId: req.organization_id,
+        OrganizationId: req.organizationId,
         email: req.body.email,
         password: req.body.password,
         roleId: req.body.roleId,
@@ -30,22 +30,22 @@ module.exports = function(app){
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('adding employee for the organization id: ' + req.organization_id);
+      console.log('adding employee for the organization id: ' + req.organizationId);
     },
 
     getEmployeeInfo: function (req, res){
-      var employeeId = req.params.employee_id;
+      var employeeId = req.params.employeeId;
 
       User.getEmployeeInfo(employeeId).then(function (employee) {
         res.send(employee);
       }).catch(function (err) {
         console.log(err);
       });
-      console.log("getting employee id: " + req.params.employee_id +" information for the organization id: " + req.organization_id);
+      console.log("getting employee id: " + req.params.employeeId +" information for the organization id: " + req.organizationId);
     },
 
     updateEmployeeInfo: function (req, res){
-      var employeeId = req.params.employee_id;
+      var employeeId = req.params.employeeId;
       var employeeData = {
         email: req.body.email,
         password: req.body.password,
@@ -59,18 +59,18 @@ module.exports = function(app){
       }).catch(function (err) {
         console.log(err);
       });
-      console.log("updating employee id: " + req.params.employee_id +" information for the organization id: " + req.organization_id);
+      console.log("updating employee id: " + req.params.employeeId +" information for the organization id: " + req.organizationId);
     },
 
     removeEmployeeFromOrganization: function (req, res){
-      var employeeId = req.params.employee_id;
+      var employeeId = req.params.employeeId;
 
       User.removeEmployeeFromOrganization(employeeId).then(function (result) {
        res.sendStatus(204);
       }).catch(function (err) {
         console.log(err);
       });
-      console.log("deleting employee id: " + req.params.employee_id +" information for the organization id: " + req.organization_id);
+      console.log("deleting employee id: " + req.params.employeeId +" information for the organization id: " + req.organizationId);
     }
 
   };

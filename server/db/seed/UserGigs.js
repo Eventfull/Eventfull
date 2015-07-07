@@ -1,6 +1,6 @@
 // date: DataTypes.DATE,
-// admin_accepted: DataTypes.BOOLEAN,
-// worker_accepted: DataTypes.BOOLEAN
+// adminAccepted: DataTypes.BOOLEAN,
+// workerAccepted: DataTypes.BOOLEAN
 
 module.exports = function(UserGigs){
   var i = 150;
@@ -9,8 +9,8 @@ module.exports = function(UserGigs){
     records.push({
       UserId: Math.ceil(Math.random()*50),
       GigId: Math.ceil(Math.random()*29),
-      admin_accepted: true,
-      worker_accepted: true,
+      adminAccepted: true,
+      workerAccepted: true,
       PositionId: Math.ceil(Math.random()*10)
     });
   }

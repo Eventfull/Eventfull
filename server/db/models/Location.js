@@ -1,11 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
   var Location = sequelize.define('Location', {
     name: DataTypes.STRING,
-    address_one: DataTypes.STRING,
-    address_two: DataTypes.STRING,
+    addressOne: DataTypes.STRING,
+    addressTwo: DataTypes.STRING,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
-    zip_code: DataTypes.STRING
+    zipCode: DataTypes.STRING
   }, {
     classMethods: {
       getLocationInfo: function(id){
@@ -15,11 +15,11 @@ module.exports = function (sequelize, DataTypes) {
           },
           attributes: [
             "name",
-            "address_one",
-            "address_two",
+            "addressOne",
+            "addressTwo",
             "city",
             "state",
-            "zip_code",
+            "zipCode",
           ]
         });
       }

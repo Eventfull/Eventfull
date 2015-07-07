@@ -4,7 +4,7 @@
 
   `post:` create org
 
-**_api/organizations/:organization_id_**
+**_api/organizations/:organizationId_**
 
   `get:` get org
 
@@ -12,13 +12,13 @@
 
   'delete:' delete organization
 
-**_api/organizations/:organization_id/employees_**
+**_api/organizations/:organizationId/employees_**
 
   `get:` get all employees (can provide availability filters in params)
 
   `post:` add employee to org.
 
-**_api/organizations/:organization_id/employees/:employee_id_**
+**_api/organizations/:organizationId/employees/:employeeId_**
 
   `get:` get employee info
 
@@ -26,13 +26,13 @@
 
   `delete:` remove employee from org
 
-**_api/organizations/:organization_id/gigs_**
+**_api/organizations/:organizationId/gigs_**
 
   `get:` get gigs (will accept params for day, week, month)
 
   `post:` create gig
 
-**_api/organizations/:organization_id/gigs/:gig_id_**
+**_api/organizations/:organizationId/gigs/:gigId_**
 
   `get:` get info for gig
 
@@ -40,13 +40,13 @@
 
   `delete:` remove gig from org
 
-**_api/organizations/:organization_id/gigs/:gig_id/staff_**
+**_api/organizations/:organizationId/gigs/:gigId/staff_**
 
   `get:` get gig staff (all employees for the gig, approved and pending)
 
   `post:` update gig staff
 
-**_api/organizations/:organization_id/gigs/:gig_id/staff/:employee_id_**
+**_api/organizations/:organizationId/gigs/:gigId/staff/:employeeId_**
 
   `get:` get gig status for employee
 

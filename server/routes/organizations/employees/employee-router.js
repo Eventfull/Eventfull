@@ -8,9 +8,9 @@ module.exports = function(app){
   employeeRouter.get('/', employeeController.getEmployees);
   employeeRouter.post('/', employeeController.addEmployee);
 
-  employeeRouter.get('/:employee_id', employeeController.getEmployeeInfo);
-  employeeRouter.post('/:employee_id', employeeController.updateEmployeeInfo);
-  employeeRouter.delete('/:employee_id', employeeController.removeEmployeeFromOrganization);
+  employeeRouter.get('/:employeeId', employeeController.getEmployeeInfo);
+  employeeRouter.post('/:employeeId', employeeController.updateEmployeeInfo);
+  employeeRouter.delete('/:employeeId', employeeController.removeEmployeeFromOrganization);
 
   return employeeRouter;
 };
