@@ -3,18 +3,32 @@ module.exports = function(app){
   var Gig = models.Gig;
   var UserGigs = models.UserGigs;
   var User = models.User;
+  var Location = models.Location;
 
   var gigController = {
 
     getGigs: function (req, res){
-      var organizationId = req.organization_id;
-      Gig.getGigs(organizationId).then(function (gigs) {
+      var info = {
+        organizationId: req.organization_id,
+        startDate: req.query.startDate,
+        endDate: req.query.endDate,
+        includeStaff: req.query.startDate === req.query.endDate
+      };
+
+      Gig.getGigs(info).then(function (gigs) {
+        return models.sequelize.Promise.map(gigs, function(gig){
+          return Location.getLocationInfo(gig.LocationId).then(function(info){
+            this.location = info[0].toJSON();
+            return this;
+          }.bind(gig.toJSON()));
+        });
+      }).then(function(gigs){
         res.send(gigs);
       }).catch(function (err) {
         console.log(err);
       });
 
-      console.log('Retrieving gigs for organization id: ', organizationId);
+      console.log('Retrieving gigs for organization id: ', req.organization_id);
     },
 
     createGig: function (req, res){
