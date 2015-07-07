@@ -1,6 +1,6 @@
 // email: DataTypes.STRING,
 // password: DataTypes.STRING,
-// google_id: DataTypes.STRING,
+// googleId: DataTypes.STRING,
 // name: DataTypes.STRING,
 
 var names = [
@@ -64,7 +64,7 @@ module.exports = function(User){
       name: names[i],
       email: 'fake@example.com',
       password: '',
-      google_id: '',
+      googleId: '',
       OrganizationId: 1
     });
   }

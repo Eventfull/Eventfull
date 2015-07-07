@@ -5,8 +5,8 @@ module.exports = function (sequelize, DataTypes) {
     title: DataTypes.STRING,
     type: DataTypes.STRING,
     date: DataTypes.DATE,
-    start_time: DataTypes.TIME,
-    end_time: DataTypes.TIME,
+    startTime: DataTypes.TIME,
+    endTime: DataTypes.TIME,
     complexity: DataTypes.INTEGER,
     health: DataTypes.INTEGER
   }, {
@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
           model: Gig.associations['Users'].target,
           attributes: ['id', 'name', 'email'],
           through: {
-            attributes: [['PositionId', 'id'], 'admin_accepted', 'worker_accepted'],
+            attributes: [['PositionId', 'id'], 'adminAccepted', 'workerAccepted'],
             as: 'Position'
           },
         };
@@ -61,8 +61,8 @@ module.exports = function (sequelize, DataTypes) {
              'health',
              'LocationId',
              'AttireId',
-             'start_time',
-             'end_time',
+             'startTime',
+             'endTime',
              'date'
           ],
           include: include,

@@ -1,8 +1,8 @@
 // title: DataTypes.STRING,
 // type: DataTypes.ENUM('wedding', 'birthday', 'business'),
 // date: DataTypes.DATE,
-// start_time: DataTypes.TIME,
-// end_time: DataTypes.TIME,
+// startTime: DataTypes.TIME,
+// endTime: DataTypes.TIME,
 // complexity: DataTypes.INTEGER,
 // health: DataTypes.INTEGER
 
@@ -71,8 +71,8 @@ module.exports = function(Gig){
       title: titles[i],
       type: randomItemFromArray(types),
       date: randomItemFromArray(dates),
-      start_time: '10:00:00',
-      end_time: '24:00:00',
+      startTime: '10:00:00',
+      endTime: '24:00:00',
       complexity: 10,
       health: 10,
       OrganizationId: 1,

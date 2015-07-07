@@ -20,18 +20,18 @@ module.exports = function(app){
     },
 
     getOrganizationInfo: function (req, res){
-      var organizationId = req.params.organization_id;
+      var organizationId = req.params.organizationId;
 
       Organization.getOrganizationInfo(organizationId).then(function (organization) {
         res.send(organization);
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('getting information for organization id: ' + req.params.organization_id);
+      console.log('getting information for organization id: ' + req.params.organizationId);
     },
 
     updateOrganizationInfo: function (req, res){
-      var id = req.params.organization_id;
+      var id = req.params.organizationId;
       var organizationParams = {
         name: req.body.name,
         subscription: req.body.subscription
@@ -43,23 +43,23 @@ module.exports = function(app){
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('updating information for organization id: ' + req.params.organization_id);
+      console.log('updating information for organization id: ' + req.params.organizationId);
     },
 
     removeOrganization: function (req, res) {
-      var organizationId = req.organization_id;
+      var organizationId = req.organizationId;
 
       Organization.removeOrganization(organizationId).then(function (result) {
         res.sendStatus(204);
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('deleting organization id: ' + req.params.organization_id);
+      console.log('deleting organization id: ' + req.params.organizationId);
     },
 
-    attachOrganizationIDtoRequest: function (req, res, next, organization_id){
+    attachOrganizationIDtoRequest: function (req, res, next, organizationId){
       // need to check db that organization exists
-      req.organization_id = organization_id;
+      req.organizationId = organizationId;
       next();
     }
 

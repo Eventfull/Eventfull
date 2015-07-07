@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
   var UserGigs = sequelize.define('UserGigs', {
-    admin_accepted: DataTypes.BOOLEAN,
-    worker_accepted: DataTypes.BOOLEAN
+    adminAccepted: DataTypes.BOOLEAN,
+    workerAccepted: DataTypes.BOOLEAN
   }, {
     classMethods: {
 
@@ -27,8 +27,8 @@ module.exports = function (sequelize, DataTypes) {
 
       updateEmployeeStatus: function (identifiers, params) {
         return UserGigs.update({
-          admin_accepted: params.admin_accepted,
-          worker_accepted: params.worker_accepted
+          adminAccepted: params.adminAccepted,
+          workerAccepted: params.workerAccepted
           }, {
           where: {
             UserId: identifiers.userId,

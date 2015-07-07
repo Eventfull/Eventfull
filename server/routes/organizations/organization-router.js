@@ -7,18 +7,18 @@ module.exports = function(app){
   var gigRouter = require('./gigs/gig-router')(app);
   var employeeRouter = require('./employees/employee-router')(app);
 
-  // attaches organization_id to request
-  organizationRouter.param('organization_id', organizationController.attachOrganizationIDtoRequest);
+  // attaches organizationId to request
+  organizationRouter.param('organizationId', organizationController.attachOrganizationIDtoRequest);
 
   ////////////// ROUTES ///////////////
   organizationRouter.post('/', organizationController.createOrganization);
-  organizationRouter.get('/:organization_id', organizationController.getOrganizationInfo);
-  organizationRouter.post('/:organization_id', organizationController.updateOrganizationInfo);
-  organizationRouter.delete('/:organization_id', organizationController.removeOrganization);
+  organizationRouter.get('/:organizationId', organizationController.getOrganizationInfo);
+  organizationRouter.post('/:organizationId', organizationController.updateOrganizationInfo);
+  organizationRouter.delete('/:organizationId', organizationController.removeOrganization);
 
   ////////////// SUB-ROUTES ////////////
-  organizationRouter.use('/:organization_id/gigs', gigRouter);
-  organizationRouter.use('/:organization_id/employees', employeeRouter);
+  organizationRouter.use('/:organizationId/gigs', gigRouter);
+  organizationRouter.use('/:organizationId/employees', employeeRouter);
 
   return organizationRouter;
 

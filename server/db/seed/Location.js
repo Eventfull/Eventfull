@@ -1,9 +1,9 @@
 // name: DataTypes.STRING,
-// address_one: DataTypes.STRING,
-// address_two: DataTypes.STRING,
+// addressOne: DataTypes.STRING,
+// addressTwo: DataTypes.STRING,
 // city: DataTypes.STRING,
 // state: DataTypes.STRING,
-// zip_code: DataTypes.STRING
+// zipCode: DataTypes.STRING
 
 function randomItemFromArray(array){
   return array[Math.floor(Math.random()*array.length)];
@@ -75,11 +75,11 @@ module.exports = function(Location){
 
     records.push({
       name: locationNames[i],
-      address_one: randomItemFromArray(addresseOnes),
-      address_two: '',
+      addressOne: randomItemFromArray(addresseOnes),
+      addressTwo: '',
       city: randomItemFromArray(cities),
       state: randomItemFromArray(states),
-      zip_code: 20905,
+      zipCode: 20905,
       OrganizationId: 1
     });
   }

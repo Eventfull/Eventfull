@@ -9,7 +9,7 @@ module.exports = function(app){
 
     getGigs: function (req, res){
       var info = {
-        organizationId: req.organization_id,
+        organizationId: req.organizationId,
         startDate: req.query.startDate,
         endDate: req.query.endDate,
         includeStaff: req.query.startDate === req.query.endDate
@@ -28,7 +28,7 @@ module.exports = function(app){
         console.log(err);
       });
 
-      console.log('Retrieving gigs for organization id: ', req.organization_id);
+      console.log('Retrieving gigs for organization id: ', req.organizationId);
     },
 
     createGig: function (req, res){
@@ -36,11 +36,11 @@ module.exports = function(app){
         title: req.body.title,
         type: req.body.type,
         date: req.body.date,
-        start_time: req.body.startTime,
-        end_time: req.body.endTime,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
         complexity: req.body.complexity,
         health: req.body.health,
-        OrganizationId: req.organization_id,
+        OrganizationId: req.organizationId,
         LocationId: req.body.location,
         AttireId: req.body.attire
       };
@@ -51,31 +51,31 @@ module.exports = function(app){
         console.log(err);
       });
 
-     console.log("creating new gigs for organization id: " + req.params.organization_id);
+     console.log("creating new gigs for organization id: " + req.params.organizationId);
     },
 
     getGigInfo: function (req, res){
-      var gigId = req.params.gig_id;
+      var gigId = req.params.gigId;
 
       Gig.getGigInfo(gigId).then(function (gig) {
         res.send(gig);
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('getting gig info for gig id: ' + req.params.gig_id + " for organization id:  " + req.organization_id);
+      console.log('getting gig info for gig id: ' + req.params.gigId + " for organization id:  " + req.organizationId);
     },
 
     updateGigInfo: function (req, res){
-     var gigId = req.params.gig_id;
+     var gigId = req.params.gigId;
      var gigParams = {
         title: req.body.title,
         type: req.body.type,
         date: req.body.date,
-        start_time: req.body.startTime,
-        end_time: req.body.endTime,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
         complexity: req.body.complexity,
         health: req.body.health,
-        OrganizationId: req.params.organization_id,
+        OrganizationId: req.params.organizationId,
         LocationId: req.body.location,
         AttireId: req.body.attire
       };
@@ -85,23 +85,23 @@ module.exports = function(app){
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('updating gig information for gig id: ' + req.params.gig_id + " for organizaiton id: " + req.organization_id);
+      console.log('updating gig information for gig id: ' + req.params.gigId + " for organizaiton id: " + req.organizationId);
     },
 
     deleteGig: function (req, res){
-      var gigId = req.params.gig_id;
+      var gigId = req.params.gigId;
 
       Gig.deleteGig(gigId).then(function (result) {
         res.sendStatus(204);
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('deleting gig id:' + req.params.gig_id + " for organization id: " + req.organization_id);
+      console.log('deleting gig id:' + req.params.gigId + " for organization id: " + req.organizationId);
     },
 
     getGigStaff: function (req, res){
       var employees = []; //holds staff for a specific gig
-      var gigId = req.params.gig_id;
+      var gigId = req.params.gigId;
 
       UserGigs.getUserGigs(gigId, function (userGigs) {
         return Sequelize.Promise.map(userGigs, function (userGig) {
@@ -112,17 +112,17 @@ module.exports = function(app){
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('getting staff for gig id: ' + req.params.gig_id + " for organization id: " + req.organization_id);
+      console.log('getting staff for gig id: ' + req.params.gigId + " for organization id: " + req.organizationId);
     },
 
     addEmployeeToGigStaff: function (req, res){
       var userGigParams = {
         date: req.body.date,
         UserId: parseInt(req.body.employeeId, 10),
-        GigId: parseInt(req.params.gig_id, 10),
+        GigId: parseInt(req.params.gigId, 10),
         PositionId: req.body.positionId,
-        admin_accepted: req.body.admin_accepted,
-        worker_accepted: req.body.admin_accepted,
+        adminAccepted: req.body.adminAccepted,
+        workerAccepted: req.body.workerAccepted,
         group: req.body.group
       };
 
@@ -132,29 +132,29 @@ module.exports = function(app){
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('Adding employee id: ', req.params.employeeId, ' to gig id: ', req.params.gig_id);
+      console.log('Adding employee id: ', req.params.employeeId, ' to gig id: ', req.params.gigId);
     },
 
     getEmployeeStatus: function (req, res){
-      var userId = req.params.employee_id;
+      var userId = req.params.employeeId;
 
       UserGigs.getEmployeeStatus(userId).then(function (userGig) {
         res.send(userGig);
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('getting employee status for gig id: ' + req.params.gig_id + ' for employee id: ' + req.params.employee_id + " for organization id: " + req.organization_id);
+      console.log('getting employee status for gig id: ' + req.params.gigId + ' for employee id: ' + req.params.employeeId + " for organization id: " + req.organizationId);
     },
 
     updateEmployeeStatus: function (req, res){
       var userGigParams = {
-        admin_accepted: req.body.admin_accepted,
-        worker_accepted: req.body.worker_accepted
+        adminAccepted: req.body.adminAccepted,
+        workerAccepted: req.body.workerAccepted
       };
 
       var identifiers = {
-        gigId: req.params.gig_id,
-        userId: req.params.employee_id
+        gigId: req.params.gigId,
+        userId: req.params.employeeId
       };
 
       UserGigs.updateEmployeeStatus(identifiers, userGigParams).then(function (userGig) {
@@ -162,12 +162,12 @@ module.exports = function(app){
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('updating employee status for gig id: ' + req.params.gig_id + ' for employee id: ' + req.params.employee_id + " for org id: " + req.organization_id);
+      console.log('updating employee status for gig id: ' + req.params.gigId + ' for employee id: ' + req.params.employeeId + " for org id: " + req.organizationId);
     },
 
     removeEmployeeFromGig: function (req, res){
-      var gigId = req.params.gig_id;
-      var userId = req.params.employee_id;
+      var gigId = req.params.gigId;
+      var userId = req.params.employeeId;
 
      UserGigs.removeEmployeeFromGig(gigId, userId).then(function (result) {
       res.sendStatus(204);
