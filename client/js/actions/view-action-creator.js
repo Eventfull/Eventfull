@@ -21,6 +21,14 @@ var ViewActionCreator = {
     ApiUtils.getDayData(new Date('Jun 21 2015'), ServerActionCreator.recieveDayData);
   },
 
+  getWeekData: function (date) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.ViewActionTypes.GET_WEEK_DATA
+    });
+
+    ApiUtils.getWeekData(new Date('July 6 2015'), new Date('July 8 2015'), ServerActionCreator.receiveWeekData);
+  },
+
   getMonthData: function (date) {
     AppDispatcher.dispatch({
       actionType: AppConstants.ViewActionTypes.GET_MONTH_DATA
