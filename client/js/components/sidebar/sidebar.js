@@ -5,7 +5,7 @@ var ViewActionCreator = require('../../actions/view-action-creator');
 var Sidebar = React.createClass({
   render: function () {
     return (
-      <div className="col-sm-3 col-md-2 sidebar">
+      <div className="col-sm-2 sidebar">
         <div className="logo-offset">
           <img src="./style/EventfullLogo@2x.png" width="160px" alt="Eventfull" />
         </div>

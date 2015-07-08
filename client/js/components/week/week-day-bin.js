@@ -10,8 +10,11 @@ var WeekDayBin = React.createClass({
     });
 
     return (
-      <div className="bin">
-        { weekGigs }
+      <div className="bin-wrapper">
+        <h3>{ this.props.date }</h3>
+        <div className="bin">
+          { weekGigs }
+        </div>
       </div>
     );
   }
