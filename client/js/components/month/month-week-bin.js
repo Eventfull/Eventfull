@@ -17,7 +17,6 @@ var MonthWeekBin = React.createClass({
     var weekPath = '/week/' + weekNumber;
     return (
       <div className="month-bin">
-        <Link href = {weekPath} >Week View</Link>
         { weekEvents }
       </div>
     );
