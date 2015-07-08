@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 module.exports = function(app){
   var models = app.get('models');
   var Gig = models.Gig;
@@ -7,11 +9,11 @@ module.exports = function(app){
 
   var gigController = {
 
-    getGigs: function (req, res){
+    getGigs: function (req, res) {
       var info = {
         organizationId: req.organizationId,
-        startDate: req.query.startDate,
-        endDate: req.query.endDate,
+        startDate: moment(req.query.startDate).format('YYYY-MM-DD'),
+        endDate: moment(req.query.endDate).format('YYYY-MM-DD'),
         includeStaff: req.query.startDate === req.query.endDate
       };
 

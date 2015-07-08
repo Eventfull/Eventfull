@@ -29,10 +29,23 @@ var ApiUtils = {
     }).then(callback);
   },
 
+  getWeekData: function (startDate, endDate, callback) {
+    var path = server + '/api/organizations/1/gigs/';
+
+    axios.get(path, {
+      params: {
+        startDate: startDate,
+        endDate: endDate
+      }
+    }).then(function (res) {
+      return res.data;
+    }).then(callback);
+  },
+
   getMonthData: function (date, callback) {
-   //this is currently mocking fetching server side data
-   //NOT the final implementation
-   callback(monthData); //monthData would be the fetched monthData from server
+    //this is currently mocking fetching server side data
+    //NOT the final implementation
+    callback(monthData); //monthData would be the fetched monthData from server
   },
 
   addEmployeeToGig: function(employeeID, gig, group){

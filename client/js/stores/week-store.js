@@ -36,6 +36,11 @@ var WeekStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function (payload) {
   switch (payload.actionType) {
 
+  case AppConstants.ServerActionTypes.WEEK_DATA_RECEIVED:
+    setWeekData(payload.weekData);
+    WeekStore.emitChange();
+    break;
+
   case AppConstants.ServerActionTypes.EVENT_ADDED:
     setWeekData(payload.weekData);
     WeekStore.emitChange();

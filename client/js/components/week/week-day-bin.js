@@ -1,17 +1,17 @@
 /** @jsx React.DOM */
 var React = require('react');
-var WeekEvent = require('./week-event');
+var WeekGig = require('./week-gig');
 var _ = require('underscore');
 
 var WeekDayBin = React.createClass({
   render: function () {
-    var weekEvents = _.map(this.props.day, function (event, key) {
-      return <WeekEvent key={ key } event={ event } />;
+    var weekGigs = _.map(this.props.day, function (gig, key) {
+      return <WeekGig key={ key } gig={ gig } />;
     });
 
     return (
       <div className="bin">
-        { weekEvents }
+        { weekGigs }
       </div>
     );
   }

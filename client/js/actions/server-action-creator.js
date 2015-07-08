@@ -14,6 +14,12 @@ var ServerActionCreator = {
       dayData: dayData
     });
   },
+  receiveWeekData: function (weekData) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.ServerActionTypes.WEEK_DATA_RECEIVED,
+      weekData: weekData
+    });
+  },
   fetchedMonthData: function (monthData) {
     AppDispatcher.dispatch({
       actionType: AppConstants.ServerActionTypes.FETCHED_MONTH_DATA,
