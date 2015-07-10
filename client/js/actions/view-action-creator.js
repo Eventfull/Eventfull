@@ -2,6 +2,7 @@ var AppDispatcher = require('../dispatcher/dispatcher');
 var ServerActionCreator = require('./server-action-creator');
 var ApiUtils = require('../utils/api-utils');
 var AppConstants = require('../constants/constants');
+var moment = require('moment');
 
 var ViewActionCreator = {
 
@@ -26,7 +27,10 @@ var ViewActionCreator = {
       actionType: AppConstants.ViewActionTypes.GET_WEEK_DATA
     });
 
-    ApiUtils.getWeekData(new Date('July 6 2015'), new Date('July 8 2015'), ServerActionCreator.receiveWeekData);
+    var startDate = moment("2015-07-04").format('YYYY-MM-DD');
+    var endDate = moment("2015-07-10").format('YYYY-MM-DD');
+
+    ApiUtils.getWeekData(startDate, endDate, ServerActionCreator.receiveWeekData);
   },
 
   getMonthData: function (date) {

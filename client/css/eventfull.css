@@ -238,7 +238,7 @@ input[type=submit]{
   webkit-flex-direction: row;
   flex-direction: row;
   padding: 15px 15px 5px 15px;
-  height: calc(100vh - 56px);
+  height: calc(100vh - 55px);
 }
 
 .month-canvas {
@@ -249,18 +249,22 @@ input[type=submit]{
  * Bin styles
  */
 
-.bin{
+.bin-wrapper {
+  max-width: 270px;
+  min-width: 270px;
+  display: block;
+  clear: none;
+  float: left;
+  margin: 0 15px;
+}
+
+.bin {
   background: #F1F3F9;
   border: 1px solid #DADADA;
   border-radius: 5px;
   padding: 10px 10px;
-  max-width: 270px;
-  min-width: 270px;
   overflow-y: auto;
-  display: block;
-  clear: none;
-  float: left;
-  margin: 40px 15px 15px 15px;
+  height: calc(100vh - 140px);
 }
 
 .month-bin {

@@ -12,8 +12,8 @@ module.exports = function(app){
     getGigs: function (req, res) {
       var info = {
         organizationId: req.organizationId,
-        startDate: moment(req.query.startDate).format('YYYY-MM-DD'),
-        endDate: moment(req.query.endDate).format('YYYY-MM-DD'),
+        startDate: req.query.startDate,
+        endDate: req.query.endDate,
         includeStaff: req.query.startDate === req.query.endDate
       };
 
