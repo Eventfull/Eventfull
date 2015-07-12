@@ -4,7 +4,7 @@ var models = [
   'Organization',
   'User',
   // 'Role',
-  // 'Availability',
+  'Availability',
   'Position',
   'Location',
   'Attire',
@@ -32,6 +32,8 @@ module.exports = function(sequelize){
     return require('./seed/' + 'GigPositions')(sequelize['GigPositions']);
   }).then(function(){
     return require('./seed/' + 'UserPositions')(sequelize['UserPositions']);
+  }).then(function(){
+    return require('./seed/' + 'Availability')(sequelize['Availability']);
   }).then(function(){
     console.log('DATABASE SEED COMPLETE');
   }).catch(function(err){

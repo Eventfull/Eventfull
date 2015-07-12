@@ -17,12 +17,13 @@ var ApiUtils = {
   },
 
   getDayData: function(date, callback){
-    var path = server + '/api/organizations/smc/gigs/';
+    var path = server + '/api/organizations/1/gigs/';
 
     // get day data and pass it to callback
     axios.get(path, {
       params: {
-        date: date
+        startDate: date.format('YYYY-MM-DD'),
+        endDate: date.format('YYYY-MM-DD'),
       }
     }).then(function(res){
       return res.data;
@@ -48,26 +49,40 @@ var ApiUtils = {
     callback(monthData); //monthData would be the fetched monthData from server
   },
 
-  addEmployeeToGig: function(employeeID, gig, group){
-    var gigsPath = server + '/api/organizations/smc/gigs';
-    var pathAdd = gigsPath + '/' + gig + '/staff/';
+  addEmployeeToGig: function(employeeId, gigId, positionId){
+    var gigsPath = server + '/api/organizations/1/gigs';
+    var pathAdd = gigsPath + '/' + gigId + '/staff/';
+
     return axios.post(pathAdd, {
-        employeeID: employeeID,
-        group: group
+        employeeId: employeeId,
+        positionId: positionId,
+        adminAccepted: true,
+        workerAccepted: false,
     });
   },
 
-  removeEmployeeFromGig: function(employeeID, gig){
-    var gigsPath = server + '/api/organizations/smc/gigs';
-    var pathDelete = gigsPath + '/' + gig + '/staff/' + employeeID + '/';
+  removeEmployeeFromGig: function(employeeId, gig){
+    var gigsPath = server + '/api/organizations/1/gigs';
+    var pathDelete = gigsPath + '/' + gig + '/staff/' + employeeId + '/';
     return axios.delete(pathDelete);
   },
 
 
   moveStaff: function(info){
-    return ApiUtils.removeEmployeeFromGig(info.employeeID, info.fromGig).then(function(res){
-      return ApiUtils.addEmployeeToGig(info.employeeID, info.toGig, info.toGroup);
-    })
+    return ApiUtils.removeEmployeeFromGig(info.employeeId, info.fromGigId).then(function(res){
+      return ApiUtils.addEmployeeToGig(info.employeeId, info.toGigId, info.toGroupId);
+    });
+  },
+
+  getAvailableEmployees: function(date, callback){
+    var path = server + '/api/organizations/1/employees';
+    axios.get(path, {
+      params: {
+        date: date.format('YYYY-MM-DD')
+      }
+    }).then(function(res){
+      return res.data;
+    }).then(callback);
   }
 
 };

@@ -43,6 +43,7 @@
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.2.0",
     "keymirror": "^0.1.1",
+    "moment": "^2.10.3",
     "morgan": "^1.6.0",
     "mysql": "^2.7.0",
     "oauth": "^0.9.13",

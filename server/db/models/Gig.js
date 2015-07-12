@@ -27,7 +27,7 @@ module.exports = function (sequelize, DataTypes) {
 
         var staffQuery = {
           model: Gig.associations['Users'].target,
-          attributes: ['id', 'name', 'email'],
+          attributes: ['id'],
           through: {
             attributes: [['PositionId', 'id'], 'adminAccepted', 'workerAccepted'],
             as: 'Position'
@@ -36,14 +36,28 @@ module.exports = function (sequelize, DataTypes) {
 
         var positionQuery = {
           model: Gig.associations['Positions'].target,
-          attributes: ['title'],
+          attributes: ['title', 'id'],
           through: {
             attributes: ['required', 'filled'],
             as: 'statusInfo'
           }
         };
 
-        include.push(positionQuery);
+        var locationQuery = {
+          model: Gig.associations['Location'].target,
+          attributes: [
+            'id',
+            'name',
+            'addressOne',
+            'addressTwo',
+            'city',
+            'state',
+            'zipCode'
+          ],
+          as: 'Location'
+        };
+
+        include.push(positionQuery, locationQuery);
         info.includeStaff && include.push(staffQuery); // just for day view
 
         return Gig.findAll({
@@ -55,15 +69,15 @@ module.exports = function (sequelize, DataTypes) {
           },
           attributes: [
             'OrganizationId',
-             'title',
-             'type',
-             'complexity',
-             'health',
-             'LocationId',
-             'AttireId',
-             'startTime',
-             'endTime',
-             'date'
+            'title',
+            'type',
+            'complexity',
+            'health',
+            'AttireId',
+            'startTime',
+            'endTime',
+            'date',
+            'id'
           ],
           include: include,
         });

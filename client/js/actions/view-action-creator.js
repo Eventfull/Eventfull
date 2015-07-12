@@ -17,9 +17,8 @@ var ViewActionCreator = {
     AppDispatcher.dispatch({
       actionType: AppConstants.ViewActionTypes.GET_DAY_DATA
     });
-    
-    // hardcoded for now, will change.
-    ApiUtils.getDayData(new Date('Jun 21 2015'), ServerActionCreator.recieveDayData);
+
+    ApiUtils.getDayData(date, ServerActionCreator.receiveDayData);
   },
 
   getWeekData: function (date) {
@@ -41,13 +40,17 @@ var ViewActionCreator = {
     ApiUtils.getMonthData(date, ServerActionCreator.fetchedMonthData);
   },
 
-  moveStaff: function(info){
+  moveStaff: function(info, date){
     AppDispatcher.dispatch({
       actionType: AppConstants.ViewActionTypes.STAFF_MOVED,
       info: info
     });
 
-    ApiUtils.moveStaff(info).then(ViewActionCreator.getDayData);
+    ApiUtils.moveStaff(info).then(ViewActionCreator.getDayData.bind(null, date));
+  },
+
+  getAvailableEmployees: function(date){
+    ApiUtils.getAvailableEmployees(date, ServerActionCreator.receiveAvailableEmployees);
   }
 
 };

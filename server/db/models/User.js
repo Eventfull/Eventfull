@@ -7,11 +7,27 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
 
-      getEmployees: function (organizationId) {
+      getAllEmployees: function (organizationId) {
         return User.findAll({
           where: {
             OrganizationId: organizationId
           }
+        });
+      },
+
+      getAvailableEmployees: function(organizationId, day){
+        return User.findAll({
+          attributes: ['id', 'name', 'email'],
+          where: {
+            OrganizationId: organizationId
+          },
+          include: [{
+            model: User.associations['Availabilities'].target,
+            where: {
+              day: day
+            },
+            attributes: ['day', 'startTime', 'endTime']
+          }]
         });
       },
 
