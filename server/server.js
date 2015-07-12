@@ -8,7 +8,6 @@ require('./middlewares/middleware')(app);
 require('./routes/routes')(app);
 
 app.use(express.static(__dirname + '/../dist/client'));
-app.use('/week', express.static(__dirname + '/../dist/client'));
 
 app.get('models').sequelize.sync().then(function () {
 

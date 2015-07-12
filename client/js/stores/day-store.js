@@ -40,6 +40,10 @@ var DayStore = assign({}, EventEmitter.prototype, {
     return _dayData;
   },
 
+  getDate: function(){
+    return _dayData.date;
+  },
+
   emitChange: function(){
     this.emit(CHANGE_EVENT);
   },
@@ -58,8 +62,8 @@ Dispatcher.register(function(payload){
   switch (payload.actionType){
     case AppConstants.ServerActionTypes.DAY_DATA_RECIEVED:
       _dayData.data = payload.dayData;
-      _dayData.date = payload.dayData[0] && moment(payload.dayData[0].date) || '';
-      console.log(_dayData);
+      _dayData.date = payload.dayData[0] && moment(payload.dayData[0].date, 'YYYY-MM-DD') || '';
+      console.log(payload);
       DayStore.emitChange();
       break;
     case AppConstants.ViewActionTypes.STAFF_MOVED:

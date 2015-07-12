@@ -18,7 +18,6 @@ var ApiUtils = {
 
   getDayData: function(date, callback){
     var path = server + '/api/organizations/1/gigs/';
-
     // get day data and pass it to callback
     axios.get(path, {
       params: {

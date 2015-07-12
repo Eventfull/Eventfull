@@ -1,7 +1,7 @@
 var React = require('react');
 var DragSource = require('react-dnd').DragSource;
 var ViewActionCreator = require('../../actions/view-action-creator');
-var moment = require('moment');
+var DayStore = require('../../stores/day-store');
 
 var Employee = React.createClass({
 
@@ -64,7 +64,7 @@ var spec = {
         fromGigId: props.gigId,
         toGigId: toGig.gigId,
         toGroupId: toGig.positionId,
-      }, moment());
+      }, DayStore.getDate());
     }
   },
 

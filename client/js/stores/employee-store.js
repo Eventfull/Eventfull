@@ -48,7 +48,6 @@ Dispatcher.register(function(payload){
       _employeeData = _.indexBy(payload.employeeData, function(user){
         return user.id;
       });
-      console.log(_employeeData);
       EmployeeStore.emitChange();
       break;
   }

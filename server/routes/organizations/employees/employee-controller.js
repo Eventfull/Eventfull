@@ -4,28 +4,13 @@ module.exports = function(app){
 
   var models = app.get('models');
   var User = models.User;
-  var dayMap = {
-    Monday: 1,
-    monday: 1,
-    Tuesday: 2,
-    tuesday: 2,
-    Wednesday: 3,
-    wednesday: 3,
-    Thursday: 4,
-    thursday: 4,
-    Friday: 5,
-    friday: 5,
-    Saturday: 6,
-    saturday: 6,
-    Sunday: 7,
-    sunday: 7,
-  };
 
   var employeeController = {
 
     getEmployees: function (req, res){
       var organizationId = req.organizationId;
-      var weekday = moment(req.query.date).format('dddd');
+      var date = moment(req.query.date)
+      var weekday = date.day() === 0 ? 7 : date.day(); //to go from 1 to 7
 
       if (req.query.date === undefined){
         User.getAllEmployees(organizationId).then(function (employees) {
@@ -34,7 +19,7 @@ module.exports = function(app){
           console.log(err);
         });
       } else {
-        User.getAvailableEmployees(organizationId, dayMap[weekday]).then(function(employees){
+        User.getAvailableEmployees(organizationId, weekday).then(function(employees){
           res.send(employees);
         }).catch(function(err){
           console.log(err);
