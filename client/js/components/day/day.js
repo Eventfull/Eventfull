@@ -5,6 +5,7 @@ var ViewActionCreator = require('../../actions/view-action-creator');
 var DayHeader = require('./day-header');
 var GigBin = require('./gig-bin');
 var StaffAvailableBin = require('./staff-available-bin');
+var _ = require('underscore');
 var moment = require('moment');
 
 var Day = React.createClass({
@@ -15,7 +16,7 @@ var Day = React.createClass({
     // pending: array full of objects representing employees
     return {
       date: '',
-      data: []
+      gigs: {}
     };
   },
 
@@ -43,7 +44,7 @@ var Day = React.createClass({
   },
 
   render: function(){
-    var gigs = this.state.data.map(function(gig, idx){
+    var gigs = _.map(this.state.gigs, function(gig, idx){
       return (
         <div className='bin day-bin'>
           <GigBin
