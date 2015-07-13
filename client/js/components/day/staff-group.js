@@ -39,7 +39,7 @@ var StaffGroup = React.createClass({
       <div>
         {approved}
         <div className="employee-open-zone">
-          <h6>open spots ({props.needed})</h6>
+          <h6>open spots ({props.needed - approved.length})</h6>
         </div>
       </div>
     );
