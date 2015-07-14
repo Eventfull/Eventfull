@@ -20,7 +20,7 @@ var Week = React.createClass({
   },
 
   handleStoreChange: function () {
-    var weekData = WeekStore.getWeekData().days;
+    var weekData = WeekStore.getWeekData();
     var days = _.groupBy(weekData, function (day, key) {
       return moment(day.date, "YYYY-MM-DD HH:mm:ss").format('YYYYMMDD');
     });

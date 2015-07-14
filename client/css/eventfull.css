@@ -55,6 +55,14 @@ form{
   margin-top: 40px;
 }
 
+.form-group {
+  padding: 0 10px;
+}
+
+.form-group div{
+  padding: 5px 2px;
+}
+
 input{
   background: #FFFFFF;
   border: 1px solid #D9DDE7;
@@ -63,7 +71,6 @@ input{
   text-align: center;
   display: block;
   width: 100%;
-  margin: 7px 0;
   line-height: 35px;
 }
 
@@ -100,6 +107,7 @@ input[type=submit]{
   font-weight: 800;
   font-style: italic;
 }
+
 
 
 /*

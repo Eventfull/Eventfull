@@ -21,16 +21,7 @@ var WeekStore = assign({}, EventEmitter.prototype, {
 
   addNewGig: function(gig) {
     var current = this.getWeekData();
-    var newGig = {
-      complexity: 10,
-      date: "2015-07-16T00:00:00.000Z",
-      endTime: "24:00:00",
-      health: 10,
-      startTime: "10:00:00",
-      title: "John Tyler Event",
-      type: "Wedding"
-    };
-    current.push(newGig);
+    current.push(gig);
   },
 
   emitChange: function () {

@@ -1,5 +1,6 @@
 var React = require('react');
 var ViewActionCreator = require('../../actions/view-action-creator');
+var moment = require('moment');
 var _ = require('underscore');
 
 var AddEvent = React.createClass({
@@ -8,12 +9,17 @@ var AddEvent = React.createClass({
   },
   addGig: function (e) {
     e.preventDefault();
+
     var gig = _.mapObject(this.refs, function (constructor) {
       if (React.findDOMNode(constructor).value.trim() === "") {
         return null;
       }
       return _.escape(React.findDOMNode(constructor).value.trim());
     });
+    gig.date = moment().add(2,'days').format('YYYY-MM-DD');
+    gig.locationId = '1';
+    gig.attireId = '1';
+
     ViewActionCreator.addGig(gig);
   },
   render: function () {
@@ -58,6 +64,19 @@ var AddEvent = React.createClass({
             </div>
             <div className="col-xs-3">
               <input type="text" placeholder="zip" ref="zip"></input>
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="col-xs-6">
+              <input type="text" placeholder="type" ref="type"></input>
+            </div>
+            <div className="col-xs-6">
+              <input type="text" placeholder="complexity" ref="complexity"></input>
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="col-xs-12">
+              <input type="text" placeholder="attire" ref="attire"></input>
             </div>
           </div>
           <div className="form-group">
