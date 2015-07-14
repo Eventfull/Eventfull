@@ -1,18 +1,10 @@
 var axios = require('axios');
-var weekData = require('../weekData');
 var server = 'http://localhost:8000';
 
 var ApiUtils = {
 
-  addEvent: function (event, callback) {
-    // this is currently mocking server side data manipulation
-    // NOT the final implementation
-    if (weekData.hasOwnProperty(event.date)) {
-      weekData[event.date].push(event);
-    } else {
-      weekData[event.date] = [event];
-    }
-    callback(weekData);
+  addGig: function (gig, callback) {
+    callback(gig);
   },
 
   getDayData: function(date, callback){

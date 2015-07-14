@@ -206,12 +206,15 @@ input[type=submit]{
 
 .date-bar h2{
   display: inline-block;
+  margin-top: 15px;
+  min-width: 140px;
 }
 
 .arrow {
   display: inline-block;
   width: 0;
   height: 0;
+  margin-bottom: -4px;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }

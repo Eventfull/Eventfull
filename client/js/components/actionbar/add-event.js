@@ -6,21 +6,21 @@ var AddEvent = React.createClass({
   getInitialState: function () {
     return { value : null };
   },
-  addEvent: function (element) {
-    element.preventDefault();
-    var event = _.mapObject(this.refs, function (constructor) {
+  addGig: function (e) {
+    e.preventDefault();
+    var gig = _.mapObject(this.refs, function (constructor) {
       if (React.findDOMNode(constructor).value.trim() === "") {
         return null;
       }
       return _.escape(React.findDOMNode(constructor).value.trim());
     });
-    ViewActionCreator.addEvent(event);
+    ViewActionCreator.addGig(gig);
   },
   render: function () {
     return (
       <div>
         <h2>Add Event</h2>
-        <form onSubmit={this.addEvent}>
+        <form onSubmit={this.addGig}>
           <div className="form-group">
             <div className="col-xs-12">
               <input type="text" placeholder="event title" ref="title"></input>

@@ -2,10 +2,10 @@ var AppDispatcher = require('../dispatcher/dispatcher');
 var AppConstants = require('../constants/constants');
 
 var ServerActionCreator = {
-  eventAdded: function (weekData) {
+  gigAdded: function (gig) {
     AppDispatcher.dispatch({
-      actionType: AppConstants.ServerActionTypes.EVENT_ADDED,
-      weekData: weekData
+      actionType: AppConstants.ServerActionTypes.GIG_ADDED,
+      gig: gig
     });
   },
   receiveDayData: function(dayData){

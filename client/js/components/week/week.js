@@ -10,26 +10,28 @@ var moment = require('moment');
 var _ = require('underscore');
 
 var Week = React.createClass({
-  // weekData is a temporary mock in place prior to server and db setup
   getInitialState: function () {
     return {};
   },
+
   componentDidMount: function () {
     WeekStore.addChangeListener(this.handleStoreChange);
-    ViewActionCreators.getWeekData();
+    ViewActionCreators.getWeekData(moment());
   },
-  handleStoreChange: function () {
-    this.setState(WeekStore.getWeekData());
-  },
-  render: function () {
-    var days = _.groupBy(this.state, function (day) {
-      return moment(day.date).format('YYYYMMDD');
-    });
 
+  handleStoreChange: function () {
+    var weekData = WeekStore.getWeekData().days;
+    var days = _.groupBy(weekData, function (day, key) {
+      return moment(day.date, "YYYY-MM-DD HH:mm:ss").format('YYYYMMDD');
+    });
+    this.setState({ days: days });
+  },
+
+  render: function () {
     return (
       <div>
         <WeekHeader />
-        <WeekBoard days={ days }/>
+        <WeekBoard days={ this.state.days } />
       </div>
     );
   }
