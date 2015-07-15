@@ -1,12 +1,22 @@
 var React = require('react');
 var ViewActionCreator = require('../../actions/view-action-creator');
 var moment = require('moment');
+var DatePicker = require('react-date-picker');
+var MaskedInput = require('react-maskedinput');
+var TimeInput = require('./time-input');
 var _ = require('underscore');
 
 var AddEvent = React.createClass({
   getInitialState: function () {
-    return { value : null };
+    return {
+      value: null,
+      dateValue: '',
+      calendarView: {
+        display: 'none'
+      }
+    };
   },
+
   addGig: function (e) {
     e.preventDefault();
 
@@ -16,12 +26,28 @@ var AddEvent = React.createClass({
       }
       return _.escape(React.findDOMNode(constructor).value.trim());
     });
-    gig.date = moment().add(2,'days').format('YYYY-MM-DD');
+
+    gig.startTime = moment(gig.starTime, ["h:mm A"]).format("HH:mm");
+    gig.endTime = moment(gig.endTime).format("HH:mm:ss");
+    
     gig.locationId = '1';
     gig.attireId = '1';
 
     ViewActionCreator.addGig(gig);
   },
+
+  toggleCalendar: function () {
+    this.setState({ calendarView: { display: 'block' }});
+  },
+
+  handleDateSelection: function (date, moment, e) {
+    this.setState({ dateValue: date });
+  },
+
+  handleTimeClick: function (a, b, c) {
+    a.target.placeholder = "__:__ am/pm";
+  },
+
   render: function () {
     return (
       <div>
@@ -34,15 +60,16 @@ var AddEvent = React.createClass({
           </div>
           <div className="form-group">
             <div className="col-xs-12">
-              <input type="text" placeholder="event date" ref="date"></input>
+              <input type="text" placeholder="event date" ref="date" value={ this.state.dateValue } onClick={ this.toggleCalendar }readOnly></input>
+              <DatePicker onChange={ this.handleDateSelection } style={ this.state.calendarView } />
             </div>
           </div>
           <div className="form-group">
             <div className="col-xs-6">
-              <input type="text" placeholder="start time" ref="startTime"></input>
+              <TimeInput placeholder="start time" ref="startTime" handleTimeClick={ this.handleTimeClick } />
             </div>
             <div className="col-xs-6">
-              <input type="text" placeholder="end time" ref="endTime"></input>
+              <TimeInput placeholder="end time" ref="endTime" handleTimeSelection={ this.handleTimeSelection } />
             </div>
           </div>
           <div className="form-group">
