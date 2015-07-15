@@ -24,7 +24,7 @@ var DayHeader = React.createClass({
 
   render: function () {
     var date = this.props.date && this.props.date.format('MMMM DD YYYY') || '';
-    console.log(date)
+
     return (
       <div className="date-bar">
         <div className="arrow arrow-left" onClick={this._loadYesterday}></div>

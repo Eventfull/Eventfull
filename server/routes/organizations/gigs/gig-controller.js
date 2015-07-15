@@ -163,7 +163,6 @@ module.exports = function(app){
       var userId = req.params.employeeId;
 
       UserGigs.removeEmployeeFromGig(gigId, userId).then(function (result) {
-        console.log(result);
         res.sendStatus(204);
       }).catch(function (err) {
         console.log(err);

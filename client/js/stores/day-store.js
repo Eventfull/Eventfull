@@ -9,7 +9,7 @@ var moment = require('moment');
 var _dayData = {};
 
 var _moveStaff = function(info){
-  // Object {fromGig: 0, toGig: 1, fromGroup: "kitchen-staff", toGroup: "server", employeeId: 1}
+
   var fromGig = _dayData.gigs[info.fromGigId];
   var toGig = _dayData.gigs[info.toGigId];
   var employeeToMove;
@@ -54,10 +54,10 @@ var DayStore = assign({}, EventEmitter.prototype, {
 Dispatcher.register(function(payload){
   switch (payload.actionType){
     case AppConstants.ServerActionTypes.DAY_DATA_RECIEVED:
-      _dayData.gigs = _.indexBy(payload.dayData, function(gig){
+      _dayData.gigs = _.indexBy(payload.gigs, function(gig){
         return gig.id;
       });
-      _dayData.date = payload.dayData[0] && moment(payload.dayData[0].date, 'YYYY-MM-DD') || '';
+      _dayData.date = payload.date;
       DayStore.emitChange();
       break;
     case AppConstants.ViewActionTypes.STAFF_MOVED:

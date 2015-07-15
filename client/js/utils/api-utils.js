@@ -25,7 +25,10 @@ var ApiUtils = {
         endDate: date.format('YYYY-MM-DD'),
       }
     }).then(function(res){
-      return res.data;
+      return {
+        date: date,
+        gigs: res.data
+      };
     }).then(callback);
   },
 

@@ -11,7 +11,8 @@ var ServerActionCreator = {
   receiveDayData: function(dayData){
     AppDispatcher.dispatch({
       actionType: AppConstants.ServerActionTypes.DAY_DATA_RECIEVED,
-      dayData: dayData
+      gigs: dayData.gigs,
+      date: dayData.date
     });
   },
   receiveWeekData: function (weekData) {
@@ -26,10 +27,10 @@ var ServerActionCreator = {
       monthData: monthData
     });
   },
-  receiveAvailableEmployees: function(data){
+  receiveAvailableEmployees: function(employeeData){
     AppDispatcher.dispatch({
-      actionType: AppConstants.ServerActionTypes.EMPLOYEE_DATA_RECIEVED,
-      employeeData: data
+      actionType: AppConstants.ServerActionTypes.EMPLOYEE_DATA_RECEIVED,
+      employeeData: employeeData
     });
   }
 };

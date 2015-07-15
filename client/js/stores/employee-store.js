@@ -44,7 +44,7 @@ var EmployeeStore = assign({}, EventEmitter.prototype, {
 
 Dispatcher.register(function(payload){
   switch (payload.actionType){
-    case AppConstants.ServerActionTypes.EMPLOYEE_DATA_RECIEVED:
+    case AppConstants.ServerActionTypes.EMPLOYEE_DATA_RECEIVED:
       _employeeData = _.indexBy(payload.employeeData, function(user){
         return user.id;
       });
