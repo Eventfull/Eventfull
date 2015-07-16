@@ -3,6 +3,7 @@ var assign = require('object-assign');
 var Dispatcher = require('../dispatcher/dispatcher');
 var AppConstants = require('../constants/constants');
 var CHANGE_EVENT = 'change';
+var DATABASE_UPDATE = 'db_update';
 var _ = require('underscore');
 var moment = require('moment');
 
@@ -30,23 +31,35 @@ var _moveStaff = function(info){
 
 var DayStore = assign({}, EventEmitter.prototype, {
 
-  getData: function(){
+  getData: function (){
     return _dayData;
   },
 
-  getDate: function(){
+  getDate: function (){
     return _dayData.date;
   },
 
-  emitChange: function(){
+  emitChange: function (){
     this.emit(CHANGE_EVENT);
   },
 
-  addChangeListener: function(callback){
+  emitDatabaseUpdate: function () {
+    this.emit(DATABASE_UPDATE);
+  },
+
+  addChangeListener: function (callback){
     this.on(CHANGE_EVENT, callback);
   },
 
-  removeChangeListener: function(callback){
+  addDatabaseChangeListener: function (callback) {
+    this.on(DATABASE_UPDATE, callback);
+  },
+
+  removeDatabaseChangeListener: function (callback) {
+    this.removeListener(DATABASE_UPDATE, callback);
+  }
+
+  removeChangeListener: function (callback){
     this.removeListener(CHANGE_EVENT, callback);
   },
 
@@ -64,6 +77,9 @@ Dispatcher.register(function(payload){
     case AppConstants.ViewActionTypes.STAFF_MOVED:
       _moveStaff(payload.info);
       DayStore.emitChange();
+      break;
+    case AppConstants.ServerActionTypes.EMAIL_UPDATE_RECEIVED:
+      DayStore.emitDatabaseUpdate();
       break;
     default:
       return true;

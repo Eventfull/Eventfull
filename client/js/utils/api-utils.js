@@ -95,6 +95,15 @@ var ApiUtils = {
     }).then(function(res){
       return res.data;
     }).then(callback);
+  },
+
+  sendConfirmationEmails: function (gigInfo) {
+    var path = server + '/api/email/confirmation';
+
+    axios.post(path, {
+      gigId: gigInfo.id,
+      organizationId: gigInfo.OrganizationId
+    });
   }
 
 };

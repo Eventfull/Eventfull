@@ -2,11 +2,12 @@ var express = require('express');
 var app = express();
 var port = 8000;
 var clearDatabase = (process.env.NODE_ENV !== 'production' && process.env.CLEAR_DATABASE === 'true')
+var server = require('http').createServer(app);
+var http = require('http');
 
 app.set('models', require('./db/models'));
 
 require('./middlewares/middleware')(app);
-require('./routes/routes')(app);
 
 app.use(express.static(__dirname + '/../dist/client'));
 
@@ -19,6 +20,12 @@ app.get('models').sequelize.sync({force: clearDatabase}).then(function () {
     process.env.NODE_ENV !== 'test' && console.log('App now listening on port: ' + app.get('server').address().port);
   }));
 
+  var io = require('socket.io').listen(server);
+  require('./routes/routes')(app, io);
+
+  io.sockets.on('connection', function(socket) {
+    console.log('Socket successfully connected to client');
+  });
 });
 
 module.exports = app;

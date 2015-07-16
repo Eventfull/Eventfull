@@ -1,6 +1,6 @@
 var React = require('react');
 var StaffCard = require('./staff-card');
-
+var ViewActionCreator = require('../../actions/view-action-creator');
 var GigBin = React.createClass({
 
   // information: object full of gig info (like location)
@@ -14,9 +14,14 @@ var GigBin = React.createClass({
     };
   },
 
+  sendConfirmationEmails: function () {
+    ViewActionCreator.sendConfirmationEmails(this.props.information);
+  },
+
   render: function(){
     return (
       <div>
+        <button onClick = {this.sendConfirmationEmails} type="button">Send Confirmation Emails!</button>
         <GigInformation information={this.props.information} />
         <StaffCard staff={this.props.staff} positions={this.props.positions} gigId={this.props.information.id}/>
       </div>

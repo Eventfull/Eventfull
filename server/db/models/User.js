@@ -43,6 +43,15 @@ module.exports = function (sequelize, DataTypes) {
         });
       },
 
+      getEmployeeEmail: function (id) {
+        return User.find({
+          attributes: ['id', 'name', 'email'],
+          where: {
+            id: id
+          }
+        });
+      },
+
       updateEmployeeInfo: function (id, employeeParams) {
         return User.update(employeeParams, {
           where: {

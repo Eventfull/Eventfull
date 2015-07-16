@@ -13,6 +13,15 @@ module.exports = function (sequelize, DataTypes) {
         });
       },
 
+      getUserIds: function (gigId) {
+        return UserGigs.findAll({
+          attributes: ['UserId'],
+          where: {
+            gigId: gigId
+          }
+        });
+      },
+
       addEmployeeToGigStaff: function (userGigParams) {
         return UserGigs.create(userGigParams);
       },

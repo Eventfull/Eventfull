@@ -22,6 +22,7 @@ var Day = React.createClass({
 
   componentWillMount: function(){
     DayStore.addChangeListener(this._handleDayStoreUpdate);
+    DayStore.addDatabaseChangeListener(this._handleDatabaseUpdate);
     EmployeeStore.addChangeListener(this._handleEmployeeStoreUpdate);
 
     var date = this.props.date ? moment(this.props.date, 'YYYYMMDD') : moment();
@@ -32,11 +33,16 @@ var Day = React.createClass({
 
   componentWillUnmount: function(){
     EmployeeStore.removeChangeListener(this._handleEmployeeStoreUpdate);
+    DayStore.removeDatabaseChangeListener(this._handleDatabaseUpdate);
     DayStore.removeChangeListener(this._handleDayStoreUpdate);
   },
 
   _handleDayStoreUpdate: function(){
     this.setState(DayStore.getData());
+  },
+
+  _handleDatabaseUpdate: function () {
+    confirm('new data, refresh?');
   },
 
   _handleEmployeeStoreUpdate: function(){
