@@ -11,9 +11,7 @@ var AddEvent = React.createClass({
     return {
       value: null,
       dateValue: '',
-      calendarView: {
-        display: 'none'
-      }
+      viewCalendar: false
     };
   },
 
@@ -27,9 +25,10 @@ var AddEvent = React.createClass({
       return _.escape(React.findDOMNode(constructor).value.trim());
     });
 
-    gig.startTime = moment(gig.starTime, ["h:mm A"]).format("HH:mm");
-    gig.endTime = moment(gig.endTime).format("HH:mm:ss");
-    
+    gig.date = moment(gig.date, ['ddd, MMM Do - YYYY']).format('YYYY-MM-DD');
+    gig.startTime = moment(gig.startTime, ["HH:mm a"]).format("HH:mm:ss");
+    gig.endTime = moment(gig.endTime, ["HH:mm a"]).format("HH:mm:ss");
+
     gig.locationId = '1';
     gig.attireId = '1';
 
@@ -37,22 +36,27 @@ var AddEvent = React.createClass({
   },
 
   toggleCalendar: function () {
-    this.setState({ calendarView: { display: 'block' }});
+    this.setState({ viewCalendar: !this.state.viewCalendar });
   },
 
-  handleDateSelection: function (date, moment, e) {
+  handleDateSelection: function (date) {
     this.setState({ dateValue: date });
+    this.toggleCalendar();
   },
 
-  handleTimeClick: function (a, b, c) {
+  handleTimeClick: function (a) {
+    // this is here just to give the user a hint that typing an input is required.
+    // starting with this as the placeholder would break the forms visual consistency.
     a.target.placeholder = "__:__ am/pm";
   },
 
   render: function () {
+    var viewCalendar = this.state.viewCalendar ? { display: 'block' } : { display: 'none' };
+
     return (
       <div>
         <h2>Add Event</h2>
-        <form onSubmit={this.addGig}>
+        <form onSubmit={ this.addGig }>
           <div className="form-group">
             <div className="col-xs-12">
               <input type="text" placeholder="event title" ref="title"></input>
@@ -60,8 +64,19 @@ var AddEvent = React.createClass({
           </div>
           <div className="form-group">
             <div className="col-xs-12">
-              <input type="text" placeholder="event date" ref="date" value={ this.state.dateValue } onClick={ this.toggleCalendar }readOnly></input>
-              <DatePicker onChange={ this.handleDateSelection } style={ this.state.calendarView } />
+              <input
+                ref="date"
+                type="text"
+                placeholder="event date"
+                value={ this.state.dateValue }
+                onFocus={ this.toggleCalendar }
+                readOnly>
+              </input>
+              <DatePicker
+                onChange={ this.handleDateSelection }
+                style={ viewCalendar }
+                dateFormat='ddd, MMM Do - YYYY'
+              />
             </div>
           </div>
           <div className="form-group">
@@ -69,7 +84,7 @@ var AddEvent = React.createClass({
               <TimeInput placeholder="start time" ref="startTime" handleTimeClick={ this.handleTimeClick } />
             </div>
             <div className="col-xs-6">
-              <TimeInput placeholder="end time" ref="endTime" handleTimeSelection={ this.handleTimeSelection } />
+              <TimeInput placeholder="end time" ref="endTime" handleTimeClick={ this.handleTimeClick } />
             </div>
           </div>
           <div className="form-group">
