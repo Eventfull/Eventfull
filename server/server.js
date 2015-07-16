@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var port = 8000;
+var clearDatabase = (process.env.NODE_ENV !== 'production' && process.env.CLEAR_DATABASE === 'true')
 
 app.set('models', require('./db/models'));
 
@@ -9,16 +10,15 @@ require('./routes/routes')(app);
 
 app.use(express.static(__dirname + '/../dist/client'));
 
-app.get('models').sequelize.sync().then(function () {
+app.get('models').sequelize.sync({force: clearDatabase}).then(function () {
 
-  /// to seed the database, enter node server/server.js seed=true;
-  var models = app.get('models');
-  process.argv.forEach(function(val){
-    val === 'seed=true' && require('./db/seed')(models);
-  });
+  // to seed the database, enter SEED=true node server/server.js;
+  process.env.SEED === 'true' && require('./db/seed')(app.get('models'));
 
   var server = app.listen(port, function () {
     console.log('App now listening on port: ' + server.address().port);
   });
 
 });
+
+module.exports = app;

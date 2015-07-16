@@ -1,10 +1,11 @@
 var Sequelize = require('sequelize');
-var configuration = require('../configuration').database;
+
+var configuration = require('../configuration')[process.env.NODE_ENV || 'development'];
 
 var sequelize = new Sequelize(
   configuration.db_name,
   configuration.username,
-  configuration.password
+  configuration.password, {logging: false}
 );
 
 var models = [
