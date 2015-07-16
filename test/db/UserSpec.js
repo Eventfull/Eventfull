@@ -1,59 +1,36 @@
 var assert = require('chai').assert;
 var models = require('../../server/server.js').get('models');
+var dbTestUtils = require('./helpers/db-test-utils');
 
-describe('Users', function(){
+describe('Users', function(done){
   var User = models.User;
   var Organization = models.Organization;
 
-  // destroy all users and orgs
-  before(function(done){
-    User.destroy({
-      where: {
-        id: {
-          $ne: null
-        }
-      }
-    }).then(function(){
-      return Organization.findOrCreate({
-        where: {
+  before(function(){
+      return dbTestUtils.clearTables([
+        'User',
+        'Organization'
+      ]).then(function(){
+        return Organization.create({
           id: 1,
           name: 'fake',
           subscription: 'free'
-        }
+        });
+      }).catch(function(err){
+        console.log(err);
       });
-    }).then(function(){
-      done();
-    }).catch(function(err){
-      console.log(err, 'failed to destroy all users');
     });
-  });
 
-  // destroy all users and orgs
-  after(function(done){
-    User.destroy({
-      where: {
-        id: {
-          $ne: null
-        }
-      }
-    }).then(function(){
-      return Organization.destroy({
-        where: {
-          id: {
-            $ne: null
-          }
-        }
-      });
-    }).then(function(){
-      done();
-    }).catch(function(err){
-      console.log(err, 'failed to clean up when done');
+    after(function(){
+      return dbTestUtils.clearTables([
+        'User',
+        'Organization'
+      ]);
     });
-  });
 
   describe('Class Methods', function(){
 
-    describe('addEmployee', function(){
+    describe('#addEmployee', function(){
       it('Should have a addEmployee method', function(){
         assert.isFunction(User.addEmployee, 'we can get employees');
       });
@@ -89,7 +66,7 @@ describe('Users', function(){
       });
     });
 
-    describe('getEmployees', function(){
+    describe('#getEmployees', function(){
 
       // insert some employees to get
       before(function(done){
@@ -129,16 +106,20 @@ describe('Users', function(){
       });
     });
 
-    describe('getEmployeeInfo', function(){
+    describe('#getEmployeeInfo', function(){
 
       before(function(done){
-        User.create({
-            email: 'fakeemail1@gmail.com',
-            password: 'fakepassword1',
-            googleId: '',
-            name: 'fakerfaker1',
-            OrganizationId: 1,
-            id: 1
+        return dbTestUtils.clearTables([
+          'User'
+        ]).then(function(){
+          return User.create({
+              email: 'fakeemail1@gmail.com',
+              password: 'fakepassword1',
+              googleId: '',
+              name: 'fakerfaker1',
+              OrganizationId: 1,
+              id: 1
+          });
         }).then(function(){
           done();
         }).catch(function(err){
@@ -169,17 +150,13 @@ describe('Users', function(){
       });
     });
 
-    describe('updateEmployeeInfo', function(){
+    describe('#updateEmployeeInfo', function(){
 
       // destroy all user and create one to update info on
       before(function(done){
-        User.destroy({
-          where: {
-            id: {
-              $ne: null
-            }
-          }
-        }).then(function(){
+        return dbTestUtils.clearTables([
+          'User'
+        ]).then(function(){
           return User.create({
             email: 'fakeemail1@gmail.com',
             password: 'fakepassword1',
@@ -223,17 +200,11 @@ describe('Users', function(){
       });
     });
 
-    describe('removeEmployeeFromOrganization', function(){
-      // destroy employees and add one
-
+    describe('#removeEmployeeFromOrganization', function(){
       before(function(done){
-        User.destroy({
-          where: {
-            id: {
-              $ne: null
-            }
-          }
-        }).then(function(){
+        return dbTestUtils.clearTables([
+          'User'
+        ]).then(function(){
           return User.create({
             email: 'fakeemail1@gmail.com',
             password: 'fakepassword1',

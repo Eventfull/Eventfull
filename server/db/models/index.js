@@ -5,7 +5,8 @@ var configuration = require('../configuration')[process.env.NODE_ENV || 'develop
 var sequelize = new Sequelize(
   configuration.db_name,
   configuration.username,
-  configuration.password, {logging: false}
+  configuration.password,
+  {logging: false}
 );
 
 var models = [

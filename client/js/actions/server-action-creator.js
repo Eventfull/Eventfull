@@ -10,7 +10,7 @@ var ServerActionCreator = {
   },
   receiveDayData: function(dayData){
     AppDispatcher.dispatch({
-      actionType: AppConstants.ServerActionTypes.DAY_DATA_RECIEVED,
+      actionType: AppConstants.ServerActionTypes.DAY_DATA_RECEIVED,
       gigs: dayData.gigs,
       date: dayData.date
     });

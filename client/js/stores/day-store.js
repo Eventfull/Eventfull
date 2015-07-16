@@ -53,7 +53,7 @@ var DayStore = assign({}, EventEmitter.prototype, {
 
 Dispatcher.register(function(payload){
   switch (payload.actionType){
-    case AppConstants.ServerActionTypes.DAY_DATA_RECIEVED:
+    case AppConstants.ServerActionTypes.DAY_DATA_RECEIVED:
       _dayData.gigs = _.indexBy(payload.gigs, function(gig){
         return gig.id;
       });

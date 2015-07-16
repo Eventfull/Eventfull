@@ -2,13 +2,13 @@
 ///////////////////////////////////////////////////
 //                    TESTING                    //
 
-// TO RUN TESTS, REQUIRE TESTS INTO THIS FILE
+// TO ADD TESTS, REQUIRE TEST FILES INTO THIS FILE
 
 if (process.env.NODE_ENV === 'test'){
-
   describe('Database Testing', function(){
     require('./db/UserSpec');
     require('./db/GigSpec');
+    require('./db/LocationSpec');
     /// other db test files should be required here
   });
 
