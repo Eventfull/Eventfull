@@ -1,6 +1,7 @@
 var React = require('react');
 var DragSource = require('react-dnd').DragSource;
 var ViewActionCreator = require('../../actions/view-action-creator');
+var DayStore = require('../../stores/day-store');
 
 var Employee = React.createClass({
 
@@ -10,8 +11,8 @@ var Employee = React.createClass({
     return {
       name: '',
       rating: '',
-      gigID: Infinity,
-      employeeID: Infinity
+      gigId: Infinity,
+      employeeId: Infinity
     };
   },
 
@@ -46,8 +47,8 @@ var spec = {
     return {
       name: props.name,
       rating: props.rating,
-      gigID: props.gigID,
-      employeeID: props.employeeID
+      gigId: props.gigId,
+      employeeId: props.employeeId
     };
   },
 
@@ -57,13 +58,13 @@ var spec = {
        // returning a plain object from its drop() method,
        // it will be available as monitor.getDropResult()
       var toGig = monitor.getDropResult();
+
       ViewActionCreator.moveStaff({
-        fromGig: props.gigID,
-        fromGroup: props.group,
-        toGig: toGig.gigID,
-        toGroup: toGig.group,
-        employeeID: props.employeeID
-      });
+        employeeId: props.employeeId,
+        fromGigId: props.gigId,
+        toGigId: toGig.gigId,
+        toGroupId: toGig.positionId,
+      }, DayStore.getDate());
     }
   },
 

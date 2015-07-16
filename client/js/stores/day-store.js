@@ -3,32 +3,38 @@ var assign = require('object-assign');
 var Dispatcher = require('../dispatcher/dispatcher');
 var AppConstants = require('../constants/constants');
 var CHANGE_EVENT = 'change';
+var _ = require('underscore');
+var moment = require('moment');
 
 var _dayData = {};
 
 var _moveStaff = function(info){
-  // Object {fromGig: 0, toGig: 1, fromGroup: "kitchen-staff", toGroup: "server", employeeID: 1}
-  var fromGroup = _dayData.gigs[info.fromGig].staff.approved[info.fromGroup];
-  var toGroup = _dayData.gigs[info.toGig].staff.approved[info.toGroup];
-  if (!toGroup) {
-    toGroup = _dayData.gigs[info.toGig].staff.approved[info.toGroup] = [];
-  }
 
-  var employee;
-  fromGroup.forEach(function(emp, idx){
-    if (emp.employeeID === info.employeeID){
-      employee = emp;
-      fromGroup.splice(idx, 1);
+  var fromGig = _dayData.gigs[info.fromGigId];
+  var toGig = _dayData.gigs[info.toGigId];
+  var employeeToMove;
+  var employeeIdx;
+
+  _.each(fromGig.Users, function(employee, idx){
+    if (employee.id === info.employeeId){
+      employeeToMove = employee;
+      employeeIdx = idx;
     }
   });
 
-  toGroup.push(employee);
+  fromGig.Users.splice(employeeIdx, 1);
+  employeeToMove.Position.id = info.toGroupId;
+  toGig.Users.push(employeeToMove);
 }
 
 var DayStore = assign({}, EventEmitter.prototype, {
 
   getData: function(){
     return _dayData;
+  },
+
+  getDate: function(){
+    return _dayData.date;
   },
 
   emitChange: function(){
@@ -48,7 +54,10 @@ var DayStore = assign({}, EventEmitter.prototype, {
 Dispatcher.register(function(payload){
   switch (payload.actionType){
     case AppConstants.ServerActionTypes.DAY_DATA_RECIEVED:
-      _dayData = payload.dayData;
+      _dayData.gigs = _.indexBy(payload.gigs, function(gig){
+        return gig.id;
+      });
+      _dayData.date = payload.date;
       DayStore.emitChange();
       break;
     case AppConstants.ViewActionTypes.STAFF_MOVED:

@@ -12,24 +12,27 @@ var StaffCard = React.createClass({
     // of people filling the job.
   getDefaultProps: function(){
     return {
-      staff: {
-        needed: {},
-        approved: {}
-      },
-      gigID: Infinity
+      staff: [],
+      positions: [],
+      gigId: Infinity
     };
   },
 
   render: function(){
     var props = this.props;
-    var staff = _.map(props.staff.needed, function(amountNeeded, groupName){
-      var approvedList = props.staff.approved[groupName]; // array of approved employees
+
+    var staff = _.map(props.positions, function(position){
+      var approvedList = _.filter(props.staff, function(employee){
+        return employee.Position.id === position.id;
+      });
+
       return (
         <StaffGroup
-          name={groupName}
+          name={position.title}
+          positionId={position.id}
           approved={approvedList}
-          needed={amountNeeded}
-          gigID={props.gigID} />
+          needed={position.statusInfo.required}
+          gigId={props.gigId} />
       );
     });
 

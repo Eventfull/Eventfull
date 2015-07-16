@@ -17,14 +17,7 @@ module.exports = function(app){
         includeStaff: req.query.startDate === req.query.endDate
       };
 
-      Gig.getGigs(info).then(function (gigs) {
-        return models.sequelize.Promise.map(gigs, function(gig){
-          return Location.getLocationInfo(gig.LocationId).then(function(info){
-            this.location = info[0].toJSON();
-            return this;
-          }.bind(gig.toJSON()));
-        });
-      }).then(function(gigs){
+      Gig.getGigs(info).then(function(gigs){
         res.send(gigs);
       }).catch(function (err) {
         console.log(err);
@@ -53,7 +46,7 @@ module.exports = function(app){
         console.log(err);
       });
 
-     console.log("creating new gigs for organization id: " + req.params.organizationId);
+      console.log("creating new gigs for organization id: " + req.params.organizationId);
     },
 
     getGigInfo: function (req, res){
@@ -119,13 +112,11 @@ module.exports = function(app){
 
     addEmployeeToGigStaff: function (req, res){
       var userGigParams = {
-        date: req.body.date,
         UserId: parseInt(req.body.employeeId, 10),
         GigId: parseInt(req.params.gigId, 10),
         PositionId: req.body.positionId,
         adminAccepted: req.body.adminAccepted,
         workerAccepted: req.body.workerAccepted,
-        group: req.body.group
       };
 
       //Careful with admin/woker accepted...
@@ -134,7 +125,7 @@ module.exports = function(app){
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('Adding employee id: ', req.params.employeeId, ' to gig id: ', req.params.gigId);
+      console.log('Adding employee id: ', req.body.employeeId, ' to gig id: ', req.params.gigId);
     },
 
     getEmployeeStatus: function (req, res){
@@ -171,12 +162,12 @@ module.exports = function(app){
       var gigId = req.params.gigId;
       var userId = req.params.employeeId;
 
-     UserGigs.removeEmployeeFromGig(gigId, userId).then(function (result) {
-      res.sendStatus(204);
-    }).catch(function (err) {
-      console.log(err);
-    });
-     console.log('removing employee id: ', userId, ' from gig id: ', gigId);
+      UserGigs.removeEmployeeFromGig(gigId, userId).then(function (result) {
+        res.sendStatus(204);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      console.log('removing employee id: ', userId, ' from gig id: ', gigId);
     },
 
   };

@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 module.exports = function(app){
 
   var models = app.get('models');
@@ -6,14 +8,23 @@ module.exports = function(app){
   var employeeController = {
 
     getEmployees: function (req, res){
-      // accepts params (on req.params) to filter on availability.
       var organizationId = req.organizationId;
+      var date = moment(req.query.date)
+      var weekday = date.day() === 0 ? 7 : date.day(); //to go from 1 to 7
 
-      User.getEmployees(organizationId).then(function (employees) {
-        res.send(employees);
-      }).catch(function (err) {
-        console.log(err);
-      });
+      if (req.query.date === undefined){
+        User.getAllEmployees(organizationId).then(function (employees) {
+          res.send(employees);
+        }).catch(function (err) {
+          console.log(err);
+        });
+      } else {
+        User.getAvailableEmployees(organizationId, weekday).then(function(employees){
+          res.send(employees);
+        }).catch(function(err){
+          console.log(err);
+        });
+      }
       console.log('returning employees of organization id: ' + req.organizationId);
     },
 

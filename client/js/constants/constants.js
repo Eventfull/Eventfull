@@ -12,7 +12,8 @@ var AppConstants = {
     EVENT_ADDED: null,
     DAY_DATA_RECIEVED: null,
     WEEK_DATA_RECEIVED: null,
-    FETCHED_MONTH_DATA: null
+    FETCHED_MONTH_DATA: null,
+    EMPLOYEE_DATA_RECEIVED: null
   })
 };
 

@@ -35,11 +35,13 @@ models.forEach(function (model) {
 
   // Different gigs could have the same location or attire specification
   m.Location.hasMany(m.Gig);
+  m.Gig.belongsTo(m.Location);
   m.Attire.hasMany(m.Gig);
 
   // Specific roles could belong to many different users, but each availability schedule belongs to a single user
   m.Role.hasMany(m.User);
   m.Availability.belongsTo(m.User);
+  m.User.hasMany(m.Availability);
 
   // Gigs have many users and users have many gigs, with each instance having a unique position.
   m.User.belongsToMany(m.Gig, { through: m.UserGigs });

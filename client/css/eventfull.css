@@ -6,7 +6,7 @@ body {
   font-family: 'Alegreya Sans', sans-serif;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 h2 {
@@ -86,19 +86,19 @@ input[type=submit]{
 :-moz-placeholder { /* Firefox 18- */
   color: #DADADA;
   font-weight: 800;
-  font-style: italic; 
+  font-style: italic;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
   color: #DADADA;
   font-weight: 800;
-  font-style: italic;  
+  font-style: italic;
 }
 
-:-ms-input-placeholder {  
+:-ms-input-placeholder {
   color: #DADADA;
   font-weight: 800;
-  font-style: italic;  
+  font-style: italic;
 }
 
 
@@ -202,7 +202,7 @@ input[type=submit]{
   border-bottom: 1px solid #DADADA;
   text-align: center;
   min-height: 55px;
-} 
+}
 
 .date-bar h2{
   display: inline-block;
@@ -389,7 +389,7 @@ input[type=submit]{
  .events-circle-green {
    border-radius: 50%;
    width: 20px;
-   height: 20px; 
+   height: 20px;
    background-color: #A8E5A7;
    display: inline-block;
    padding-left: 10px;
@@ -400,7 +400,7 @@ input[type=submit]{
  .events-circle-blue {
   border-radius: 50%;
   width: 20px;
-  height: 20px; 
+  height: 20px;
   background-color: #6BCFFF;
   display: inline-block;
   padding-left: 10px;
@@ -410,7 +410,7 @@ input[type=submit]{
  .events-circle-red {
   border-radius: 50%;
   width: 20px;
-  height: 20px; 
+  height: 20px;
   background-color: #F26350;
   display: inline-block;
   padding-left: 10px;

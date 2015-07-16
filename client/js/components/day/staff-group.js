@@ -2,6 +2,7 @@ var React = require('react');
 var _ = require('underscore');
 var DropTarget = require('react-dnd').DropTarget;
 var Employee = require('./employee');
+var EmployeeStore = require('../../stores/employee-store');
 
 var StaffGroup = React.createClass({
 
@@ -13,7 +14,7 @@ var StaffGroup = React.createClass({
       approved: [],
       needed: Infinity,
       name: '',
-      gigID: Infinity
+      gigId: Infinity
     };
   },
 
@@ -22,12 +23,15 @@ var StaffGroup = React.createClass({
     var health = props.approved.length / props.needed;
 
     var approved = _.map(props.approved, function(employee, idx){
+      var data = EmployeeStore.getEmployee(employee.id);
+      EmployeeStore.addToUnavailableEmployees(employee.id);
+
       return <Employee
-              rating={employee.rating}
-              name={employee.name}
+              name={data.name}
               key={idx}
-              gigID={props.gigID}
-              employeeID={employee.employeeID}
+              gigId={props.gigId}
+              employeeId={data.id}
+              positionId={props.positionId}
               group={props.name} />
     });
 
@@ -35,7 +39,7 @@ var StaffGroup = React.createClass({
       <div>
         {approved}
         <div className="employee-open-zone">
-          <h6>open spots ({props.needed})</h6>
+          <h6>open spots ({props.needed - approved.length})</h6>
         </div>
       </div>
     );
@@ -55,7 +59,7 @@ var type = 'employee';
 
 var spec = {
   drop: function(props, monitor, component){
-    return {group: props.name, gigID: props.gigID};
+    return {group: props.name, gigId: props.gigId, positionId: props.positionId};
   }
 };
 

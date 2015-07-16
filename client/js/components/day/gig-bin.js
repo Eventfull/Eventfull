@@ -9,14 +9,16 @@ var GigBin = React.createClass({
   getDefaultProps: function(){
     return {
       information: {},
-      staff: {}
+      staff: [],
+      positions: []
     };
   },
 
   render: function(){
     return (
       <div>
-        <StaffCard staff={this.props.staff} gigID={this.props.information.gigID}/>
+        <GigInformation information={this.props.information} />
+        <StaffCard staff={this.props.staff} positions={this.props.positions} gigId={this.props.information.id}/>
       </div>
     );
   }
@@ -27,19 +29,22 @@ var GigInformation = React.createClass({
 
   getDefaultProps: function(){
     return {
-      info: {}
+      information: {
+        location: {}
+      }
     };
   },
 
   render: function(){
-    var info = this.props.info;
+    var information = this.props.information;
 
     return (
       <div>
-        <br />location: {info.location}
-        <br />time: {info.time}
-        <br />attire: {info.attire}
-        <br />type: {info.type}
+        <br />Title: {information.title}
+        <br />Location: {information.Location.name}
+        <br />Type: {information.type}
+        <br />StartTime: {information.startTime}
+        <br />EndTime: {information.endTime}
       </div>
     );
   }
