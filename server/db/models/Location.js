@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     classMethods: {
       getLocationInfo: function(id){
-        return Location.findAll({
+        return Location.find({
           where: {
             id: id
           },
