@@ -13,9 +13,9 @@ var MonthDayCard = React.createClass({
       return <MonthDayEvent key={key} eventData = { eventData } />
     });
     return (
-      <div className="event-card month-event-card">
-        <Link className="month-events-number" href={dayPath}>{ dayNumber }</Link>
-        <div className="events-circle-list">{ dayEvents }</div>
+      <div className="gig-card">
+        <Link href={dayPath}><h2>{ dayNumber }</h2></Link>
+        <div className="dot-list">{ dayEvents }</div>
       </div>
     );
   }

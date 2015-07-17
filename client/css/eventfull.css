@@ -255,8 +255,7 @@ input[type=submit]{
 }
 
 .month-canvas {
-  padding-right: 0px;
-  margin-right: 0px;
+  padding: 30px;
 }
 
 /*
@@ -273,28 +272,24 @@ input[type=submit]{
 }
 
 .bin {
-  background: #F1F3F9;
-  border: 1px solid #DADADA;
-  border-radius: 5px;
-  padding: 10px 10px;
+  padding: 10px;
   overflow-y: auto;
-  height: calc(100vh - 140px);
-}
-
-.month-bin {
   background: #F1F3F9;
-  border: 1px solid #DADADA;
   border-radius: 5px;
-  padding: 5px 5px;
-  /*overflow-y: auto;*/
-  /*clear: none;*/
-  margin: 10px 5px 10px 5px;
-  width: 90%;
+  border: 1px solid #DADADA;
+  height: calc(100vh - 140px);
 }
 
 .day-bin {
   max-width: 200px;
   min-width: 200px;
+}
+
+.month-bin {
+  width: 100%;
+  padding: 5px;
+  margin: 8px 0;
+  height: initial;
 }
 
 /*
@@ -346,6 +341,13 @@ input[type=submit]{
   left: 0;
   z-index: 999;
   overflow-y: auto;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .action-bar-default {
+    display: block;
+  }
 }
 
 .action-bar-default.action-bar-open {
@@ -389,6 +391,7 @@ input[type=submit]{
   -moz-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
+<<<<<<< HEAD
 
 /*
  * card styles for month view
@@ -441,23 +444,15 @@ input[type=submit]{
  }
 
 /*
- * Event card styles for week view
+ * Gig card styles for week view
  */
 
-.event-card {
+.gig-card {
   background: #FFFFFF;
   border: 1px solid #DADADA;
   border-radius: 5px;
   margin: 10px 0;
   cursor:pointer;
-}
-
-.month-event-card {
-  display: inline-block;
-  min-width: 90px;
-  max-width: 90px;
-  margin-top: 2px;
-  margin-bottom: 2px;
 }
 
 .health {
@@ -471,6 +466,50 @@ input[type=submit]{
   background-color: #A8E5A7;
   margin-bottom: 15px;
 }
+
+/*
+ * card styles for month view
+ */
+
+.month-bin .gig-card {
+  margin: 0.2%;
+  padding: 10px;
+  text-align: left;
+  min-height: 100px;
+  cursor: default;
+  width: calc(100% / 7 - 0.4%);
+  position: relative;
+  display: inline-block;
+}
+
+.month-bin .gig-card a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.month-bin .gig-card h2 {
+  margin: 0;
+  font-size: 28px;
+  text-align: left;
+}
+
+.month-bin .dot-list {
+  bottom: 0;
+  display: table-cell;
+  vertical-align: bottom;
+  position: absolute;
+}
+
+.month-bin .dot-health {
+  width: 12px;
+  height: 12px;
+  margin: 1px 2px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #A8E5A7;
+}
+
+
 
 /*
  * Date picker styles
