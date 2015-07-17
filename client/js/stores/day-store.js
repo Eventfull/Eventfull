@@ -60,10 +60,13 @@ Dispatcher.register(function(payload){
       });
       _dayData.date = payload.date;
       DayStore.emitChange();
+      break;
     case AppConstants.ViewActionTypes.STAFF_MOVED:
       _moveStaff(payload.info);
       DayStore.emitChange();
       break;
+    default:
+      return true;
   }
 });
 

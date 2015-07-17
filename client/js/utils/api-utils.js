@@ -1,7 +1,6 @@
 var axios = require('axios');
 var weekData = require('../weekData');
 var server = 'http://localhost:8000';
-var monthData = require('../monthData');
 
 var ApiUtils = {
 

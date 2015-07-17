@@ -11,12 +11,12 @@ var moment = require('moment');
 var Month = React.createClass({
   getInitialState: function () {
     return {
-      startDate : '2015-05-10',
-      date: null
+      startDate : moment().format('YYYY-MM-DD'),
+      data: null
     };
   },
   componentWillMount: function () {
-    var today = moment().startOf('month');
+    var today = moment();
     MonthStore.addChangeListener(this._onChange);
     ViewActionCreator.getMonthData(today);
   },

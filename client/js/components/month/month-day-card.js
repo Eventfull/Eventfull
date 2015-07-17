@@ -6,8 +6,7 @@ var moment = require('moment');
 
 var MonthDayCard = React.createClass({
   render:function () {
-    var weekNumber = Number(this.props.dayData.weekNumber);
-    var dayNumber = parseInt(moment(this.props.dayData.dayNumber, 'YYYYMMDD').format('DD'), 10);
+    var dayNumber = moment(this.props.dayData.dayNumber, 'YYYYMMDD').format('DD');
     var dayPath = '/day/' + this.props.dayData.dayNumber;
 
     var dayEvents = this.props.dayData.map(function (eventData, key) {

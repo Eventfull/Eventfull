@@ -38,6 +38,7 @@ var _organizeData = function (data) {
 
   //Fill the day properties of each week as with 'YYYYMMDD' as the key
   var dataKey = '';
+  var weekNum = 0;
   currentDate = moment(data.startDate, 'YYYY-MM-DD');
   for(var j=1; j<=numDays; j++) {
     dataKey = currentDate.format('YYYYMMDD');

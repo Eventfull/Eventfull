@@ -32,13 +32,15 @@ var ViewActionCreator = {
     ApiUtils.getWeekData(startDate, endDate, ServerActionCreator.receiveWeekData);
   },
 
-  getMonthData: function (startDate) {
+  getMonthData: function (date) {
     AppDispatcher.dispatch({
       actionType: AppConstants.ViewActionTypes.GET_MONTH_DATA
     });
 
-    var endDate = moment(startDate);
-    endDate.add(1, 'month').subtract(1, 'day');
+    var startDate = moment(date);
+    var endDate = moment(date);
+    startDate.startOf('month');
+    endDate.endOf('month');
     ApiUtils.getMonthData(startDate, endDate, ServerActionCreator.receiveMonthData);
   },
 

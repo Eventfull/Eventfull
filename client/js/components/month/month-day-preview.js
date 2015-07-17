@@ -10,7 +10,7 @@ var moment = require('moment');
 var MonthDayPreview = React.createClass({
   getInitialState: function () {
     return {
-      date: '',
+      date: moment(),
       gigs: null
     };
   },
@@ -28,15 +28,10 @@ var MonthDayPreview = React.createClass({
   render: function () {
     var date = this.state.date ? this.state.date : moment();
     date = date.format('MMMM Do');
-    var data = [];
-    if ( this.state.gigs !== null ) {
-      data = _.map(this.state.gigs, function (gig, key) {
-        return gig;
-      });
-    }
+
     return (
-      <div className = "col-md-3" onClick={ this.toggleDetails }>
-        <WeekDayBin day = { data } date = { date }/>
+      <div className = "col-md-3">
+        <WeekDayBin day = { this.state.gigs } date = { date }/>
       </div>
     );
   }
