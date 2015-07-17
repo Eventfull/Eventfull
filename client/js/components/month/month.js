@@ -5,14 +5,13 @@ var MonthStore = require('../../stores/month-store');
 var MonthHeader = require('./month-header');
 var ViewActionCreator = require('../../actions/view-action-creator');
 var Day = require('../day/day');
-var MonthDayPreview = require('./month-day-preview');
 var moment = require('moment');
 
 var Month = React.createClass({
   getInitialState: function () {
     return {
       startDate : moment().format('YYYY-MM-DD'),
-      data: null
+      data: {}
     };
   },
   componentWillMount: function () {
@@ -33,8 +32,7 @@ var Month = React.createClass({
     return (
       <div className="row">
         <MonthHeader month={ month } year={ year } />
-        <MonthBoard monthWeeks= { this.state.data } />
-        <MonthDayPreview />
+        <MonthBoard monthWeeks={ this.state.data } startDate={ this.state.startDate }/>
       </div>
     );
   }

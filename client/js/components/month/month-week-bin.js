@@ -6,16 +6,23 @@ var Link = require('react-router-component').Link;
 
 var MonthWeekBin = React.createClass({
   render: function () {
-    var weekNum = this.props.weekNumber;
-    var weekEvents = _.map(this.props.weekData, function (dayData, key) {
-      dayData.dayNumber = key;
-      dayData.weekNumber = weekNum;
-      return <MonthDayCard key = { key } dayData = { dayData } />
-    });
-    /*Temporary hardedcoded value to show what route will be*/
+    var weekDays = [], date = this.props.startOfWeek, dayData;
+    for(var day = 0; day < 7; day++){
+      dayData = this.props.weekData[date.format('YYYYMMDD')] || {};
+      weekDays.push(
+        <MonthDayCard
+          key={ day }
+          dayData={ dayData }
+          date={ date }
+          month={ this.props.month }
+        />
+      );
+      date = date.clone().add(1, 'day');
+    }
+
     return (
       <div className="bin month-bin">
-        { weekEvents }
+        { weekDays }
       </div>
     );
   }

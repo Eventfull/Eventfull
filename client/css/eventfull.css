@@ -255,21 +255,23 @@ input[type=submit]{
 }
 
 .month-canvas {
-  padding: 30px;
+  padding: 20px 40px;
 }
+
+.month-canvas .col {
+  padding-right: 35px;
+  padding-left: 35px;
+}
+
+.month-bin:nth-child(2) {
+  margin-top: 0;
+}
+
+
 
 /*
  * Bin styles
  */
-
-.bin-wrapper {
-  max-width: 270px;
-  min-width: 270px;
-  display: block;
-  clear: none;
-  float: left;
-  margin: 0 15px;
-}
 
 .bin {
   padding: 10px;
@@ -290,6 +292,22 @@ input[type=submit]{
   padding: 5px;
   margin: 8px 0;
   height: initial;
+}
+
+.bin-wrapper {
+  max-width: 270px;
+  min-width: 270px;
+  display: block;
+  clear: none;
+  float: left;
+  margin: 0 15px;
+}
+
+.month-canvas .bin-wrapper {
+  max-width: none;
+  min-width: none;
+  width: 100%;
+  margin: 0;
 }
 
 /*
@@ -468,7 +486,7 @@ input[type=submit]{
 }
 
 /*
- * card styles for month view
+ * Month view styles
  */
 
 .month-bin .gig-card {
@@ -507,6 +525,17 @@ input[type=submit]{
   border-radius: 50%;
   display: inline-block;
   background-color: #A8E5A7;
+}
+
+.month-canvas ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.month-canvas ul li {
+    display: inline-block;
+    width: calc( 100% / 7 );
 }
 
 
