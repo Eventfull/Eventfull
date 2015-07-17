@@ -1,16 +1,15 @@
 /** @jsx React.DOM */
 var React = require('react');
 var Link = require('react-router-component').Link;
-var NextMonth = require('./month-next-button');
-var PrevMonth = require('./month-prev-button');
+var MonthNavArrow = require('./month-nav-arrow');
 
 var MonthHeader = React.createClass({
   render: function () {
     return (
       <div className="date-bar">
-        <div className="arrow arrow-left"></div>
-        <h2>May 2015</h2>
-        <div className="arrow arrow-right"></div>
+        <MonthNavArrow month={this.props.month} year={this.props.year} navDirection= {'left'} />
+        <h2> {this.props.month} {this.props.year}</h2>
+        <MonthNavArrow month={this.props.month} year={this.props.year} navDirection = {'right'} />
       </div>
     );
   }

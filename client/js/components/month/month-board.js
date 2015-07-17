@@ -6,11 +6,11 @@ var _  = require('underscore');
 var MonthBoard = React.createClass({
   render: function () {
     var monthWeeks = _.map(this.props.monthWeeks, function (weekData, key) {
-      return <MonthWeekBin key={ key } weekNumber = {  parseInt(key) -1 } weekData={ weekData } />;
+      return <MonthWeekBin key={ key } weekNumber = { key } weekData= { weekData } />;
     });
 
     return (
-      <div className="month-canvas">
+      <div className="month-canvas col-md-8">
         { monthWeeks }
       </div>
     );

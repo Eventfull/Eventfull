@@ -1,7 +1,6 @@
 var axios = require('axios');
 var weekData = require('../weekData');
 var server = 'http://localhost:8000';
-var monthData = require('../monthData');
 
 var ApiUtils = {
 
@@ -45,10 +44,20 @@ var ApiUtils = {
     }).then(callback);
   },
 
-  getMonthData: function (date, callback) {
-    //this is currently mocking fetching server side data
-    //NOT the final implementation
-    callback(monthData); //monthData would be the fetched monthData from server
+  getMonthData: function (startDate, endDate, callback) {
+    var path = server + '/api/organizations/1/gigs';
+    axios.get(path, {
+      params: {
+        startDate: startDate.format('YYYY-MM-DD'),
+        endDate: endDate.format('YYYY-MM-DD')
+      }
+    }).then(function (res) {
+      return {
+        startDate: startDate,
+        endDate: endDate,
+        gigs: res.data
+      };
+    }).then(callback);
   },
 
   addEmployeeToGig: function(employeeId, gigId, positionId){

@@ -8,7 +8,6 @@ var WeekDayBin = React.createClass({
     var weekGigs = _.map(this.props.day, function (gig, key) {
       return <WeekGig key={ key } gig={ gig } />;
     });
-
     return (
       <div className="bin-wrapper">
         <h3>{ this.props.date }</h3>

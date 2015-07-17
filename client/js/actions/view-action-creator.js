@@ -37,7 +37,11 @@ var ViewActionCreator = {
       actionType: AppConstants.ViewActionTypes.GET_MONTH_DATA
     });
 
-    ApiUtils.getMonthData(date, ServerActionCreator.fetchedMonthData);
+    var startDate = moment(date);
+    var endDate = moment(date);
+    startDate.startOf('month');
+    endDate.endOf('month');
+    ApiUtils.getMonthData(startDate, endDate, ServerActionCreator.receiveMonthData);
   },
 
   moveStaff: function(info, date){
