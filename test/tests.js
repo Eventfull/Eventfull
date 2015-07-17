@@ -9,6 +9,7 @@ if (process.env.NODE_ENV === 'test'){
     require('./db/UserSpec');
     require('./db/GigSpec');
     require('./db/LocationSpec');
+    require('./db/OrganizationSpec');
     /// other db test files should be required here
   });
 

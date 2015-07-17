@@ -22,6 +22,13 @@ describe('Gigs', function(){
     });
   });
 
+  after(function(){
+    return dbTestUtils.clearTables([
+      'Gig',
+      'Organization'
+    ]);
+  });
+
   describe('Class Methods', function(){
     describe('#getGigs', function(){
       it('Should have a getGigs method', function(){
