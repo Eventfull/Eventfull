@@ -27,7 +27,7 @@ module.exports = function(app){
     },
 
     createGig: function (req, res){
-      var gig = req.body.params.gig;
+      var gig = req.body.gig;
       var gigParams = {
         title: gig.title,
         type: gig.type,

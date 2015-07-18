@@ -84,7 +84,28 @@ module.exports = function (sequelize, DataTypes) {
       },
 
       createGig: function (gigParams) {
-        return Gig.create(gigParams);
+        var locationQuery = {
+          model: Gig.associations['Location'].target,
+          attributes: [
+            'id',
+            'name',
+            'addressOne',
+            'addressTwo',
+            'city',
+            'state',
+            'zipCode'
+          ],
+          as: 'Location'
+        };
+
+        return Gig.create(gigParams, {
+          include: [ Gig.associations['Location'].target ]
+        }).then(function(savedGig) {
+          return Gig.findOne({
+            where: { id: savedGig.id },
+            include: [ locationQuery ]
+          });
+        });
       },
 
       getGigInfo: function (id) {

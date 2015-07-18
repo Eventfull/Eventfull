@@ -7,9 +7,9 @@ var moment = require('moment');
 var ViewActionCreator = {
 
   addGig: function (gig) {
-    AppDispatcher.dispatch({
-      actionType: AppConstants.ViewActionTypes.ADD_GIG
-    });
+    // AppDispatcher.dispatch({
+    //   actionType: AppConstants.ViewActionTypes.ADD_GIG
+    // });
     ApiUtils.addGig(gig, ServerActionCreator.gigAdded);
   },
 

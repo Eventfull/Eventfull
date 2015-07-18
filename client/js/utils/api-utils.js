@@ -6,9 +6,7 @@ var ApiUtils = {
   addGig: function (gig, callback) {
     var path = server + '/api/organizations/1/gigs/';
     axios.post(path, {
-      params: {
-        gig: gig
-      }
+      gig: gig
     }).then(function (res) {
       return res.data;
     }).then(callback);

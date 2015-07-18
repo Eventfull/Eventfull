@@ -11,7 +11,9 @@ var _ = require('underscore');
 
 var Week = React.createClass({
   getInitialState: function () {
-    return {};
+    return {
+      days: {}
+    };
   },
 
   componentDidMount: function () {
@@ -19,12 +21,28 @@ var Week = React.createClass({
     ViewActionCreators.getWeekData(moment());
   },
 
+  componentWillUpdate: function () {
+    console.log('componentWillUpdate');
+  },
+
+  componentDidUpdate: function () {
+    console.log('componentDidUpdate');
+  },
+
+  componentWillUnmount: function () {
+    console.log('component unmounting');
+  },
+
   handleStoreChange: function () {
+    console.dir(JSON.parse(JSON.stringify('current this.state')));
+    console.dir(JSON.parse(JSON.stringify(this.state, null, 2)));
+
     var weekData = WeekStore.getWeekData();
-    var days = _.groupBy(weekData, function (day, key) {
-      return moment(day.date, "YYYY-MM-DD HH:mm:ss").format('YYYYMMDD');
-    });
-    this.setState({ days: days });
+    console.dir(JSON.parse(JSON.stringify('new data arrives')));
+    console.dir(JSON.parse(JSON.stringify(weekData, null, 2)));
+
+    this.setState({ days: weekData });
+    console.dir(JSON.stringify('updated this.state'));
   },
 
   render: function () {
