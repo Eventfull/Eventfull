@@ -404,12 +404,12 @@ input[type=submit]{
 /* Transitions */
 
 .action-bar-default,
-.schedule-default {
+.schedule-default,
+.gig-card {
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
-<<<<<<< HEAD
 
 /*
  * card styles for month view
@@ -498,30 +498,45 @@ input[type=submit]{
   width: calc(100% / 7 - 0.4%);
   position: relative;
   display: inline-block;
+  cursor: pointer;
+}
+
+.month-bin .gig-card:hover {
+  border-color: #7198C5;
+}
+
+.month-bin .gig-card.selected-date {
+  border-color: #7198C5;
 }
 
 .month-bin .gig-card a {
   text-decoration: none;
-  cursor: pointer;
+  cursor: default;
 }
 
 .month-bin .gig-card h2 {
   margin: 0;
   font-size: 28px;
   text-align: left;
+  display: inline-block;
+}
+
+.month-bin .gig-card h2.off-calendar-date {
+  color: #DADADA;
 }
 
 .month-bin .dot-list {
-  bottom: 0;
+  bottom: 5px;
   display: table-cell;
   vertical-align: bottom;
   position: absolute;
+  line-height: 0;
 }
 
 .month-bin .dot-health {
   width: 12px;
   height: 12px;
-  margin: 1px 2px;
+  margin: 2px 2px;
   border-radius: 50%;
   display: inline-block;
   background-color: #A8E5A7;

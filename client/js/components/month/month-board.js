@@ -24,6 +24,7 @@ var MonthBoard = React.createClass({
           weekData={ weekData }
           startOfWeek={ startOfWeek }
           month={ this.props.startDate }
+          currentDate={ this.props.currentDate }
         />
       );
       startOfWeek = startOfWeek.clone().add(1,'week');

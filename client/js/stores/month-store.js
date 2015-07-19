@@ -27,13 +27,17 @@ var _organizeData = function (data) {
     data: {}
   };
 
+  var startOfMonth = moment(monthData.startDate, 'YYYY-MM-DD').startOf('month');
+  var dayOffset = startOfMonth.day();
+
   monthData.data = _.groupBy(data.gigs, function(gig) {
-    return Math.ceil(moment(gig.date).format('D') / 7);
+    return Math.ceil((moment(gig.date, "YYYY-MM-DD HH:mm:ss").date() + dayOffset) / 7);
   });
+
 
   monthData.data = _.mapObject(monthData.data, function(week) {
     return _.groupBy(week, function(gig) {
-      return moment(gig.date).format('YYYYMMDD');
+      return moment(gig.date, "YYYY-MM-DD HH:mm:ss").format('YYYYMMDD');
     });
   });
 
@@ -64,6 +68,7 @@ Dispatcher.register(function (payload) {
       _setMonthData(_organizeData(payload.monthData));
       MonthStore.emitChange();
       break;
+
     default:
       return true;
   }

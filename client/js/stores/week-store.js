@@ -23,7 +23,7 @@ var WeekStore = assign({}, EventEmitter.prototype, {
   addNewGig: function (gig) {
     var key = moment(gig.date, "YYYY-MM-DD HH:mm:ss").format('YYYYMMDD');
 
-    if (!_weekData.gigs[key]) {
+    if (!_weekData.days[key]) {
       _weekData.days[key] = [gig];
     } else {
       _weekData.days[key].push(gig);

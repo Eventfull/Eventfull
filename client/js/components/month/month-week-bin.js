@@ -15,6 +15,7 @@ var MonthWeekBin = React.createClass({
           dayData={ dayData }
           date={ date }
           month={ this.props.month }
+          currentDate= { this.props.currentDate }
         />
       );
       date = date.clone().add(1, 'day');
