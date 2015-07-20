@@ -23,7 +23,7 @@ var ApiUtils = {
     }).then(function(res){
       return {
         date: date,
-        gigs: res.data
+        gigs: res.data.gigs
       };
     }).then(callback);
   },
@@ -37,7 +37,11 @@ var ApiUtils = {
         endDate: endDate
       }
     }).then(function (res) {
-      return res.data;
+      return {
+        startDate: startDate,
+        endDate: endDate,
+        gigs: res.data.gigs
+      };
     }).then(callback);
   },
 
@@ -52,7 +56,7 @@ var ApiUtils = {
       return {
         startDate: startDate,
         endDate: endDate,
-        gigs: res.data
+        gigs: res.data.gigs
       };
     }).then(callback);
   },

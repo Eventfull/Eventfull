@@ -23,22 +23,26 @@ var WeekStore = assign({}, EventEmitter.prototype, {
   addNewGig: function (gig) {
     var key = moment(gig.date, "YYYY-MM-DD HH:mm:ss").format('YYYYMMDD');
 
-    if (!_weekData[key]) {
-      _weekData[key] = [gig];
+    if (!_weekData.gigs[key]) {
+      _weekData.days[key] = [gig];
     } else {
-      _weekData[key].push(gig);
+      _weekData.days[key].push(gig);
     }
   },
 
   organizeWeekData: function (weekData) {
-    var organizedData = _.groupBy(weekData, function (day) {
+    var days = _.groupBy(weekData.gigs, function (day) {
       return moment(day.date, "YYYY-MM-DD HH:mm:ss").format('YYYYMMDD');
     });
-    setWeekData(organizedData);
+
+    setWeekData({
+      days: days,
+      startDate: moment(weekData.startDate, 'YYYY-MM-DD'),
+      endDate: moment(weekData.endDate, 'YYYY-MM-DD')
+    });
   },
 
   emitChange: function () {
-    console.log('testing');
     this.emit('change');
   },
 
@@ -59,13 +63,11 @@ AppDispatcher.register(function (payload) {
   case AppConstants.ServerActionTypes.WEEK_DATA_RECEIVED:
     WeekStore.organizeWeekData(payload.weekData);
     WeekStore.emitChange();
-    console.log('weekdatareceived after emit change')
     break;
 
   case AppConstants.ServerActionTypes.GIG_ADDED:
     WeekStore.addNewGig(payload.gig);
     WeekStore.emitChange();
-    console.log('after emit change asdfasdfasdfasdfasdf');
     break;
 
   default:

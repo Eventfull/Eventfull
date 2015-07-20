@@ -18,7 +18,9 @@ module.exports = function(app){
       };
 
       Gig.getGigs(info).then(function(gigs){
-        res.send(gigs);
+        res.send({
+          gigs: gigs
+        });
       }).catch(function (err) {
         console.log(err);
       });

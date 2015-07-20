@@ -5,24 +5,22 @@ var moment = require('moment');
 var _ = require('underscore');
 
 var WeekHeader = React.createClass({
-  getInitialState: function() {
-    var date = moment();
+  getDefaultProps: function() {
     return ({
-      date: date
-    })
+      startDate: moment()
+    });
   },
 
   handleWeekChange: function (e) {
     var direction = _.contains(e.target.classList, 'arrow-right') ? 'add' : 'subtract';
-    var newWeek = this.state.date.clone();
+    var newWeek = this.props.startDate.clone();
     newWeek[direction](1, 'weeks');
 
     ViewActionCreators.getWeekData(newWeek);
-    this.setState({ date: newWeek });
   },
 
   render: function () {
-    var date = this.state.date.clone();
+    var date = this.props.startDate.clone();
 
     // startOf and endOf will mutate the date object
     var weekStart = date.startOf('isoWeek').format('MMM DD');
