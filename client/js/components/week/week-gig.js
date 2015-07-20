@@ -23,7 +23,6 @@ var WeekGig = React.createClass({
         <div className="event-card-details" style={ cardDetailsDisplay }>
           <h5>{ gig.type }</h5>
           <h5>{ gig.AttireId }</h5>
-          <h5>{ gig.Location.id }</h5>
           <h5>{ gig.complexity }</h5>
           <h5>{ gig.health }</h5>
           <h5>{ gig.Location.addressOne }</h5>

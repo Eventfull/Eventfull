@@ -18,7 +18,9 @@ module.exports = function(app){
       };
 
       Gig.getGigs(info).then(function(gigs){
-        res.send(gigs);
+        res.send({
+          gigs: gigs
+        });
       }).catch(function (err) {
         console.log(err);
       });
@@ -27,17 +29,18 @@ module.exports = function(app){
     },
 
     createGig: function (req, res){
+      var gig = req.body.gig;
       var gigParams = {
-        title: req.body.title,
-        type: req.body.type,
-        date: req.body.date,
-        startTime: req.body.startTime,
-        endTime: req.body.endTime,
-        complexity: req.body.complexity,
-        health: req.body.health,
+        title: gig.title,
+        type: gig.type,
+        date: gig.date,
+        startTime: gig.startTime,
+        endTime: gig.endTime,
+        complexity: gig.complexity,
+        health: gig.health,
         OrganizationId: req.organizationId,
-        LocationId: req.body.location,
-        AttireId: req.body.attire
+        LocationId: gig.locationId,
+        AttireId: gig.attireId
       };
 
       Gig.createGig(gigParams).then(function (gig) {

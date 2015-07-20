@@ -1,18 +1,15 @@
 var axios = require('axios');
-var weekData = require('../weekData');
 var server = 'http://localhost:8000';
 
 var ApiUtils = {
 
-  addEvent: function (event, callback) {
-    // this is currently mocking server side data manipulation
-    // NOT the final implementation
-    if (weekData.hasOwnProperty(event.date)) {
-      weekData[event.date].push(event);
-    } else {
-      weekData[event.date] = [event];
-    }
-    callback(weekData);
+  addGig: function (gig, callback) {
+    var path = server + '/api/organizations/1/gigs/';
+    axios.post(path, {
+      gig: gig
+    }).then(function (res) {
+      return res.data;
+    }).then(callback);
   },
 
   getDayData: function(date, callback){
@@ -26,7 +23,7 @@ var ApiUtils = {
     }).then(function(res){
       return {
         date: date,
-        gigs: res.data
+        gigs: res.data.gigs
       };
     }).then(callback);
   },
@@ -40,7 +37,11 @@ var ApiUtils = {
         endDate: endDate
       }
     }).then(function (res) {
-      return res.data;
+      return {
+        startDate: startDate,
+        endDate: endDate,
+        gigs: res.data.gigs
+      };
     }).then(callback);
   },
 
@@ -55,7 +56,7 @@ var ApiUtils = {
       return {
         startDate: startDate,
         endDate: endDate,
-        gigs: res.data
+        gigs: res.data.gigs
       };
     }).then(callback);
   },
