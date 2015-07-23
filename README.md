@@ -4,6 +4,8 @@ Advanced event staffing application for catering companies.
 
 <img src="http://imageshack.com/a/img540/6136/N8ZnQl.png" width="600" alt="Action Bar">
 
+(Additional screenshots below)
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
@@ -60,7 +62,7 @@ module.exports = {
 > $ SEED=true NODE_ENV=development node server/server.js
 
 ##### All future runs
-> $ nodemon server/server.js NODE_ENV=development
+> $ NODE_ENV=development nodemon server/server.js
 
 ## Screenshots
 
