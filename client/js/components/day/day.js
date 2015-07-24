@@ -24,10 +24,10 @@ var Day = React.createClass({
     DayStore.addChangeListener(this._handleDayStoreUpdate);
     EmployeeStore.addChangeListener(this._handleEmployeeStoreUpdate);
 
-    var today = moment();
+    var date = this.props.date ? moment(this.props.date, 'YYYYMMDD') : moment();
 
-    ViewActionCreator.getAvailableEmployees(today);
-    ViewActionCreator.getDayData(today);
+    ViewActionCreator.getAvailableEmployees(date);
+    ViewActionCreator.getDayData(date);
   },
 
   componentWillUnmount: function(){
