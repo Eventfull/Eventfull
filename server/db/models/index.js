@@ -1,6 +1,15 @@
 var Sequelize = require('sequelize');
 
-var configuration = require('../configuration')[process.env.NODE_ENV || 'development'];
+var configuration;
+if (process.env.DB_NAME && process.env.USERNAME) {
+  configuration = {
+    db_name: process.env.DB_NAME,
+    username: process.env.USERNAME,
+    password: null
+  };
+} else {
+  configuration = require('../configuration')[process.env.NODE_ENV || 'development'];
+}
 
 var sequelize = new Sequelize(
   configuration.db_name,

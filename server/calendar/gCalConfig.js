@@ -1,12 +1,15 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = require('./User');
-var configuration = require('./configuration');
+
+if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET || !process.env.GOOGLE_CALLBACK) {
+  var configuration = require('./configuration');
+}
 
 /* Passport session setup.
 *   To support persistent login sessions, Passport needs to be able to
 *   serialize users into and deserialize users out of the session. Here
-*   we store the user's google id when serializing, and find the user by 
+*   we store the user's google id when serializing, and find the user by
 *   google id when deserializing.
 */
 passport.serializeUser(function(user, done) {
@@ -25,10 +28,10 @@ passport.deserializeUser(function(user, done) {
 *   profile), and invoke a callback with a user object.
 */
 passport.use(new GoogleStrategy({
-    clientID: process.env.google_ID || configuration.google_clientID,
-    clientSecret: process.env.google_clientSecret || configuration.google_clientSecret,
-    callbackURL: process.env.google_CB || configuration.google_CB,
-    scope: process.env.google_scope || configuration.google_scope
+    clientID: process.env.GOOGLE_CLIENT_ID || configuration.google_client_id,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || configuration.google_client_secret,
+    callbackURL: process.env.GOOGLE_CALLBACK || configuration.google_callback,
+    scope: ['openid', 'email', 'https://www.googleapis.com/auth/calendar']
   },
   function(accessToken, refreshToken, profile, done) {
     if ( !User ) {
