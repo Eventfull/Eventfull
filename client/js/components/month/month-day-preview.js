@@ -30,8 +30,8 @@ var MonthDayPreview = React.createClass({
     date = date.format('MMMM Do');
 
     return (
-      <div className = "col-md-3">
-        <WeekDayBin day = { this.state.gigs } date = { date }/>
+      <div className="col-md-4 col">
+        <WeekDayBin day={ this.state.gigs } date={ date } />
       </div>
     );
   }

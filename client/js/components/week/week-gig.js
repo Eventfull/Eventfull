@@ -14,13 +14,13 @@ var WeekGig = React.createClass({
     var gig = this.props.gig;
 
     return (
-      <div className="event-card">
+      <div className="gig-card">
         <h2>{ gig.title }</h2>
         <h5>{ gig.startTime }</h5>
         <h5>to</h5>
         <h5>{ gig.endTime }</h5>
         <div className="health" onClick={ this.toggleDetails }></div>
-        <div className="event-card-details" style={ cardDetailsDisplay }>
+        <div style={ cardDetailsDisplay }>
           <h5>{ gig.type }</h5>
           <h5>{ gig.AttireId }</h5>
           <h5>{ gig.complexity }</h5>
