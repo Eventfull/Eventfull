@@ -2,7 +2,7 @@ var assert = require('chai').assert;
 var models = require('../../server/server.js').get('models');
 var dbTestUtils = require('./helpers/db-test-utils');
 
-describe('Users', function(done){
+describe('Users', function(){
   var User = models.User;
   var Organization = models.Organization;
 
@@ -39,7 +39,7 @@ describe('Users', function(done){
         assert.instanceOf(User.addEmployee(), models.sequelize.Promise, 'returns a promise');
       });
 
-      it('Should be able to add an employee', function(done){
+      it('Should be able to add an employee', function(){
         var employee = {
           email: 'fakeemail@gmail.com',
           password: 'fakepassword',
@@ -47,7 +47,7 @@ describe('Users', function(done){
           name: 'fakerfaker'
         };
 
-        User.addEmployee(employee).then(function(){
+        return User.addEmployee(employee).then(function(){
           return User.find({
             where: {
               name: 'fakerfaker'
@@ -58,10 +58,8 @@ describe('Users', function(done){
           assert.strictEqual(empFromDb.get('email'), employee.email);
           assert.strictEqual(empFromDb.get('password'), employee.password);
           assert.strictEqual(empFromDb.get('googleId'), employee.googleId);
-          done();
         }).catch(function(err){
           console.log(err);
-          done();
         });
       });
     });
@@ -69,8 +67,8 @@ describe('Users', function(done){
     describe('#getEmployees', function(){
 
       // insert some employees to get
-      before(function(done){
-        User.bulkCreate([{
+      before(function(){
+        return User.bulkCreate([{
           email: 'fakeemail1@gmail.com',
           password: 'fakepassword1',
           googleId: '',
@@ -82,9 +80,7 @@ describe('Users', function(done){
           googleId: '',
           name: 'fakerfaker2',
           OrganizationId: 1
-        }]).then(function(){
-          done();
-        }).catch(function(err){
+        }]).catch(function(err){
           console.log(err);
         });
       });
@@ -97,18 +93,17 @@ describe('Users', function(done){
         assert.instanceOf(User.getAllEmployees(), models.sequelize.Promise, 'returns a promise');
       });
 
-      it('Should be able to getAllEmployees', function(done){
-        User.getAllEmployees(1).then(function(employees){
+      it('Should be able to getAllEmployees', function(){
+        return User.getAllEmployees(1).then(function(employees){
           assert.instanceOf(employees, Array, 'should return an array of employees');
           assert.equal(employees.length, 2, 'should have all of the employees');
-          done();
         });
       });
     });
 
     describe('#getEmployeeInfo', function(){
 
-      before(function(done){
+      before(function(){
         return dbTestUtils.clearTables([
           'User'
         ]).then(function(){
@@ -120,8 +115,6 @@ describe('Users', function(done){
               OrganizationId: 1,
               id: 1
           });
-        }).then(function(){
-          done();
         }).catch(function(err){
           assert(err, undefined, 'before getEmployeeInfo failed');
           console.log(err);
@@ -136,16 +129,14 @@ describe('Users', function(done){
         assert.instanceOf(User.getEmployeeInfo(), models.sequelize.Promise, 'is a promise');
       });
 
-      it('Should get then employee info', function(done){
-        User.getEmployeeInfo(1).then(function(user){
+      it('Should get then employee info', function(){
+        return User.getEmployeeInfo(1).then(function(user){
           assert.equal(user.email, 'fakeemail1@gmail.com');
           assert.equal(user.password, 'fakepassword1');
           assert.equal(user.googleId, '');
           assert.equal(user.name, 'fakerfaker1');
-          done();
         }).catch(function(err){
           console.log(err);
-          done();
         });
       });
     });
@@ -153,7 +144,7 @@ describe('Users', function(done){
     describe('#updateEmployeeInfo', function(){
 
       // destroy all user and create one to update info on
-      before(function(done){
+      before(function(){
         return dbTestUtils.clearTables([
           'User'
         ]).then(function(){
@@ -165,8 +156,6 @@ describe('Users', function(done){
             OrganizationId: 1,
             id: 1
           });
-        }).then(function(){
-          done();
         }).catch(function(err){
           console.log(err, 'failed to destroy all users');
         });
@@ -180,8 +169,8 @@ describe('Users', function(done){
         assert.instanceOf(User.updateEmployeeInfo(1, {}), models.sequelize.Promise, 'is a promise');
       });
 
-      it('Should update employee info', function(done){
-        User.updateEmployeeInfo(1, {
+      it('Should update employee info', function(){
+        return User.updateEmployeeInfo(1, {
           name: 'fakers mcgee',
           email: 'superfaker@faker.com'
         }).then(function(){
@@ -193,15 +182,12 @@ describe('Users', function(done){
         }).then(function(user){
           assert.equal(user.name, 'fakers mcgee', 'changed name');
           assert.equal(user.email, 'superfaker@faker.com', 'changed email');
-          done();
-        }).catch(function(err){
-          console.log(err);
-        });
+        })
       });
     });
 
     describe('#removeEmployeeFromOrganization', function(){
-      before(function(done){
+      before(function(){
         return dbTestUtils.clearTables([
           'User'
         ]).then(function(){
@@ -213,8 +199,6 @@ describe('Users', function(done){
             OrganizationId: 1,
             id: 1
           });
-        }).then(function(){
-          done();
         }).catch(function(err){
           console.log(err, 'failed to destroy all users');
         });
@@ -228,8 +212,8 @@ describe('Users', function(done){
         assert.instanceOf(User.removeEmployeeFromOrganization(), models.sequelize.Promise, 'is a promise');
       });
 
-      it('Should remove the employee', function(done){
-        User.removeEmployeeFromOrganization(1).then(function(){
+      it('Should remove the employee', function(){
+        return User.removeEmployeeFromOrganization(1).then(function(){
           return User.find({
             where: {
               id: 1
@@ -237,7 +221,6 @@ describe('Users', function(done){
           });
         }).then(function(user){
           assert.equal(user, undefined, 'no user there');
-          done();
         });
       });
     });
