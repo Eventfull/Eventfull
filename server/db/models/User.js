@@ -43,6 +43,7 @@ module.exports = function (sequelize, DataTypes) {
         });
       },
 
+      //In future version should use getEmployeeInfo instead
       getEmployeeEmail: function (id) {
         return User.find({
           attributes: ['id', 'name', 'email'],

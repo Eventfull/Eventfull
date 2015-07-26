@@ -22,7 +22,7 @@ passport.deserializeUser(function(user, done) {
   done(null, user.id);
 });
 
-/* Use the Google within Passport.
+/* Use the Google Strategy within Passport.
 *   Strategies in Passport require a `verify` function, which accept
 *   credentials (in this case, an accessToken, refreshToken, and GitHub
 *   profile), and invoke a callback with a user object.

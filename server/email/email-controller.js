@@ -1,5 +1,6 @@
-var mandrill = require('./email-service');
+var emailService = require('./email-service');
 var _ = require('underscore');
+var url = require('url');
 
 module.exports = function(app, io){
   var models = app.get('models');
@@ -12,24 +13,39 @@ module.exports = function(app, io){
 
     sendEmails: function (req, res) {
       var gigId = req.body.gigId;
-
+      var gig;
+      var location;
+      var user;
       Gigs.getGigInfo(gigId).then(function (gigInfo) {
-        Locations.getLocationInfo(gigInfo.LocationId).then(function (locationInfo) {
-          UserGigs.getUserGigs(gigId).then(function (userIds) {
-            _.each(userIds, function(userId) {
-              Users.getEmployeeEmail(userId.UserId).then(function (userInfo) {
-                mandrill.sendEmployeeConfirmationMessage(gigInfo.dataValues, userInfo.dataValues, locationInfo.dataValues);
-              });
-            });
-          });
+        gig = gigInfo;
+        return Locations.getLocationInfo(gigInfo.LocationId);
+      }).then(function (locationInfo) {
+        location = locationInfo;
+        return UserGigs.getUserGigs(gigId);
+      }).then(function (userIds) {
+        return models.sequelize.Promise.map(userIds, function (userId) {
+          return Users.getEmployeeEmail(userId.UserId);
         });
+      }).then(function (userInfos) {
+        _.each(userInfos, function (user) {
+          emailService.sendEmployeeConfirmationMessage(gig.toJSON(),
+                                                   user.toJSON(),
+                                                   location.toJSON());
+        });
+      }).catch(function (err) {
+        console.log(err);
       });
     },
 
     handleResponse: function (req, res) {
-      var gigId = req.query.gigId;
-      var userId = parseInt(req.query.userId.split('')[0], 10);
-      var workerAccepted = req.query.confirmation;
+      var url_parts = url.parse(req.url, true);
+      var query = url_parts.query;
+      var gigId = parseInt(query.gigId, 10);
+      //userId has a / after it, haven't figured out why yet
+      var userId = parseInt(query.userId.slice(0,-1), 10);
+      var workerAccepted = query.confirmation;
+
+      console.log(workerAccepted, userId, gigId);
 
       UserGigs.updateEmployeeStatus(
         {

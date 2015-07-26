@@ -11,7 +11,9 @@ module.exports = function(app){
         subscription: req.body.subscription
       };
 
+      console.log('org params', organizationParams);
       Organization.createOrganization(organizationParams).then(function (organization){
+        console.log('organization', organization);
         res.send(organization);
       }).catch(function (err) {
         console.log(err);

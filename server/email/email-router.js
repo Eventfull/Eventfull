@@ -7,14 +7,13 @@ module.exports = function(app, io){
 
   var emailController = require('./email-controller')(app, io);
 
-
   emailRouter.post('/confirmation', emailController.sendEmails);
 
   emailRouter.get('/confirmation/confirmation.html', function(req,res){
     res.sendFile(path.join(__dirname, './confirmation.html'));
   });
 
-  emailRouter.get('/confirmation/response*', emailController.handleResponse);
+  emailRouter.get('/confirmation/response', emailController.handleResponse);
 
   return emailRouter;
 

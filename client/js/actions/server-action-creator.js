@@ -1,6 +1,5 @@
 var AppDispatcher = require('../dispatcher/dispatcher');
 var AppConstants = require('../constants/constants');
-var DayStore = require('../stores/day-store');
 
 var socket = io.connect('http://localhost:8000');
 socket.on('email', function () {

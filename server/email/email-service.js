@@ -1,4 +1,11 @@
-var mandrillAPI = require('./config.js');
+var mandrillAPI;
+
+if (!process.env.MANDRILL_CLIENT) {
+  mandrillAPI  = require('./config');
+} else {
+  mandrillAPI = process.env.MANDRILL_CLIENT;
+}
+
 var messages = require('./messages');
 
 exports.sendEmployeeConfirmationMessage = function(gigInfo, userInfo, locationInfo) {

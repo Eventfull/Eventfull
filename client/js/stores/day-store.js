@@ -57,7 +57,7 @@ var DayStore = assign({}, EventEmitter.prototype, {
 
   removeDatabaseChangeListener: function (callback) {
     this.removeListener(DATABASE_UPDATE, callback);
-  }
+  },
 
   removeChangeListener: function (callback){
     this.removeListener(CHANGE_EVENT, callback);
