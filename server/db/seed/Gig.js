@@ -5,6 +5,7 @@
 // endTime: DataTypes.TIME,
 // complexity: DataTypes.INTEGER,
 // health: DataTypes.INTEGER
+// employeeCostAllocation: DataTypes.INTEGER
 
 function randomItemFromArray(array){
   return array[Math.floor(Math.random()*array.length)];
@@ -77,7 +78,8 @@ module.exports = function(Gig){
       health: 10,
       OrganizationId: 1,
       LocationId: Math.ceil(Math.random()*10),
-      AttireId: 1
+      AttireId: 1,
+      employeeCostAllocation: Math.floor(Math.max(1000, Math.random()*10000))
     });
   }
 
