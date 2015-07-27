@@ -15,9 +15,9 @@ app.get('models').sequelize.sync({force: clearDatabase}).then(function () {
   // to seed the database, enter SEED=true node server/server.js;
   process.env.SEED === 'true' && require('./db/seed')(app.get('models'));
 
-  var server = app.listen(port, function () {
-    process.env.NODE_ENV !== 'test' && console.log('App now listening on port: ' + server.address().port);
-  });
+  app.set('server', app.listen(port, function () {
+    process.env.NODE_ENV !== 'test' && console.log('App now listening on port: ' + app.get('server').address().port);
+  }));
 
 });
 

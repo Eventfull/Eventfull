@@ -28,6 +28,7 @@
     "reactify": "^1.1.1",
     "run-sequence": "^1.1.0",
     "sequelize-cli": "^1.7.0",
+    "supertest": "^1.0.1",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.1"
   },

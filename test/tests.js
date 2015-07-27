@@ -5,14 +5,17 @@
 // TO ADD TESTS, REQUIRE TEST FILES INTO THIS FILE
 
 if (process.env.NODE_ENV === 'test'){
-  describe('Database Testing', function(){
-    this.slow(1000);
+  var models = require('../server/db/models/');
 
-    var models = require('../server/db/models/')
+  describe('Database Configuration', function(){
 
-    it('will sync with db', function(){
-      return models.sequelize.sync()
+    it('will sync models with db schema', function(){
+      return models.sequelize.sync();
     });
+
+  });
+
+  describe('Database Testing', function(){
 
     it('will run tests', function(){
       require('./db/UserSpec')(models);
@@ -21,11 +24,16 @@ if (process.env.NODE_ENV === 'test'){
       require('./db/OrganizationSpec')(models);
     });
 
-    /// other db test files should be required here
+    // other db test files should be required here
   });
 
   describe('API Testing', function(){
-    require('./api/GigRoutes');
-    /// api test files should be required here
+
+    it('will run tests', function () {
+      require('./api/ServerSpec');
+      require('./api/OrganizationRoutesSpec')(models);
+    });
+
+    // api test files should be required here
   });
 }
