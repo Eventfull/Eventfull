@@ -16,7 +16,7 @@ module.exports = function(app){
       }).catch(function (err) {
         console.log(err);
       });
-      console.log('creating organization name: ', name);
+      console.log('creating organization name: ', organizationParams.name);
     },
 
     getOrganizationInfo: function (req, res){
