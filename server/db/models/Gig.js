@@ -8,7 +8,8 @@ module.exports = function (sequelize, DataTypes) {
     startTime: DataTypes.TIME,
     endTime: DataTypes.TIME,
     complexity: DataTypes.INTEGER,
-    health: DataTypes.INTEGER
+    health: DataTypes.INTEGER,
+    employeeCostAllocation: DataTypes.INTEGER
   }, {
     classMethods: {
 
@@ -77,6 +78,7 @@ module.exports = function (sequelize, DataTypes) {
             'startTime',
             'endTime',
             'date',
+            'employeeCostAllocation',
             'id'
           ],
           include: include,
