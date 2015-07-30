@@ -405,7 +405,8 @@ input[type=submit]{
 
 .action-bar-default,
 .schedule-default,
-.gig-card {
+.gig-card,
+.bar-graph div {
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -472,7 +473,6 @@ input[type=submit]{
   margin: 10px 0;
   cursor:pointer;
   position: relative;
-  height: 140px;
   overflow: hidden;
 }
 
@@ -540,7 +540,7 @@ input[type=submit]{
 
 .gig-card .card-details {
   top: 160px;
-  margin: 0 5%;
+  margin: 0 15px;
   position: absolute;
 }
 

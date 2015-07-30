@@ -9,15 +9,20 @@ var WeekGig = React.createClass({
     var randomScheduled = Math.floor(70 * Math.random());
     return {
       showCardDetails: false,
-      staffGraphs: [<div>placeholder</div>],
-      spent: {
-        spent: Math.floor(randomSpent * Math.random()),
-        total: randomSpent
+      graphDetails: {
+        spentPercent: 0,
+        spentColor: 5,
+        scheduledPercent: 0,
+        scheduledColor: 5
       },
       scheduled: {
-        scheduled: Math.floor(randomScheduled * Math.random()),
-        required: randomScheduled
+        current: Math.floor(randomScheduled * Math.random()),
+        total: randomScheduled
       },
+      spent: {
+        current: Math.floor(randomSpent * Math.random()),
+        total: randomSpent
+      }
     };
   },
 
@@ -26,51 +31,30 @@ var WeekGig = React.createClass({
   },
 
   componentDidMount: function () {
-    setTimeout(this.buildGraphs.bind(this), 200);
+    // Load the graphs after the initial page render to improve performance.
+    setTimeout(this.buildGraphs, 100);
   },
 
   buildGraphs: function () {
-    var spentPercent = 100 * (this.state.spent.spent / this.state.spent.total);
+    var scheduledPercent = 100 * (this.state.scheduled.current / this.state.scheduled.total);
+    var scheduledColor = Math.floor((scheduledPercent / 100) * 4);
+    var spentPercent = 100 * (this.state.spent.current / this.state.spent.total);
     var spentColor = Math.floor((spentPercent / 100) * 4);
-    var schedulePercent = 100 * (this.state.scheduled.scheduled / this.state.scheduled.required);
-    var scheduleColor = Math.floor((schedulePercent / 100) * 4);
 
-    var colorMap = ['#F26350', '#F98F46', '#6BCFFF', '#A8E5A7'];
-    var gameGraphs = [];
-
-    gameGraphs.push(
-      <div>
-        <h5 style={{ display: 'block', margin: '0 15px' }}>
-          ${ this.state.spent.spent }
-          <span className="tiny">of</span>
-          ${ this.state.spent.total }
-          <span className="tiny">spent</span>
-        </h5>
-        <div className="bar-graph">
-          <div style={{ width: spentPercent + '%', backgroundColor: colorMap[spentColor] }}></div>
-        </div>
-      </div>
-    );
-    gameGraphs.push(
-      <div>
-        <div className="bar-graph">
-          <div style={{ width: schedulePercent + '%', backgroundColor: colorMap[scheduleColor] }}></div>
-        </div>
-        <h5 style={{ display: 'block', margin: '0 15px' }}>
-          { this.state.scheduled.scheduled }
-          <span className="tiny">of</span>
-          { this.state.scheduled.required }
-          <span className="tiny">scheduled</span>
-        </h5>
-      </div>
-    );
-
-    this.setState({ staffGraphs: gameGraphs });
-
+    this.setState({ graphDetails: {
+      scheduledPercent: scheduledPercent,
+      scheduledColor: scheduledColor,
+      spentPercent: spentPercent,
+      spentColor: spentColor
+    }});
   },
 
   render: function () {
-    console.log("this.state:", this.state);
+    // colorMaps include #A8E5A7 = green, #6BCFFF = blue, #F98F46 = orange, #F26350 = red as the primary colors for health status.
+    // The fifth color is the default color utilized prior to the graphs loading.
+    var scheduledColorMap = ['#F26350', '#F98F46', '#6BCFFF', '#A8E5A7', '#7198C5'];
+    var spentColorMap = ['#A8E5A7', '#6BCFFF', '#F98F46', '#F26350', '#7198C5'];
+
     var cardDetailsDisplay = { display: this.state.showCardDetails ? 'block' : 'none' };
     var gigCardHeight = { height: this.state.showCardDetails ? '400px' : '140px' };
     var gig = this.props.gig;
@@ -85,7 +69,36 @@ var WeekGig = React.createClass({
           <h5>{ gig.startTime }<span className="tiny">to</span>{ gig.endTime }</h5>
         </div>
         <div className="staff-graphs">
-          { this.state.staffGraphs }
+          <div>
+            <h5 style={{ display: 'block', margin: '0 15px' }}>
+              { this.state.scheduled.current }
+              <span className="tiny">of</span>
+              { this.state.scheduled.total }
+              <span className="tiny">scheduled</span>
+            </h5>
+            <div className="bar-graph">
+              <div style={{
+                width: this.state.graphDetails.scheduledPercent + '%',
+                backgroundColor: scheduledColorMap[this.state.graphDetails.scheduledColor]
+              }}>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="bar-graph">
+              <div style={{
+                width: this.state.graphDetails.spentPercent + '%',
+                backgroundColor: spentColorMap[this.state.graphDetails.spentColor]
+              }}>
+              </div>
+            </div>
+            <h5 style={{ display: 'block', margin: '0 15px' }}>
+              ${ this.state.spent.current }
+              <span className="tiny">of</span>
+              ${ this.state.spent.total }
+              <span className="tiny">spent</span>
+            </h5>
+          </div>
         </div>
         <div style={ cardDetailsDisplay } className="card-details">
           <h5>{ gig.type }</h5>
