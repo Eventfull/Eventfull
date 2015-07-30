@@ -472,21 +472,26 @@ input[type=submit]{
   margin: 10px 0;
   cursor:pointer;
   position: relative;
-  height: 130px;
+  height: 140px;
   overflow: hidden;
 }
 
 .gig-card .staff-graphs {
-  height: 40px;
-  overflow-y: auto;
+  top: 70px;
+  width: 100%;
+  position: absolute;
+}
+
+.gig-card .staff-graphs > div {
+  line-height: 15px;
 }
 
 .gig-card .bar-graph {
   display: inline-block;
-  width: 50%;
   height: 8px;
+  width: 90%;
+  margin: 0 5%;
   background-color: #F1F3F9;
-  margin: 4px 0;
   border: 0 solid #F1F3F9;
   border-radius: 4px;
 }
@@ -514,9 +519,29 @@ input[type=submit]{
   right: 15px;
 }
 
+.gig-card h5 {
+  text-align: left;
+}
+
 .gig-card h5 span {
   display: block;
   clear: both;
+  text-align: center;
+}
+
+.gig-card h5 span.tiny {
+  font-size: 8px;
+  margin: 0 4px;
+}
+
+.gig-card .staff-graphs h5 span {
+  display: inline;
+}
+
+.gig-card .card-details {
+  top: 160px;
+  margin: 0 5%;
+  position: absolute;
 }
 
 .month-gig-card {
