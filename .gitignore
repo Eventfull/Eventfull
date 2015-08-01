@@ -4,6 +4,9 @@ dist
 server/db/configuration.js
 server/db/config
 server/calendar/configuration.js
+server/email/config.js
 
 client/js/monthData.js
+
 eventfull_db1_create.sql
+

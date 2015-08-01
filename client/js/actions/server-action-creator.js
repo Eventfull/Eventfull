@@ -1,6 +1,11 @@
 var AppDispatcher = require('../dispatcher/dispatcher');
 var AppConstants = require('../constants/constants');
 
+var socket = io.connect('http://localhost:8000');
+socket.on('email', function () {
+  ServerActionCreator.receiveEmailUpdate();
+});
+
 var ServerActionCreator = {
   gigAdded: function (gig) {
     AppDispatcher.dispatch({
@@ -27,10 +32,15 @@ var ServerActionCreator = {
       monthData: monthData
     });
   },
-  receiveAvailableEmployees: function(employeeData){
+  receiveAvailableEmployees: function (employeeData){
     AppDispatcher.dispatch({
       actionType: AppConstants.ServerActionTypes.EMPLOYEE_DATA_RECEIVED,
       employeeData: employeeData
+    });
+  },
+  receiveEmailUpdate: function () {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.ServerActionTypes.EMAIL_UPDATE_RECEIVED
     });
   }
 };

@@ -55,6 +55,10 @@ var ViewActionCreator = {
 
   getAvailableEmployees: function(date){
     ApiUtils.getAvailableEmployees(date, ServerActionCreator.receiveAvailableEmployees);
+  },
+
+  sendConfirmationEmails: function (gigInfo) {
+    ApiUtils.sendConfirmationEmails(gigInfo);
   }
 
 };
