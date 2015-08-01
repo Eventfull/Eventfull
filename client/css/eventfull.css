@@ -405,7 +405,8 @@ input[type=submit]{
 
 .action-bar-default,
 .schedule-default,
-.gig-card {
+.gig-card,
+.bar-graph div {
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -471,18 +472,93 @@ input[type=submit]{
   border-radius: 5px;
   margin: 10px 0;
   cursor:pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.gig-card .staff-graphs {
+  top: 70px;
+  width: 100%;
+  position: absolute;
+}
+
+.gig-card .staff-graphs > div {
+  line-height: 15px;
+}
+
+.gig-card .bar-graph {
+  display: inline-block;
+  height: 8px;
+  width: 90%;
+  margin: 0 5%;
+  background-color: #F1F3F9;
+  border: 0 solid #F1F3F9;
+  border-radius: 4px;
+}
+
+.gig-card .bar-graph > div {
+  width: 80%;
+  height: 8px;
+  padding: 2px;
+  background-color: #7198C5;
+  border: 0 solid #7198C5;
+  border-radius: 4px;
+}
+
+.gig-card h2 {
+  display: inline-block;
+  text-align: left;
+  margin-left: 15px;
+  margin-top: 11px;
+  width: 65%;
+}
+
+.gig-card div.time-span {
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+
+.gig-card h5 {
+  text-align: left;
+}
+
+.gig-card h5 span {
+  display: block;
+  clear: both;
+  text-align: center;
+}
+
+.gig-card h5 span.tiny {
+  font-size: 8px;
+  margin: 0 4px;
+}
+
+.gig-card .staff-graphs h5 span {
+  display: inline;
+}
+
+.gig-card .card-details {
+  top: 160px;
+  margin: 0 15px;
+  position: absolute;
+}
+
+.month-gig-card {
+  display: inline-block;
+  min-width: 90px;
+  max-width: 90px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .health {
   width: 100%;
-  padding: 2px;
-  height: 25px;
-  color: #FFF;
-  font-weight: 800;
-  text-align: center;
-  vertical-align: center;
+  padding: 1px;
+  height: 4px;
   background-color: #A8E5A7;
-  margin-bottom: 15px;
+  position: absolute;
+  bottom: 4px;
 }
 
 /*
